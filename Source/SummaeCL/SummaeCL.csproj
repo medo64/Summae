@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{B055E279-8380-4448-8A2B-26CF02B632E9}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SummaeCL</RootNamespace>
+    <AssemblyName>sum</AssemblyName>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <ApplicationIcon>..\Summae\Properties\App.ico</ApplicationIcon>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>..\Summae\Properties\App.snk</AssemblyOriginatorKeyFile>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\Binaries\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\Binaries\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="%28Medo%29\Args [001].cs" />
+    <Compile Include="%28Medo%29\Crc16 [004].cs" />
+    <Compile Include="%28Medo%29\Crc32 [004].cs" />
+    <Compile Include="%28Medo%29\ErrorReport [012].cs" />
+    <Compile Include="%28Medo%29\Settings [010].cs" />
+    <Compile Include="Settings.cs" />
+    <Compile Include="%28Medo%29\StringAdder [002].cs" />
+    <Compile Include="%28Medo%29\UnhandledCatch [006].cs" />
+    <Compile Include="..\SummaeExecutor\Crc16Sum.cs">
+      <Link>Crc16Sum.cs</Link>
+    </Compile>
+    <Compile Include="..\SummaeExecutor\Crc32Sum.cs">
+      <Link>Crc32Sum.cs</Link>
+    </Compile>
+    <Compile Include="..\SummaeExecutor\Md5Sum.cs">
+      <Link>Md5Sum.cs</Link>
+    </Compile>
+    <Compile Include="..\SummaeExecutor\RipeMd160Sum.cs">
+      <Link>RipeMd160Sum.cs</Link>
+    </Compile>
+    <Compile Include="..\SummaeExecutor\Sha1Sum.cs">
+      <Link>Sha1Sum.cs</Link>
+    </Compile>
+    <Compile Include="..\SummaeExecutor\Sha256Sum.cs">
+      <Link>Sha256Sum.cs</Link>
+    </Compile>
+    <Compile Include="..\SummaeExecutor\Sha384Sum.cs">
+      <Link>Sha384Sum.cs</Link>
+    </Compile>
+    <Compile Include="..\SummaeExecutor\Sha512Sum.cs">
+      <Link>Sha512Sum.cs</Link>
+    </Compile>
+    <Compile Include="..\SummaeExecutor\SumAlgorithmBase.cs">
+      <Link>SumAlgorithmBase.cs</Link>
+    </Compile>
+    <Compile Include="..\SummaeExecutor\SumItem.cs">
+      <Link>SumItem.cs</Link>
+    </Compile>
+    <Compile Include="..\Summae\Properties\SolutionInfo.cs">
+      <Link>Properties\SolutionInfo.cs</Link>
+    </Compile>
+    <Compile Include="App.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="..\Summae\Properties\App.ico">
+      <Link>Properties\App.ico</Link>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Summae\Properties\App.snk">
+      <Link>Properties\App.snk</Link>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>Q:\Tools\BuildEvents\BuildEvents.exe /Prebuild /ConfigurationName:"$(ConfigurationName)" /TargetPath:"$(TargetPath)" /SolutionDir:"$(SolutionDir)" /ProjectDir:"$(ProjectDir)"</PreBuildEvent>
+    <PostBuildEvent>Q:\Tools\BuildEvents\BuildEvents.exe /Postbuild /ConfigurationName:"$(ConfigurationName)" /TargetPath:"$(TargetPath)" /SolutionDir:"$(SolutionDir)" /ProjectDir:"$(ProjectDir)"</PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
