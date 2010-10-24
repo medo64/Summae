@@ -85,7 +85,7 @@ namespace SummaeCL {
                                     }
                                 }
 
-                                if (lastMilliseconds + 1000 < stopWatch.ElapsedMilliseconds) {
+                                if ((showProgress) && (lastMilliseconds + 1000 < stopWatch.ElapsedMilliseconds)) {
                                     lastMilliseconds = stopWatch.ElapsedMilliseconds;
 
                                     int lastLeft = Console.CursorLeft;
