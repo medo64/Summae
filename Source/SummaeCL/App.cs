@@ -23,8 +23,24 @@ namespace SummaeCL {
 
             string[] argfiles = Args.Current.GetValues("");
             var files = new List<FileInfo>();
-            foreach (var iFile in argfiles) {
-                files.Add(new FileInfo(iFile));
+            foreach (var iArgFile in argfiles) {
+                if (Directory.Exists(iArgFile)) {
+                    AddDirectory(iArgFile, files);
+                } else {
+                    string fileDirectory;
+                    string filePattern;
+                    var iSep = iArgFile.LastIndexOf(Path.DirectorySeparatorChar);
+                    if (iSep >= 0) {
+                        fileDirectory = iArgFile.Substring(0, iSep);
+                        filePattern = iArgFile.Substring(iSep + 1);
+                    } else {
+                        fileDirectory = Environment.CurrentDirectory;
+                        filePattern = iArgFile;
+                    }
+                    foreach (var iFile in Directory.GetFiles(fileDirectory, filePattern)) {
+                        files.Add(new FileInfo(iFile));
+                    }
+                }
             }
 
             if (files.Count == 0) {
@@ -123,6 +139,15 @@ namespace SummaeCL {
             }
 
             _setupMutex.Close();
+        }
+
+        private static void AddDirectory(string baseDirectory, IList<FileInfo> files) {
+            foreach (var iFileName in Directory.GetFiles(baseDirectory)) {
+                files.Add(new FileInfo(iFileName));
+            }
+            foreach (var iDirectoryName in Directory.GetDirectories(baseDirectory)) {
+                AddDirectory(iDirectoryName, files);
+            }
         }
 
 

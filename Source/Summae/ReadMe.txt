@@ -55,7 +55,7 @@ Calculations are done using SHA-512 hashing algorithm.
 If this command-line parameter is present, no automatic data saving will be
 done to either registry or file system.
 
-filename
+/filename
 Specifies name of file or files on which calculations are to be done.
 
 
@@ -115,6 +115,13 @@ A: All calculations and right-click processing are done in SummaeExecutor.exe.
    process. SummaeSettings.exe is such process and it is called only when those
    settings are updated.
 
+
+
+Version 1.10             []
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- command-line can make sum of directories
+- command-line supports basic patterns (? and *)
 
 
 Version 1.01             [2010-01-17]
