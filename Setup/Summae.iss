@@ -31,7 +31,7 @@ Source: "ReadMe.txt";         DestDir: "{app}"; Attribs: readonly; Flags: overwr
 Name: "{userstartmenu}\Summae"; Filename: "{app}\Summae.exe"
 
 [Registry]
-Root: HKCU; Subkey: "Software\Josip Medved\Summae"; Flags: uninsdeletekey
+Root: HKCU; Subkey: "Software\Josip Medved\Summae"; ValueType: dword; ValueName: "Installed"; ValueData: "1"; Flags: uninsdeletekey
 Root: HKCU; Subkey: "Software\Josip Medved"; Flags: uninsdeletekeyifempty
 Root: HKCR; Subkey: "*\shell\Summae"; ValueType: none; Flags: deletekey uninsdeletekey;
 Root: HKCR; Subkey: "*\shell\Summae"; ValueType: string; ValueName: "MultiSelectModel"; ValueData: "Player";
