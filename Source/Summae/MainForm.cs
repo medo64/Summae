@@ -33,7 +33,7 @@ namespace Summae {
             }
             RefreshEnableDisable();
 
-            toolToolsSettings.Visible = !Settings.IsPortable;
+            toolToolsSettings.Visible = (Medo.Configuration.Settings.NoRegistryWrites == false);
         }
 
         [SecurityPermission(SecurityAction.LinkDemand, Flags = SecurityPermissionFlag.UnmanagedCode)]
@@ -114,7 +114,6 @@ namespace Summae {
                         var iMethodTag = (TagItem<string, string>)iMethod;
                         sbArgs.Append("/" + iMethodTag.Key);
                     }
-                    if (Settings.IsPortable) { sbArgs.Append("/portable"); }
 
                     foreach (ListViewItem iItem in lsvFiles.Items) {
                         var iFile = (FileInfo)iItem.Tag;
@@ -155,12 +154,10 @@ namespace Summae {
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e) {
-            if (!Settings.IsPortable) {
-                Medo.Windows.Forms.State.Save(this, lsvFiles);
-                foreach (var iItem in checkedMethods.Items) {
-                    var iMethodTag = (TagItem<string, string>)iItem;
-                    Medo.Configuration.Settings.Write(iMethodTag.Key, checkedMethods.GetItemChecked(checkedMethods.Items.IndexOf(iItem)));
-                }
+            Medo.Windows.Forms.State.Save(this, lsvFiles);
+            foreach (var iItem in checkedMethods.Items) {
+                var iMethodTag = (TagItem<string, string>)iItem;
+                Medo.Configuration.Settings.Write(iMethodTag.Key, checkedMethods.GetItemChecked(checkedMethods.Items.IndexOf(iItem)));
             }
         }
 

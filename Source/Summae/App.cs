@@ -22,7 +22,10 @@ namespace Summae {
             Medo.Diagnostics.ErrorReport.DisableAutomaticSaveToTemp = true;
             Medo.Application.UnhandledCatch.ThreadException += new EventHandler<ThreadExceptionEventArgs>(UnhandledCatch_ThreadException);
             Medo.Application.UnhandledCatch.Attach();
-            Medo.Diagnostics.ErrorReport.DisableAutomaticSaveToTemp = Settings.IsPortable;
+
+            Medo.Configuration.Settings.NoRegistryWrites = !Medo.Configuration.Settings.Read("Installed", false);
+            Medo.Windows.Forms.State.NoRegistryWrites = !Medo.Configuration.Settings.Read("Installed", false);
+            Medo.Diagnostics.ErrorReport.DisableAutomaticSaveToTemp = !Medo.Configuration.Settings.Read("Installed", false);
 
             if (!((Environment.OSVersion.Version.Build < 7000) || (App.IsRunningOnMono))) {
                 var appId = new FileInfo(Assembly.GetExecutingAssembly().Location).Directory.FullName;

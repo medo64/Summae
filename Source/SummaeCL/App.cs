@@ -19,7 +19,9 @@ namespace SummaeCL {
             Medo.Diagnostics.ErrorReport.DisableAutomaticSaveToTemp = true;
             Medo.Application.UnhandledCatch.ThreadException += new EventHandler<ThreadExceptionEventArgs>(UnhandledCatch_ThreadException);
             Medo.Application.UnhandledCatch.Attach();
-            Medo.Diagnostics.ErrorReport.DisableAutomaticSaveToTemp = Settings.IsPortable;
+
+            Medo.Configuration.Settings.NoRegistryWrites = !Medo.Configuration.Settings.Read("Installed", false);
+            Medo.Diagnostics.ErrorReport.DisableAutomaticSaveToTemp = !Medo.Configuration.Settings.Read("Installed", false);
 
             string[] argfiles = Args.Current.GetValues("");
             var files = new List<FileInfo>();

@@ -117,11 +117,12 @@ A: All calculations and right-click processing are done in SummaeExecutor.exe.
 
 
 
-Version 1.10             []
+Version 1.50             []
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 - command-line can make sum of directories
 - command-line supports basic patterns (? and *)
+- no registry writes will be performed if application is not installed
 
 
 Version 1.01             [2010-01-17]

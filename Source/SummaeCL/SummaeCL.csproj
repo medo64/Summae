@@ -56,8 +56,7 @@
     <Compile Include="%28Medo%29\Crc16 [004].cs" />
     <Compile Include="%28Medo%29\Crc32 [004].cs" />
     <Compile Include="%28Medo%29\ErrorReport [012].cs" />
-    <Compile Include="%28Medo%29\Settings [010].cs" />
-    <Compile Include="Settings.cs" />
+    <Compile Include="%28Medo%29\Settings [011].cs" />
     <Compile Include="%28Medo%29\StringAdder [002].cs" />
     <Compile Include="%28Medo%29\UnhandledCatch [006].cs" />
     <Compile Include="..\SummaeExecutor\Crc16Sum.cs">
