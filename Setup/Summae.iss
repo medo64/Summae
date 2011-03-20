@@ -8,7 +8,7 @@ SourceDir=..\..\..\Binaries
 AppId=JosipMedved_Summae
 AppMutex=Global\JosipMedved_Summae
 AppPublisher=Josip Medved
-AppPublisherURL=http://www.jmedved.com/?page=summae
+AppPublisherURL=http://www.jmedved.com/summae/
 UninstallDisplayIcon={app}\Summae.exe
 AlwaysShowComponentsList=no
 ArchitecturesInstallIn64BitMode=x64
