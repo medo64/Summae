@@ -43,7 +43,7 @@ namespace Summae {
 
         private static void UnhandledCatch_ThreadException(object sender, ThreadExceptionEventArgs e) {
 #if !DEBUG
-            Medo.Diagnostics.ErrorReport.ShowDialog(null, e.Exception, new Uri("http://jmedved.com/ErrorReport/"), new string[] { "Test line 1.", "Test line 2." });
+            Medo.Diagnostics.ErrorReport.ShowDialog(null, e.Exception, new Uri("http://jmedved.com/feedback/"), new string[] { "Test line 1.", "Test line 2." });
 #else
             throw e.Exception;
 #endif

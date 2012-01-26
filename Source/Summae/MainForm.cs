@@ -140,11 +140,11 @@ namespace Summae {
         }
 
         private void toolHelpReportABug_Click(object sender, EventArgs e) {
-            Medo.Diagnostics.ErrorReport.ShowDialog(this, null, new Uri("http://jmedved.com/ErrorReport/"));
+            Medo.Diagnostics.ErrorReport.ShowDialog(this, null, new Uri("http://jmedved.com/feedback/"));
         }
 
         private void toolHelpAbout_Click(object sender, EventArgs e) {
-            Medo.Windows.Forms.AboutBox.ShowDialog(this, new Uri("http://www.jmedved.com?page=summae"));
+            Medo.Windows.Forms.AboutBox.ShowDialog(this, new Uri("http://www.jmedved.com/summae/"));
         }
 
         private void checkedMethods_ItemCheck(object sender, ItemCheckEventArgs e) {
