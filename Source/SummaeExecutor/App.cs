@@ -1,15 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Windows.Forms;
-using System.IO;
-using System.Text;
-using Medo.Text;
-using Medo.Application;
 using System.Diagnostics;
+using System.IO;
 using System.Reflection;
-using System.Threading;
-using System.Globalization;
 using System.Runtime.InteropServices;
+using System.Threading;
+using System.Windows.Forms;
+using HashAlgorithms;
+using Medo.Application;
+using Medo.Text;
 
 namespace SummaeExecutor {
     internal static class App {

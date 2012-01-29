@@ -54,35 +54,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="%28Medo%29\Args [001].cs" />
-    <Compile Include="%28Medo%29\Crc16 [004].cs" />
-    <Compile Include="%28Medo%29\Crc32 [004].cs" />
     <Compile Include="%28Medo%29\ErrorReport [012].cs" />
     <Compile Include="%28Medo%29\ManifestResources [002].cs" />
     <Compile Include="%28Medo%29\MessageBox [006].cs" />
     <Compile Include="%28Medo%29\Settings [010].cs" />
-    <Compile Include="%28Medo%29\StringAdder [002].cs" />
     <Compile Include="%28Medo%29\UnhandledCatch [007].cs" />
     <Compile Include="..\Summae\Properties\SolutionInfo.cs">
       <Link>Properties\SolutionInfo.cs</Link>
     </Compile>
     <Compile Include="Settings.cs" />
-    <Compile Include="Sha384Sum.cs" />
-    <Compile Include="Crc32Sum.cs" />
-    <Compile Include="Crc16Sum.cs" />
-    <Compile Include="RipeMd160Sum.cs" />
-    <Compile Include="Md5Sum.cs" />
-    <Compile Include="Sha256Sum.cs" />
-    <Compile Include="Sha512Sum.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="SumAlgorithmBase.cs" />
-    <Compile Include="Sha1Sum.cs" />
-    <Compile Include="SumItem.cs" />
     <Compile Include="App.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="%28Medo%29\TaskbarProgress [002].cs" />
@@ -100,6 +86,12 @@
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SummaeCL\SummaeCL.csproj">
+      <Project>{B055E279-8380-4448-8A2B-26CF02B632E9}</Project>
+      <Name>SummaeCL</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

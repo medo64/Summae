@@ -1,16 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Security.Cryptography;
+﻿using System.Security.Cryptography;
 
-namespace SummaeExecutor {
-    internal class Sha1Sum : SumAlgorithmBase {
+namespace HashAlgorithms {
+    public class RipeMd160Sum : SumAlgorithmBase {
 
         private HashAlgorithm _algorithm;
 
-        public Sha1Sum()
-            : base("sha1", "SHA-1") {
-            this._algorithm = new SHA1CryptoServiceProvider();
+        public RipeMd160Sum()
+            : base("ripemd160", "RIPE MD-160") {
+            this._algorithm = new RIPEMD160Managed();
             base.ResultByteCount = this._algorithm.HashSize / 8;
         }
 

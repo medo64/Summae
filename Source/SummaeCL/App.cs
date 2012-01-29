@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
-using System.IO;
-using System.Text;
-using System.Threading;
-using Medo.Application;
-using SummaeExecutor;
 using System.Diagnostics;
+using System.IO;
+using System.Threading;
+using HashAlgorithms;
+using Medo.Application;
 
 namespace SummaeCL {
 
@@ -16,12 +14,7 @@ namespace SummaeCL {
         internal static void Main() {
             _setupMutex = new Mutex(false, @"Global\JosipMedved_Summae");
 
-            Medo.Diagnostics.ErrorReport.DisableAutomaticSaveToTemp = true;
-            Medo.Application.UnhandledCatch.ThreadException += new EventHandler<ThreadExceptionEventArgs>(UnhandledCatch_ThreadException);
-            Medo.Application.UnhandledCatch.Attach();
-
-            Medo.Configuration.Settings.NoRegistryWrites = !Medo.Configuration.Settings.Read("Installed", false);
-            Medo.Diagnostics.ErrorReport.DisableAutomaticSaveToTemp = !Medo.Configuration.Settings.Read("Installed", false);
+            AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(CurrentDomain_UnhandledException);
 
             string[] argfiles = Args.Current.GetValues("");
             var files = new List<FileInfo>();
@@ -153,13 +146,15 @@ namespace SummaeCL {
         }
 
 
-        private static void UnhandledCatch_ThreadException(object sender, ThreadExceptionEventArgs e) {
-#if !DEBUG
-            Medo.Diagnostics.ErrorReport.ShowDialog(null, e.Exception, new Uri("http://jmedved.com/feedback/"));
-#else
-            Medo.Diagnostics.ErrorReport.SaveToTemp(e.Exception);
-            throw e.Exception;
-#endif
+        private static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e) {
+            Console.Error.WriteLine();
+            var ex = e.ExceptionObject as Exception;
+            if (ex != null) {
+                Console.Error.WriteLine(ex.Message);
+            } else {
+                Console.Error.WriteLine("Unknown exception.");
+            }
+            Environment.Exit(1);
         }
 
     }

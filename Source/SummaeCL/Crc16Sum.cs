@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
-using System.Security.Cryptography;
 using Medo.Security.Checksum;
 
-namespace SummaeExecutor {
-    internal class Crc16Sum : SumAlgorithmBase {
+namespace HashAlgorithms {
+    public class Crc16Sum : SumAlgorithmBase {
 
         private Crc16 _algorithm;
 

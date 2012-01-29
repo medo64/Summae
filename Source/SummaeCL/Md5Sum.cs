@@ -1,16 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Security.Cryptography;
+﻿using System.Security.Cryptography;
 
-namespace SummaeExecutor {
-    internal class Sha384Sum : SumAlgorithmBase {
+namespace HashAlgorithms {
+    public class Md5Sum : SumAlgorithmBase {
 
         private HashAlgorithm _algorithm;
 
-        public Sha384Sum()
-            : base("sha384", "SHA-384") {
-            this._algorithm = new SHA384Managed();
+        public Md5Sum()
+            : base("md5", "MD-5") {
+            this._algorithm = new MD5CryptoServiceProvider();
             base.ResultByteCount = this._algorithm.HashSize / 8;
         }
 

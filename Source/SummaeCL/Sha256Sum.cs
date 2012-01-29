@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Security.Cryptography;
+﻿using System.Security.Cryptography;
 
-namespace SummaeExecutor {
-    internal class Sha256Sum : SumAlgorithmBase {
+namespace HashAlgorithms {
+    public class Sha256Sum : SumAlgorithmBase {
 
         private HashAlgorithm _algorithm;
 

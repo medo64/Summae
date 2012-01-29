@@ -1,18 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
 using System.Diagnostics;
-using System.Reflection;
+using System.Drawing;
 using System.IO;
-using Medo.Text;
-using Medo;
+using System.Reflection;
 using System.Security.Permissions;
+using System.Windows.Forms;
+using Medo;
+using Medo.Text;
 
 namespace Summae {
-    public partial class MainForm : Form {
+    internal partial class MainForm : Form {
 
         public MainForm() {
             InitializeComponent();

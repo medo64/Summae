@@ -1,14 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
 using System.Runtime.InteropServices;
+using System.Windows.Forms;
 
 namespace Summae {
-    public partial class SettingsForm : Form {
+    internal partial class SettingsForm : Form {
         public SettingsForm() {
             InitializeComponent();
             this.Font = SystemFonts.MessageBoxFont;

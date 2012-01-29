@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Security.Cryptography;
-using System.Windows.Forms;
-using System.IO;
+﻿using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
+using System.Text;
+using System.Windows.Forms;
 
-namespace SummaeExecutor {
-    internal class SumItem {
+namespace HashAlgorithms {
+    public class SumItem {
 
         public SumItem(SumAlgorithmBase algorithm) {
             this.Algorithm = algorithm;

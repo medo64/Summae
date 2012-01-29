@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Diagnostics;
 
-namespace SummaeExecutor {
-    internal abstract class SumAlgorithmBase {
+namespace HashAlgorithms {
+    public abstract class SumAlgorithmBase {
 
         protected SumAlgorithmBase(string name, string displayName) {
             this.Name = name;

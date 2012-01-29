@@ -1,15 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
-using System.IO;
 using System.Diagnostics;
-using System.Threading;
+using System.Drawing;
+using System.IO;
+using System.Windows.Forms;
+using HashAlgorithms;
 
 namespace SummaeExecutor {
-    public partial class MainForm : Form {
+    internal partial class MainForm : Form {
 
         private FileInfo _file;
         private IList<SumItem> _items;
