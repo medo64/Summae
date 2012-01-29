@@ -10,11 +10,7 @@ Ctrl+O              Add files to list
 Command line options (Summae.exe)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-[/portable] [filename]
-
-/portable
-If this command-line parameter is present, no automatic data saving will be
-done to either registry or file system.
+[filename]
 
 filename
 Specifies name of file or files that will be added to list.
@@ -24,8 +20,7 @@ Specifies name of file or files that will be added to list.
 Command line options (SummaeExecutor.exe)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-[/crc16] [/crc32] [/md5] [/sha1] [/sha256] [/sha384] [/sha512] [/portable]
-filename
+[/crc16] [/crc32] [/md5] [/sha1] [/sha256] [/sha384] [/sha512] filename
 
 /crc16
 Calculations are done using IEEE 802.3 defined CRC-16 algorithm.
@@ -50,10 +45,6 @@ Calculations are done using SHA-384 hashing algorithm.
 
 /sha512
 Calculations are done using SHA-512 hashing algorithm.
-
-/portable
-If this command-line parameter is present, no automatic data saving will be
-done to either registry or file system.
 
 /filename
 Specifies name of file or files on which calculations are to be done.
