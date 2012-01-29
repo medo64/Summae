@@ -1,15 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
-using System.Threading;
+using System.Globalization;
 using System.IO;
 using System.Reflection;
-using System.Windows.Forms;
 using System.Runtime.InteropServices;
-using Microsoft.Win32;
 using System.Security.AccessControl;
+using System.Threading;
+using System.Windows.Forms;
 using Medo.Application;
-using System.Globalization;
+using Microsoft.Win32;
 
 namespace SummaeSettings {
     internal static class App {
