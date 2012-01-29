@@ -92,31 +92,6 @@ can (and probably will) change from version to version.
 
 
 
-Frequently asked questions (FAQ)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Q: Why aren't calculations done using multiple threads?
-A: Because limiting factor in how fast things can go is usually on disk side.
-   Only in situations where same file is processed by multiple algorithms there
-   could be any expectation of speeding things up and even then thread
-   synchronization would "eat-up" much of benefits. Do notice that when several
-   files are processed in parallel different processes are used and thus
-   calculations are done on different threads.
-
-Q: Why there are four programs instead of one?
-A: All calculations and right-click processing are done in SummaeExecutor.exe.
-   Main program (Summae.exe) is alternate shell toward it and allows access to
-   it without need to use command-line.
-   Sum.exe is essentially same as SummaeExecutor.exe but it uses command-line
-   interface instead of windows and thus it is more appropriate for use in
-   batch files.
-   Because of Microsoft's User Account Control (UAC) used in Windows Vista and
-   Windows 7, setting right-click associations can only be done by elevated
-   process. SummaeSettings.exe is such process and it is called only when those
-   settings are updated.
-
-
-
 Version 1.50             []
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
