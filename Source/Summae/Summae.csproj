@@ -94,7 +94,6 @@
     <Content Include="ReadMe.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Setup\Summae.iss" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\App.snk" />
