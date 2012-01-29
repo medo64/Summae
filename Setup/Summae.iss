@@ -33,9 +33,7 @@ Name: "{userstartmenu}\Summae"; Filename: "{app}\Summae.exe"
 [Registry]
 Root: HKCU; Subkey: "Software\Josip Medved\Summae"; ValueType: dword; ValueName: "Installed"; ValueData: "1"; Flags: uninsdeletekey
 Root: HKCU; Subkey: "Software\Josip Medved"; Flags: uninsdeletekeyifempty
-Root: HKCR; Subkey: "*\shell\Summae"; ValueType: none; Flags: deletekey uninsdeletekey;
-Root: HKCR; Subkey: "*\shell\Summae"; ValueType: string; ValueName: "MultiSelectModel"; ValueData: "Player";
-Root: HKCR; Subkey: "*\shell\Summae\command"; ValueType: string; ValueName: ""; ValueData: """{app}\Summae.exe"" ""%1""";
+Root: HKCR; Subkey: "*\shell\Summae"; ValueType: none; Flags: dontcreatekey uninsdeletekey;
 Root: HKCR; Subkey: "*\shell\Summae (SHA-1)"; ValueType: none; Flags: uninsdeletekey;
 Root: HKCR; Subkey: "*\shell\Summae (SHA-1)"; ValueType: string; ValueName: "MultiSelectModel"; ValueData: "Player";
 Root: HKCR; Subkey: "*\shell\Summae (SHA-1)\command"; ValueType: string; ValueName: ""; ValueData: """{app}\SummaeExecutor.exe"" /sha1 ""%1""";
