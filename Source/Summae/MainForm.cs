@@ -33,34 +33,26 @@ namespace Summae {
             }
             RefreshEnableDisable();
 
-            toolToolsSettings.Visible = (Medo.Configuration.Settings.NoRegistryWrites == false);
+            mnuOptions.Visible = (Medo.Configuration.Settings.NoRegistryWrites == false);
         }
 
         [SecurityPermission(SecurityAction.LinkDemand, Flags = SecurityPermissionFlag.UnmanagedCode)]
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData) {
             switch (keyData) {
                 case Keys.Alt | Keys.O: {
-                        toolToolsSettings_Click(null, null);
-                    } return true;
-
-                case Keys.Alt | Keys.R: {
-                        toolHelpReportABug_Click(null, null);
-                    } return true;
-
-                case Keys.Alt | Keys.A: {
-                        toolHelpAbout_Click(null, null);
+                        mnuOptions_Click(null, null);
                     } return true;
 
                 case Keys.Control | Keys.N: {
-                        toolFileNew_Click(null, null);
+                        mnuNew_Click(null, null);
                     } return true;
 
                 case Keys.Control | Keys.O: {
-                        toolFileOpen_Click(null, null);
+                        mnuOpen_Click(null, null);
                     } return true;
 
                 case Keys.F5: {
-                        toolFileCalculate_Click(null, null);
+                        mnuCalculate_Click(null, null);
                     } return true;
 
                 default: {
@@ -68,12 +60,27 @@ namespace Summae {
             }
         }
 
-        private void toolFileNew_Click(object sender, EventArgs e) {
+
+        private void Form_Load(object sender, EventArgs e) {
+            Medo.Windows.Forms.State.Load(this, lsvFiles);
+        }
+
+        private void Form_FormClosing(object sender, FormClosingEventArgs e) {
+            Medo.Windows.Forms.State.Save(this, lsvFiles);
+            foreach (var iItem in checkedMethods.Items) {
+                var iMethodTag = (TagItem<string, string>)iItem;
+                Medo.Configuration.Settings.Write(iMethodTag.Key, checkedMethods.GetItemChecked(checkedMethods.Items.IndexOf(iItem)));
+            }
+        }
+
+        #region Menu
+
+        private void mnuNew_Click(object sender, EventArgs e) {
             lsvFiles.Items.Clear();
             RefreshEnableDisable();
         }
 
-        private void toolFileOpen_Click(object sender, EventArgs e) {
+        private void mnuOpen_Click(object sender, EventArgs e) {
             if (ofd.ShowDialog(this) == System.Windows.Forms.DialogResult.OK) {
                 lsvFiles.BeginUpdate();
                 foreach (var iFileName in ofd.FileNames) {
@@ -104,7 +111,8 @@ namespace Summae {
             lvi.Focused = true;
         }
 
-        private void toolFileCalculate_Click(object sender, EventArgs e) {
+
+        private void mnuCalculate_Click(object sender, EventArgs e) {
             if (lsvFiles.Items.Count > 0) {
                 try {
                     this.Cursor = Cursors.WaitCursor;
@@ -133,19 +141,27 @@ namespace Summae {
             }
         }
 
-        private void toolToolsSettings_Click(object sender, EventArgs e) {
+
+        private void mnuOptions_Click(object sender, EventArgs e) {
             using (var form = new SettingsForm()) {
                 form.ShowDialog(this);
             }
         }
 
-        private void toolHelpReportABug_Click(object sender, EventArgs e) {
+        private void mnuAppFeedback_Click(object sender, EventArgs e) {
             Medo.Diagnostics.ErrorReport.ShowDialog(this, null, new Uri("http://jmedved.com/feedback/"));
         }
 
-        private void toolHelpAbout_Click(object sender, EventArgs e) {
+        private void mnuAppDonate_Click(object sender, EventArgs e) {
+            Process.Start("http://www.jmedved.com/donate/");
+        }
+
+        private void mnuAppAbout_Click(object sender, EventArgs e) {
             Medo.Windows.Forms.AboutBox.ShowDialog(this, new Uri("http://www.jmedved.com/summae/"));
         }
+
+        #endregion
+
 
         private void checkedMethods_ItemCheck(object sender, ItemCheckEventArgs e) {
             if ((e.CurrentValue == CheckState.Checked) && (e.NewValue == CheckState.Unchecked) && (checkedMethods.CheckedItems.Count == 1)) {
@@ -153,24 +169,16 @@ namespace Summae {
             }
         }
 
-        private void MainForm_FormClosing(object sender, FormClosingEventArgs e) {
-            Medo.Windows.Forms.State.Save(this, lsvFiles);
-            foreach (var iItem in checkedMethods.Items) {
-                var iMethodTag = (TagItem<string, string>)iItem;
-                Medo.Configuration.Settings.Write(iMethodTag.Key, checkedMethods.GetItemChecked(checkedMethods.Items.IndexOf(iItem)));
-            }
-        }
-
         private void RefreshEnableDisable() {
             var state = (lsvFiles.Items.Count > 0);
-            if (toolFileCalculate.Enabled != state) { toolFileCalculate.Enabled = state; }
+            if (mnuCalculate.Enabled != state) { mnuCalculate.Enabled = state; }
         }
 
         private void lsvFiles_KeyDown(object sender, KeyEventArgs e) {
             switch (e.KeyData) {
                 case Keys.Insert: {
                         e.SuppressKeyPress = true;
-                        toolFileOpen_Click(sender, null);
+                        mnuOpen_Click(sender, null);
                     } break;
 
                 case Keys.Delete: {
@@ -222,10 +230,6 @@ namespace Summae {
             }
             RefreshEnableDisable();
             this.Activate();
-        }
-
-        private void MainForm_Load(object sender, EventArgs e) {
-            Medo.Windows.Forms.State.Load(this, lsvFiles);
         }
 
     }

@@ -24,69 +24,93 @@
         /// </summary>
         private void InitializeComponent() {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            this.tool = new System.Windows.Forms.ToolStrip();
-            this.toolHelpAbout = new System.Windows.Forms.ToolStripButton();
-            this.toolHelpReportABug = new System.Windows.Forms.ToolStripButton();
-            this.toolToolsSettings = new System.Windows.Forms.ToolStripButton();
+            this.mnu = new System.Windows.Forms.ToolStrip();
+            this.mnuApp = new System.Windows.Forms.ToolStripDropDownButton();
+            this.mnuAppFeedback = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuAppDonate = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
+            this.mnuAppAbout = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuOptions = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolFileNew = new System.Windows.Forms.ToolStripButton();
-            this.toolFileOpen = new System.Windows.Forms.ToolStripButton();
+            this.mnuNew = new System.Windows.Forms.ToolStripButton();
+            this.mnuOpen = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolFileCalculate = new System.Windows.Forms.ToolStripButton();
+            this.mnuCalculate = new System.Windows.Forms.ToolStripButton();
             this.checkedMethods = new System.Windows.Forms.CheckedListBox();
             this.ofd = new System.Windows.Forms.OpenFileDialog();
             this.lsvFiles = new System.Windows.Forms.ListView();
             this.lsvFiles_colFile = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lsvFiles_colDirectory = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.tool.SuspendLayout();
+            this.mnu.SuspendLayout();
             this.SuspendLayout();
             // 
-            // tool
+            // mnu
             // 
-            this.tool.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.tool.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolHelpAbout,
-            this.toolHelpReportABug,
-            this.toolToolsSettings,
+            this.mnu.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.mnu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnuApp,
+            this.mnuOptions,
             this.toolStripSeparator1,
-            this.toolFileNew,
-            this.toolFileOpen,
+            this.mnuNew,
+            this.mnuOpen,
             this.toolStripSeparator2,
-            this.toolFileCalculate});
-            this.tool.Location = new System.Drawing.Point(0, 0);
-            this.tool.Name = "tool";
-            this.tool.Size = new System.Drawing.Size(622, 27);
-            this.tool.TabIndex = 2;
+            this.mnuCalculate});
+            this.mnu.Location = new System.Drawing.Point(0, 0);
+            this.mnu.Name = "mnu";
+            this.mnu.Size = new System.Drawing.Size(622, 27);
+            this.mnu.TabIndex = 2;
             // 
-            // toolHelpAbout
+            // mnuApp
             // 
-            this.toolHelpAbout.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.toolHelpAbout.Image = ((System.Drawing.Image)(resources.GetObject("toolHelpAbout.Image")));
-            this.toolHelpAbout.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolHelpAbout.Name = "toolHelpAbout";
-            this.toolHelpAbout.Size = new System.Drawing.Size(70, 24);
-            this.toolHelpAbout.Text = "&About";
-            this.toolHelpAbout.Click += new System.EventHandler(this.toolHelpAbout_Click);
+            this.mnuApp.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.mnuApp.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.mnuApp.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnuAppFeedback,
+            this.mnuAppDonate,
+            this.toolStripMenuItem1,
+            this.mnuAppAbout});
+            this.mnuApp.Image = ((System.Drawing.Image)(resources.GetObject("mnuApp.Image")));
+            this.mnuApp.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.mnuApp.Name = "mnuApp";
+            this.mnuApp.Size = new System.Drawing.Size(29, 24);
+            this.mnuApp.Text = "Application";
             // 
-            // toolHelpReportABug
+            // mnuAppFeedback
             // 
-            this.toolHelpReportABug.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.toolHelpReportABug.Image = ((System.Drawing.Image)(resources.GetObject("toolHelpReportABug.Image")));
-            this.toolHelpReportABug.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolHelpReportABug.Name = "toolHelpReportABug";
-            this.toolHelpReportABug.Size = new System.Drawing.Size(116, 24);
-            this.toolHelpReportABug.Text = "&Report a bug";
-            this.toolHelpReportABug.Click += new System.EventHandler(this.toolHelpReportABug_Click);
+            this.mnuAppFeedback.Name = "mnuAppFeedback";
+            this.mnuAppFeedback.Size = new System.Drawing.Size(176, 24);
+            this.mnuAppFeedback.Text = "Send &feedback";
+            this.mnuAppFeedback.Click += new System.EventHandler(this.mnuAppFeedback_Click);
             // 
-            // toolToolsSettings
+            // mnuAppDonate
             // 
-            this.toolToolsSettings.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.toolToolsSettings.Image = ((System.Drawing.Image)(resources.GetObject("toolToolsSettings.Image")));
-            this.toolToolsSettings.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolToolsSettings.Name = "toolToolsSettings";
-            this.toolToolsSettings.Size = new System.Drawing.Size(81, 24);
-            this.toolToolsSettings.Text = "&Options";
-            this.toolToolsSettings.Click += new System.EventHandler(this.toolToolsSettings_Click);
+            this.mnuAppDonate.Name = "mnuAppDonate";
+            this.mnuAppDonate.Size = new System.Drawing.Size(176, 24);
+            this.mnuAppDonate.Text = "&Donate";
+            this.mnuAppDonate.Click += new System.EventHandler(this.mnuAppDonate_Click);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(173, 6);
+            // 
+            // mnuAppAbout
+            // 
+            this.mnuAppAbout.Name = "mnuAppAbout";
+            this.mnuAppAbout.Size = new System.Drawing.Size(176, 24);
+            this.mnuAppAbout.Text = "&About";
+            this.mnuAppAbout.Click += new System.EventHandler(this.mnuAppAbout_Click);
+            // 
+            // mnuOptions
+            // 
+            this.mnuOptions.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.mnuOptions.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.mnuOptions.Image = ((System.Drawing.Image)(resources.GetObject("mnuOptions.Image")));
+            this.mnuOptions.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.mnuOptions.Name = "mnuOptions";
+            this.mnuOptions.Size = new System.Drawing.Size(23, 24);
+            this.mnuOptions.Text = "&Options";
+            this.mnuOptions.Click += new System.EventHandler(this.mnuOptions_Click);
             // 
             // toolStripSeparator1
             // 
@@ -94,47 +118,47 @@
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 27);
             // 
-            // toolFileNew
+            // mnuNew
             // 
-            this.toolFileNew.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolFileNew.Image = ((System.Drawing.Image)(resources.GetObject("toolFileNew.Image")));
-            this.toolFileNew.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolFileNew.Name = "toolFileNew";
-            this.toolFileNew.Size = new System.Drawing.Size(23, 24);
-            this.toolFileNew.Text = "Clear list";
-            this.toolFileNew.ToolTipText = "Clear list (Ctrl+N)";
-            this.toolFileNew.Click += new System.EventHandler(this.toolFileNew_Click);
+            this.mnuNew.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.mnuNew.Image = ((System.Drawing.Image)(resources.GetObject("mnuNew.Image")));
+            this.mnuNew.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.mnuNew.Name = "mnuNew";
+            this.mnuNew.Size = new System.Drawing.Size(23, 24);
+            this.mnuNew.Text = "Clear list";
+            this.mnuNew.ToolTipText = "Clear list (Ctrl+N)";
+            this.mnuNew.Click += new System.EventHandler(this.mnuNew_Click);
             // 
-            // toolFileOpen
+            // mnuOpen
             // 
-            this.toolFileOpen.Image = ((System.Drawing.Image)(resources.GetObject("toolFileOpen.Image")));
-            this.toolFileOpen.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolFileOpen.Name = "toolFileOpen";
-            this.toolFileOpen.Size = new System.Drawing.Size(82, 24);
-            this.toolFileOpen.Text = "Add file";
-            this.toolFileOpen.ToolTipText = "Add file (Ctrl+O)";
-            this.toolFileOpen.Click += new System.EventHandler(this.toolFileOpen_Click);
+            this.mnuOpen.Image = ((System.Drawing.Image)(resources.GetObject("mnuOpen.Image")));
+            this.mnuOpen.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.mnuOpen.Name = "mnuOpen";
+            this.mnuOpen.Size = new System.Drawing.Size(82, 24);
+            this.mnuOpen.Text = "Add file";
+            this.mnuOpen.ToolTipText = "Add file (Ctrl+O)";
+            this.mnuOpen.Click += new System.EventHandler(this.mnuOpen_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
             this.toolStripSeparator2.Size = new System.Drawing.Size(6, 27);
             // 
-            // toolFileCalculate
+            // mnuCalculate
             // 
-            this.toolFileCalculate.Enabled = false;
-            this.toolFileCalculate.Image = ((System.Drawing.Image)(resources.GetObject("toolFileCalculate.Image")));
-            this.toolFileCalculate.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolFileCalculate.Name = "toolFileCalculate";
-            this.toolFileCalculate.Size = new System.Drawing.Size(90, 24);
-            this.toolFileCalculate.Text = "Calculate";
-            this.toolFileCalculate.ToolTipText = "Calculate (F5)";
-            this.toolFileCalculate.Click += new System.EventHandler(this.toolFileCalculate_Click);
+            this.mnuCalculate.Enabled = false;
+            this.mnuCalculate.Image = ((System.Drawing.Image)(resources.GetObject("mnuCalculate.Image")));
+            this.mnuCalculate.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.mnuCalculate.Name = "mnuCalculate";
+            this.mnuCalculate.Size = new System.Drawing.Size(90, 24);
+            this.mnuCalculate.Text = "Calculate";
+            this.mnuCalculate.ToolTipText = "Calculate (F5)";
+            this.mnuCalculate.Click += new System.EventHandler(this.mnuCalculate_Click);
             // 
             // checkedMethods
             // 
-            this.checkedMethods.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.checkedMethods.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.checkedMethods.CheckOnClick = true;
             this.checkedMethods.FormattingEnabled = true;
             this.checkedMethods.IntegralHeight = false;
@@ -154,9 +178,9 @@
             // lsvFiles
             // 
             this.lsvFiles.AllowDrop = true;
-            this.lsvFiles.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.lsvFiles.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lsvFiles.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.lsvFiles_colFile,
             this.lsvFiles_colDirectory});
@@ -191,16 +215,16 @@
             this.ClientSize = new System.Drawing.Size(622, 355);
             this.Controls.Add(this.lsvFiles);
             this.Controls.Add(this.checkedMethods);
-            this.Controls.Add(this.tool);
+            this.Controls.Add(this.mnu);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.MinimumSize = new System.Drawing.Size(400, 300);
             this.Name = "MainForm";
             this.Text = "Summae";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
-            this.Load += new System.EventHandler(this.MainForm_Load);
-            this.tool.ResumeLayout(false);
-            this.tool.PerformLayout();
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form_FormClosing);
+            this.Load += new System.EventHandler(this.Form_Load);
+            this.mnu.ResumeLayout(false);
+            this.mnu.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -208,20 +232,23 @@
 
         #endregion
 
-        private System.Windows.Forms.ToolStrip tool;
-        private System.Windows.Forms.ToolStripButton toolHelpReportABug;
-        private System.Windows.Forms.ToolStripButton toolHelpAbout;
-        private System.Windows.Forms.ToolStripButton toolToolsSettings;
+        private System.Windows.Forms.ToolStrip mnu;
+        private System.Windows.Forms.ToolStripButton mnuOptions;
         private System.Windows.Forms.CheckedListBox checkedMethods;
         private System.Windows.Forms.OpenFileDialog ofd;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ToolStripButton toolFileNew;
-        private System.Windows.Forms.ToolStripButton toolFileOpen;
+        private System.Windows.Forms.ToolStripButton mnuNew;
+        private System.Windows.Forms.ToolStripButton mnuOpen;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
-        private System.Windows.Forms.ToolStripButton toolFileCalculate;
+        private System.Windows.Forms.ToolStripButton mnuCalculate;
         private System.Windows.Forms.ListView lsvFiles;
         private System.Windows.Forms.ColumnHeader lsvFiles_colFile;
         private System.Windows.Forms.ColumnHeader lsvFiles_colDirectory;
+        private System.Windows.Forms.ToolStripDropDownButton mnuApp;
+        private System.Windows.Forms.ToolStripMenuItem mnuAppFeedback;
+        private System.Windows.Forms.ToolStripMenuItem mnuAppDonate;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem mnuAppAbout;
     }
 }
 
