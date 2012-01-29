@@ -1,10 +1,10 @@
 [Setup]
 AppName=Summae
-AppVerName=Summae 1.01
+AppVerName=Summae 0.00
 DefaultDirName={pf}\Josip Medved\Summae
-OutputBaseFilename=summae101
+OutputBaseFilename=summae000
 OutputDir=..\Releases
-SourceDir=..\..\..\Binaries
+SourceDir=..\Binaries
 AppId=JosipMedved_Summae
 AppMutex=Global\JosipMedved_Summae
 AppPublisher=Josip Medved
@@ -50,6 +50,3 @@ Root: HKCR; Subkey: "*\shell\Summae (SHA-512)"; ValueType: none; Flags: dontcrea
 [Run]
 Filename: "{app}\ReadMe.txt"; Description: "View ReadMe.txt"; Flags: postinstall runasoriginaluser shellexec nowait skipifsilent unchecked
 Filename: "{app}\Summae.exe"; Description: "Launch application now"; Flags: postinstall nowait skipifsilent runasoriginaluser unchecked
-
-
-
