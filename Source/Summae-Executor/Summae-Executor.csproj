@@ -88,7 +88,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SummaeCL\SummaeCL.csproj">
+    <ProjectReference Include="..\Summae-Console\Summae-Console.csproj">
       <Project>{B055E279-8380-4448-8A2B-26CF02B632E9}</Project>
       <Name>SummaeCL</Name>
     </ProjectReference>
