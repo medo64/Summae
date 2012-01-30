@@ -15,15 +15,16 @@ namespace Summae {
         public MainForm() {
             InitializeComponent();
             this.Font = SystemFonts.MessageBoxFont;
+            mnu.Renderer = new ToolStripBorderlessProfessionalRenderer();
 
-            checkedMethods.Items.Add(new Medo.TagItem<string, string>("crc16", "CRC-16"), Medo.Configuration.Settings.Read("crc16", false));
-            checkedMethods.Items.Add(new Medo.TagItem<string, string>("crc32", "CRC-32"), Medo.Configuration.Settings.Read("crc32", false));
-            checkedMethods.Items.Add(new Medo.TagItem<string, string>("md5", "MD-5"), Medo.Configuration.Settings.Read("md5", false));
-            checkedMethods.Items.Add(new Medo.TagItem<string, string>("ripemd160", "RIPE MD-160"), Medo.Configuration.Settings.Read("ripemd160", false));
-            checkedMethods.Items.Add(new Medo.TagItem<string, string>("sha1", "SHA-1"), Medo.Configuration.Settings.Read("sha1", true));
-            checkedMethods.Items.Add(new Medo.TagItem<string, string>("sha256", "SHA-256"), Medo.Configuration.Settings.Read("sha256", false));
-            checkedMethods.Items.Add(new Medo.TagItem<string, string>("sha384", "SHA-384"), Medo.Configuration.Settings.Read("sha384", false));
-            checkedMethods.Items.Add(new Medo.TagItem<string, string>("sha512", "SHA-512"), Medo.Configuration.Settings.Read("sha512", false));
+            mnuCalculate.DropDown.Items.Add(new HashMenuItem("crc16", "CRC-16", Medo.Configuration.Settings.Read("crc16", false)));
+            mnuCalculate.DropDown.Items.Add(new HashMenuItem("crc32", "CRC-32", Medo.Configuration.Settings.Read("crc32", false)));
+            mnuCalculate.DropDown.Items.Add(new HashMenuItem("md5", "MD-5", Medo.Configuration.Settings.Read("md5", false)));
+            mnuCalculate.DropDown.Items.Add(new HashMenuItem("ripemd160", "RIPE MD-160", Medo.Configuration.Settings.Read("ripemd160", false)));
+            mnuCalculate.DropDown.Items.Add(new HashMenuItem("sha1", "SHA-1", Medo.Configuration.Settings.Read("sha1", true)));
+            mnuCalculate.DropDown.Items.Add(new HashMenuItem("sha256", "SHA-256", Medo.Configuration.Settings.Read("sha256", false)));
+            mnuCalculate.DropDown.Items.Add(new HashMenuItem("sha384", "SHA-384", Medo.Configuration.Settings.Read("sha384", false)));
+            mnuCalculate.DropDown.Items.Add(new HashMenuItem("sha512", "SHA-512", Medo.Configuration.Settings.Read("sha512", false)));
 
             foreach (var iFile in Medo.Application.Args.Current.GetValues("")) {
                 var iFileInfo = new FileInfo(iFile);
@@ -50,7 +51,7 @@ namespace Summae {
                     } return true;
 
                 case Keys.F5: {
-                        mnuCalculate_Click(null, null);
+                        mnuCalculate.PerformButtonClick();
                     } return true;
 
                 default: {
@@ -65,9 +66,8 @@ namespace Summae {
 
         private void Form_FormClosing(object sender, FormClosingEventArgs e) {
             Medo.Windows.Forms.State.Save(this, lsvFiles);
-            foreach (var iItem in checkedMethods.Items) {
-                var iMethodTag = (TagItem<string, string>)iItem;
-                Medo.Configuration.Settings.Write(iMethodTag.Key, checkedMethods.GetItemChecked(checkedMethods.Items.IndexOf(iItem)));
+            foreach (HashMenuItem iItem in mnuCalculate.DropDown.Items) {
+                Medo.Configuration.Settings.Write(iItem.Key, iItem.Checked);
             }
         }
 
@@ -110,15 +110,16 @@ namespace Summae {
         }
 
 
-        private void mnuCalculate_Click(object sender, EventArgs e) {
+        private void mnuCalculate_ButtonClick(object sender, EventArgs e) {
             if (lsvFiles.Items.Count > 0) {
                 try {
                     this.Cursor = Cursors.WaitCursor;
 
                     var sbArgs = new StringAdder(" ");
-                    foreach (var iMethod in checkedMethods.CheckedItems) {
-                        var iMethodTag = (TagItem<string, string>)iMethod;
-                        sbArgs.Append("/" + iMethodTag.Key);
+                    foreach (HashMenuItem item in mnuCalculate.DropDown.Items) {
+                        if (item.Checked) {
+                            sbArgs.Append("/" + item.Key);
+                        }
                     }
 
                     foreach (ListViewItem iItem in lsvFiles.Items) {
@@ -161,12 +162,6 @@ namespace Summae {
         #endregion
 
 
-        private void checkedMethods_ItemCheck(object sender, ItemCheckEventArgs e) {
-            if ((e.CurrentValue == CheckState.Checked) && (e.NewValue == CheckState.Unchecked) && (checkedMethods.CheckedItems.Count == 1)) {
-                e.NewValue = CheckState.Checked;
-            }
-        }
-
         private void RefreshEnableDisable() {
             var state = (lsvFiles.Items.Count > 0);
             if (mnuCalculate.Enabled != state) { mnuCalculate.Enabled = state; }
@@ -205,13 +200,6 @@ namespace Summae {
             } else {
                 e.Effect = DragDropEffects.None;
             }
-            //foreach (var iFormat in e.Data.GetFormats()) {
-            //    if (string.Compare(iFormat, "FileNameW", StringComparison.OrdinalIgnoreCase) == 0) {
-            //        e.Effect = DragDropEffects.Link;
-            //        return;
-            //    }
-            //}
-            //e.Effect = DragDropEffects.None;
         }
 
         private void lsvFiles_DragDrop(object sender, DragEventArgs e) {

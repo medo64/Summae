@@ -35,8 +35,7 @@
             this.mnuNew = new System.Windows.Forms.ToolStripButton();
             this.mnuOpen = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.mnuCalculate = new System.Windows.Forms.ToolStripButton();
-            this.checkedMethods = new System.Windows.Forms.CheckedListBox();
+            this.mnuCalculate = new System.Windows.Forms.ToolStripSplitButton();
             this.ofd = new System.Windows.Forms.OpenFileDialog();
             this.lsvFiles = new System.Windows.Forms.ListView();
             this.lsvFiles_colFile = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -57,6 +56,7 @@
             this.mnuCalculate});
             this.mnu.Location = new System.Drawing.Point(0, 0);
             this.mnu.Name = "mnu";
+            this.mnu.Padding = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.mnu.Size = new System.Drawing.Size(622, 27);
             this.mnu.TabIndex = 2;
             // 
@@ -150,24 +150,10 @@
             this.mnuCalculate.Image = ((System.Drawing.Image)(resources.GetObject("mnuCalculate.Image")));
             this.mnuCalculate.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.mnuCalculate.Name = "mnuCalculate";
-            this.mnuCalculate.Size = new System.Drawing.Size(90, 24);
+            this.mnuCalculate.Size = new System.Drawing.Size(102, 24);
             this.mnuCalculate.Text = "Calculate";
             this.mnuCalculate.ToolTipText = "Calculate (F5)";
-            this.mnuCalculate.Click += new System.EventHandler(this.mnuCalculate_Click);
-            // 
-            // checkedMethods
-            // 
-            this.checkedMethods.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.checkedMethods.CheckOnClick = true;
-            this.checkedMethods.FormattingEnabled = true;
-            this.checkedMethods.IntegralHeight = false;
-            this.checkedMethods.Location = new System.Drawing.Point(482, 30);
-            this.checkedMethods.Name = "checkedMethods";
-            this.checkedMethods.Size = new System.Drawing.Size(128, 313);
-            this.checkedMethods.TabIndex = 1;
-            this.checkedMethods.ThreeDCheckBoxes = true;
-            this.checkedMethods.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.checkedMethods_ItemCheck);
+            this.mnuCalculate.ButtonClick += new System.EventHandler(this.mnuCalculate_ButtonClick);
             // 
             // ofd
             // 
@@ -178,19 +164,17 @@
             // lsvFiles
             // 
             this.lsvFiles.AllowDrop = true;
-            this.lsvFiles.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.lsvFiles.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.lsvFiles_colFile,
             this.lsvFiles_colDirectory});
+            this.lsvFiles.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lsvFiles.FullRowSelect = true;
             this.lsvFiles.GridLines = true;
-            this.lsvFiles.Location = new System.Drawing.Point(12, 30);
+            this.lsvFiles.Location = new System.Drawing.Point(0, 27);
             this.lsvFiles.MultiSelect = false;
             this.lsvFiles.Name = "lsvFiles";
             this.lsvFiles.ShowItemToolTips = true;
-            this.lsvFiles.Size = new System.Drawing.Size(464, 313);
+            this.lsvFiles.Size = new System.Drawing.Size(622, 328);
             this.lsvFiles.TabIndex = 0;
             this.lsvFiles.UseCompatibleStateImageBehavior = false;
             this.lsvFiles.View = System.Windows.Forms.View.Details;
@@ -214,7 +198,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(622, 355);
             this.Controls.Add(this.lsvFiles);
-            this.Controls.Add(this.checkedMethods);
             this.Controls.Add(this.mnu);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
@@ -234,13 +217,11 @@
 
         private System.Windows.Forms.ToolStrip mnu;
         private System.Windows.Forms.ToolStripButton mnuOptions;
-        private System.Windows.Forms.CheckedListBox checkedMethods;
         private System.Windows.Forms.OpenFileDialog ofd;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripButton mnuNew;
         private System.Windows.Forms.ToolStripButton mnuOpen;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
-        private System.Windows.Forms.ToolStripButton mnuCalculate;
         private System.Windows.Forms.ListView lsvFiles;
         private System.Windows.Forms.ColumnHeader lsvFiles_colFile;
         private System.Windows.Forms.ColumnHeader lsvFiles_colDirectory;
@@ -249,6 +230,7 @@
         private System.Windows.Forms.ToolStripMenuItem mnuAppDonate;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem mnuAppAbout;
+        private System.Windows.Forms.ToolStripSplitButton mnuCalculate;
     }
 }
 
