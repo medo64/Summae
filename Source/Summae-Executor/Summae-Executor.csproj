@@ -46,6 +46,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>Properties\App.manifest</ApplicationManifest>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
@@ -75,6 +78,7 @@
     <None Include="..\Summae\Properties\App.snk">
       <Link>Properties\App.snk</Link>
     </None>
+    <None Include="Properties\App.manifest" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="..\Summae\Properties\App.ico">
