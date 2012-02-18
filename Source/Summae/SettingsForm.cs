@@ -11,7 +11,7 @@ namespace Summae {
             this.Font = SystemFonts.MessageBoxFont;
             lblWarning.Font = new Font(SystemFonts.MessageBoxFont, FontStyle.Bold);
 
-            var hIcon = NativeMethods.LoadImageW(IntPtr.Zero, NativeMethods.IDI_SHIELD, NativeMethods.IMAGE_ICON, 16, 16, NativeMethods.LR_DEFAULTCOLOR);
+            var hIcon = NativeMethods.LoadImageW(IntPtr.Zero, NativeMethods.IDI_SHIELD, NativeMethods.IMAGE_ICON, SystemInformation.SmallIconSize.Width, SystemInformation.SmallIconSize.Height, NativeMethods.LR_DEFAULTCOLOR);
             if (!hIcon.Equals(System.IntPtr.Zero)) {
                 var icon = System.Drawing.Icon.FromHandle(hIcon);
                 if (icon != null) {
