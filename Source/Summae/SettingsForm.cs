@@ -15,8 +15,7 @@ namespace Summae {
             if (!hIcon.Equals(System.IntPtr.Zero)) {
                 var icon = System.Drawing.Icon.FromHandle(hIcon);
                 if (icon != null) {
-                    Bitmap bitmap = icon.ToBitmap();
-                    if (bitmap != null) { btnOK.Image = bitmap; }
+                    btnOK.Image = icon.ToBitmap();
                 }
             }
         }
