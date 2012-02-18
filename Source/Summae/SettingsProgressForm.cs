@@ -35,11 +35,15 @@ namespace Summae {
             startInfo.FileName = Path.Combine((new FileInfo(Assembly.GetExecutingAssembly().Location)).DirectoryName, "SummaeSettings.exe");
             startInfo.Arguments = arguments;
             startInfo.WorkingDirectory = System.Environment.CurrentDirectory;
-            Process.Start(startInfo).WaitForExit();
+            try {
+                Process.Start(startInfo).WaitForExit();
+            } catch (Win32Exception) {
+                e.Cancel = true;
+            }
         }
 
         private void bw_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e) {
-            this.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.DialogResult = e.Cancelled ? DialogResult.Cancel : DialogResult.OK;
         }
     }
 }
