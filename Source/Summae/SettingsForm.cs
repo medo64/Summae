@@ -11,11 +11,11 @@ namespace Summae {
             this.Font = SystemFonts.MessageBoxFont;
             lblWarning.Font = new Font(SystemFonts.MessageBoxFont, FontStyle.Bold);
 
-            var hIcon = NativeMethods.LoadIcon(IntPtr.Zero, NativeMethods.IDI_SHIELD);
+            var hIcon = NativeMethods.LoadImageW(IntPtr.Zero, NativeMethods.IDI_SHIELD, NativeMethods.IMAGE_ICON, 16, 16, NativeMethods.LR_DEFAULTCOLOR);
             if (!hIcon.Equals(System.IntPtr.Zero)) {
                 var icon = System.Drawing.Icon.FromHandle(hIcon);
                 if (icon != null) {
-                    Bitmap bitmap = (new Icon(icon, new Size(16, 16))).ToBitmap();
+                    Bitmap bitmap = icon.ToBitmap();
                     if (bitmap != null) { btnOK.Image = bitmap; }
                 }
             }
@@ -46,10 +46,12 @@ namespace Summae {
 
         private static class NativeMethods {
 
-            public static readonly IntPtr IDI_SHIELD = new IntPtr(106);
+            internal static readonly IntPtr IDI_SHIELD = new IntPtr(106);
+            internal const uint IMAGE_ICON = 1;
+            internal const uint LR_DEFAULTCOLOR = 0x00000000;
 
-            [DllImport("user32.dll", CharSet = CharSet.Unicode)]
-            static extern internal IntPtr LoadIcon(IntPtr hInstance, IntPtr lpIconName);
+            [DllImportAttribute("user32.dll", EntryPoint = "LoadImageW")]
+            internal static extern IntPtr LoadImageW(IntPtr hInst, IntPtr name, uint type, int cx, int cy, uint fuLoad);
 
         }
 
