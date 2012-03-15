@@ -5,7 +5,7 @@ SET         FILE_SOLUTION="..\Source\Summae.sln"
 SET      FILES_EXECUTABLE="..\Binaries\Summae.exe" "..\Binaries\SummaeExecutor.exe" "..\Binaries\sum.exe" "..\Binaries\SummaeSettings.exe"
 SET           FILES_OTHER="..\Binaries\ReadMe.txt"
 SET   CERTIFICATE_SUBJECT="Josip Medved"
-SET CERTIFICATE_TIMESTAMP=
+SET CERTIFICATE_TIMESTAMP="http://www.startssl.com/timestamp/"
 
 
 ECHO --- BUILD SOLUTION

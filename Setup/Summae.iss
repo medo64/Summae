@@ -1,14 +1,25 @@
+#define AppName        GetStringFileInfo('..\Binaries\Summae.exe', 'ProductName')
+#define AppVersion     GetStringFileInfo('..\Binaries\Summae.exe', 'ProductVersion')
+#define AppFileVersion GetStringFileInfo('..\Binaries\Summae.exe', 'FileVersion')
+#define AppCompany     GetStringFileInfo('..\Binaries\Summae.exe', 'CompanyName')
+#define AppCopyright   GetStringFileInfo('..\Binaries\Summae.exe', 'LegalCopyright')
+
 [Setup]
-AppName=Summae
-AppVerName=Summae 0.00
-DefaultDirName={pf}\Josip Medved\Summae
+AppName={#AppName}
+AppVersion={#AppVersion}
+AppVerName={#AppName} {#AppVersion}
+AppPublisher={#AppCompany}
+AppPublisherURL=http://www.jmedved.com/summae/
+AppCopyright={#AppCopyright}
+VersionInfoProductVersion={#AppVersion}
+VersionInfoProductTextVersion={#AppVersion}
+VersionInfoVersion={#AppFileVersion}
+DefaultDirName={pf}\{#AppCompany}\{#AppName}
 OutputBaseFilename=summae000
 OutputDir=..\Releases
 SourceDir=..\Binaries
 AppId=JosipMedved_Summae
 AppMutex=Global\JosipMedved_Summae
-AppPublisher=Josip Medved
-AppPublisherURL=http://www.jmedved.com/summae/
 UninstallDisplayIcon={app}\Summae.exe
 AlwaysShowComponentsList=no
 ArchitecturesInstallIn64BitMode=x64
