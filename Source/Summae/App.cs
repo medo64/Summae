@@ -1,43 +1,44 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Windows.Forms;
-using System.Threading;
-using System.Runtime.InteropServices;
-using System.Reflection;
 using System.IO;
+using System.Reflection;
+using System.Runtime.InteropServices;
+using System.Security.AccessControl;
+using System.Security.Principal;
+using System.Threading;
+using System.Windows.Forms;
 
 namespace Summae {
     static class App {
 
-        private static Mutex _setupMutex;
-
         [STAThread]
         static void Main() {
-            _setupMutex = new Mutex(false, @"Global\JosipMedved_Summae");
+            bool createdNew;
+            var mutexSecurity = new MutexSecurity();
+            mutexSecurity.AddAccessRule(new MutexAccessRule(new SecurityIdentifier(WellKnownSidType.WorldSid, null), MutexRights.FullControl, AccessControlType.Allow));
+            using (var setupMutex = new Mutex(false, @"Global\JosipMedved_Summae", out createdNew, mutexSecurity)) {
 
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("en-US");
+                Application.EnableVisualStyles();
+                Application.SetCompatibleTextRenderingDefault(false);
+                System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("en-US");
 
-            Medo.Diagnostics.ErrorReport.DisableAutomaticSaveToTemp = true;
-            Medo.Application.UnhandledCatch.ThreadException += new EventHandler<ThreadExceptionEventArgs>(UnhandledCatch_ThreadException);
-            Medo.Application.UnhandledCatch.Attach();
+                Medo.Diagnostics.ErrorReport.DisableAutomaticSaveToTemp = true;
+                Medo.Application.UnhandledCatch.ThreadException += new EventHandler<ThreadExceptionEventArgs>(UnhandledCatch_ThreadException);
+                Medo.Application.UnhandledCatch.Attach();
 
-            Medo.Configuration.Settings.NoRegistryWrites = !Medo.Configuration.Settings.Read("Installed", false);
-            Medo.Windows.Forms.State.NoRegistryWrites = !Medo.Configuration.Settings.Read("Installed", false);
-            Medo.Diagnostics.ErrorReport.DisableAutomaticSaveToTemp = !Medo.Configuration.Settings.Read("Installed", false);
+                Medo.Configuration.Settings.NoRegistryWrites = !Medo.Configuration.Settings.Read("Installed", false);
+                Medo.Windows.Forms.State.NoRegistryWrites = !Medo.Configuration.Settings.Read("Installed", false);
+                Medo.Diagnostics.ErrorReport.DisableAutomaticSaveToTemp = !Medo.Configuration.Settings.Read("Installed", false);
 
-            if (!((Environment.OSVersion.Version.Build < 7000) || (App.IsRunningOnMono))) {
-                var appId = new FileInfo(Assembly.GetExecutingAssembly().Location).Directory.FullName;
-                if (appId.Length > 127) { appId = @"JosipMedved_Summae\" + appId.Substring(appId.Length - 127 - 20); }
-                NativeMethods.SetCurrentProcessExplicitAppUserModelID(appId);
+                if (!((Environment.OSVersion.Version.Build < 7000) || (App.IsRunningOnMono))) {
+                    var appId = new FileInfo(Assembly.GetExecutingAssembly().Location).Directory.FullName;
+                    if (appId.Length > 127) { appId = @"JosipMedved_Summae\" + appId.Substring(appId.Length - 127 - 20); }
+                    NativeMethods.SetCurrentProcessExplicitAppUserModelID(appId);
+                }
+
+
+                Application.Run(new MainForm());
+
             }
-
-
-            Application.Run(new MainForm());
-
-
-            _setupMutex.Close();
         }
 
 
