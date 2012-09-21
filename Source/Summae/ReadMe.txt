@@ -83,7 +83,7 @@ can (and probably will) change from version to version.
 
 
 
-Version 1.50             []
+Version 1.10             [2012-09-24]
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 - command-line can make sum of directories
