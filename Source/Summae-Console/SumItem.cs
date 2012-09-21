@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Text;
@@ -110,12 +111,42 @@ namespace HashAlgorithms {
             if (File.Exists(fileName)) {
                 try {
                     return GetExpectedResult(File.ReadAllText(fileName));
-                } catch (IOException) {
-                    return null;
-                }
+                } catch { }
             } else {
-                return null;
+                var names = new List<string>();
+                names.Add(Path.Combine(file.DirectoryName, algorithm.Name + "sum.txt"));
+                names.Add(Path.Combine(file.DirectoryName, algorithm.Name + "sums.txt"));
+                names.Add(Path.Combine(file.DirectoryName, algorithm.Name + "sum.txt.asc"));
+                names.Add(Path.Combine(file.DirectoryName, "sum.txt"));
+                names.Add(Path.Combine(file.DirectoryName, "sums.txt"));
+                foreach (var name in names) {
+                    try {
+                        if (File.Exists(name)) {
+                            var resultRow = GetExpectedResultRow(file, File.ReadAllText(name));
+                            if (resultRow != null) {
+                                var result = GetExpectedResult(resultRow);
+                                if (result != null) { return result; }
+                            }
+                        }
+                    } catch { }
+                }
             }
+            return null;
+        }
+
+        private static string GetExpectedResultRow(FileInfo file, string fileContent) {
+            var rows = fileContent.Split(new char[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
+            foreach (var row in rows) {
+                var columns = row.Split(new char[] { ' ', '\t' }, 2, StringSplitOptions.None);
+                var col1 = columns[0].Trim(new char[] { ' ', '\t', '*' });
+                var col2 = columns[1].Trim(new char[] { ' ', '\t', '*' });
+                if (col1.Equals(file.Name, StringComparison.InvariantCultureIgnoreCase)) {
+                    return col2;
+                } else if (col2.Equals(file.Name, StringComparison.InvariantCultureIgnoreCase)) {
+                    return col1;
+                }
+            }
+            return null;
         }
 
         public static byte[] GetExpectedResult(string text) {
