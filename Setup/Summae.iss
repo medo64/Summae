@@ -3,19 +3,21 @@
 #define AppFileVersion GetStringFileInfo('..\Binaries\Summae.exe', 'FileVersion')
 #define AppCompany     GetStringFileInfo('..\Binaries\Summae.exe', 'CompanyName')
 #define AppCopyright   GetStringFileInfo('..\Binaries\Summae.exe', 'LegalCopyright')
+#define AppBase        LowerCase(StringChange(AppName, ' ', ''))
+#define AppSetupFile   AppBase + StringChange(AppVersion, '.', '')
 
 [Setup]
 AppName={#AppName}
 AppVersion={#AppVersion}
 AppVerName={#AppName} {#AppVersion}
 AppPublisher={#AppCompany}
-AppPublisherURL=http://www.jmedved.com/summae/
+AppPublisherURL=http://www.jmedved.com/{#AppBase}/
 AppCopyright={#AppCopyright}
 VersionInfoProductVersion={#AppVersion}
 VersionInfoProductTextVersion={#AppVersion}
 VersionInfoVersion={#AppFileVersion}
 DefaultDirName={pf}\{#AppCompany}\{#AppName}
-OutputBaseFilename=summae000
+OutputBaseFilename={#AppSetupFile}
 OutputDir=..\Releases
 SourceDir=..\Binaries
 AppId=JosipMedved_Summae
@@ -30,6 +32,10 @@ PrivilegesRequired=admin
 ShowLanguageDialog=no
 SolidCompression=yes
 ChangesAssociations=yes
+DisableWelcomePage=yes
+
+[Dirs]
+Name: "{userappdata}\Josip Medved\Summae";  Flags: uninsalwaysuninstall
 
 [Files]
 Source: "Summae.exe";         DestDir: "{app}"; Flags: ignoreversion;
