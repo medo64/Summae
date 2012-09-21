@@ -27,6 +27,7 @@
             this.mnu = new System.Windows.Forms.ToolStrip();
             this.mnuApp = new System.Windows.Forms.ToolStripDropDownButton();
             this.mnuAppFeedback = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuAppUpgrade = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuAppDonate = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.mnuAppAbout = new System.Windows.Forms.ToolStripMenuItem();
@@ -40,7 +41,6 @@
             this.lsvFiles = new System.Windows.Forms.ListView();
             this.lsvFiles_colFile = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lsvFiles_colDirectory = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.mnuAppUpgrade = new System.Windows.Forms.ToolStripMenuItem();
             this.mnu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -83,6 +83,13 @@
             this.mnuAppFeedback.Size = new System.Drawing.Size(176, 24);
             this.mnuAppFeedback.Text = "Send &feedback";
             this.mnuAppFeedback.Click += new System.EventHandler(this.mnuAppFeedback_Click);
+            // 
+            // mnuAppUpgrade
+            // 
+            this.mnuAppUpgrade.Name = "mnuAppUpgrade";
+            this.mnuAppUpgrade.Size = new System.Drawing.Size(176, 24);
+            this.mnuAppUpgrade.Text = "&Upgrade";
+            this.mnuAppUpgrade.Click += new System.EventHandler(this.mnuAppUpgrade_Click);
             // 
             // mnuAppDonate
             // 
@@ -166,6 +173,7 @@
             // lsvFiles
             // 
             this.lsvFiles.AllowDrop = true;
+            this.lsvFiles.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.lsvFiles.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.lsvFiles_colFile,
             this.lsvFiles_colDirectory});
@@ -193,13 +201,6 @@
             // 
             this.lsvFiles_colDirectory.Text = "Folder";
             this.lsvFiles_colDirectory.Width = 180;
-            // 
-            // mnuAppUpgrade
-            // 
-            this.mnuAppUpgrade.Name = "mnuAppUpgrade";
-            this.mnuAppUpgrade.Size = new System.Drawing.Size(176, 24);
-            this.mnuAppUpgrade.Text = "&Upgrade";
-            this.mnuAppUpgrade.Click += new System.EventHandler(this.mnuAppUpgrade_Click);
             // 
             // MainForm
             // 
