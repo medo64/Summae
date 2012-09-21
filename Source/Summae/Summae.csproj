@@ -60,11 +60,13 @@
     <Compile Include="%28Medo%29\AboutBox [012].cs" />
     <Compile Include="%28Medo%29\Args [001].cs" />
     <Compile Include="%28Medo%29\ErrorReport [017].cs" />
+    <Compile Include="%28Medo%29\MessageBox [006].cs" />
     <Compile Include="%28Medo%29\Settings [011].cs" />
     <Compile Include="%28Medo%29\State [015].cs" />
     <Compile Include="%28Medo%29\StringAdder [002].cs" />
     <Compile Include="%28Medo%29\TagItem [004].cs" />
     <Compile Include="%28Medo%29\UnhandledCatch [007].cs" />
+    <Compile Include="%28Medo%29\Upgrade [002].cs" />
     <Compile Include="HashMenuItem.cs">
       <SubType>Component</SubType>
     </Compile>

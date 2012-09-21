@@ -151,6 +151,10 @@ namespace Summae {
             Medo.Diagnostics.ErrorReport.ShowDialog(this, null, new Uri("http://jmedved.com/feedback/"));
         }
 
+        private void mnuAppUpgrade_Click(object sender, EventArgs e) {
+            Medo.Services.Upgrade.ShowDialog(this, new Uri("http://jmedved.com/upgrade/"));
+        }
+
         private void mnuAppDonate_Click(object sender, EventArgs e) {
             Process.Start("http://www.jmedved.com/donate/");
         }

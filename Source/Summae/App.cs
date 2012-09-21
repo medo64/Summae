@@ -45,6 +45,7 @@ namespace Summae {
         private static void UnhandledCatch_ThreadException(object sender, ThreadExceptionEventArgs e) {
 #if !DEBUG
             Medo.Diagnostics.ErrorReport.ShowDialog(null, e.Exception, new Uri("http://jmedved.com/feedback/"), new string[] { "Test line 1.", "Test line 2." });
+            Medo.Services.Upgrade.ShowDialog(null, new Uri("http://jmedved.com/upgrade/"));
 #else
             throw e.Exception;
 #endif

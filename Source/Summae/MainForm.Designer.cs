@@ -40,6 +40,7 @@
             this.lsvFiles = new System.Windows.Forms.ListView();
             this.lsvFiles_colFile = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lsvFiles_colDirectory = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.mnuAppUpgrade = new System.Windows.Forms.ToolStripMenuItem();
             this.mnu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -66,6 +67,7 @@
             this.mnuApp.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.mnuApp.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mnuAppFeedback,
+            this.mnuAppUpgrade,
             this.mnuAppDonate,
             this.toolStripMenuItem1,
             this.mnuAppAbout});
@@ -192,6 +194,13 @@
             this.lsvFiles_colDirectory.Text = "Folder";
             this.lsvFiles_colDirectory.Width = 180;
             // 
+            // mnuAppUpgrade
+            // 
+            this.mnuAppUpgrade.Name = "mnuAppUpgrade";
+            this.mnuAppUpgrade.Size = new System.Drawing.Size(176, 24);
+            this.mnuAppUpgrade.Text = "&Upgrade";
+            this.mnuAppUpgrade.Click += new System.EventHandler(this.mnuAppUpgrade_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -231,6 +240,7 @@
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem mnuAppAbout;
         private System.Windows.Forms.ToolStripSplitButton mnuCalculate;
+        private System.Windows.Forms.ToolStripMenuItem mnuAppUpgrade;
     }
 }
 
