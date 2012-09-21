@@ -32,10 +32,10 @@ SolidCompression=yes
 ChangesAssociations=yes
 
 [Files]
-Source: "Summae.exe";         DestDir: "{app}";
-Source: "SummaeExecutor.exe"; DestDir: "{app}";
-Source: "sum.exe";            DestDir: "{app}";
-Source: "SummaeSettings.exe"; DestDir: "{app}";
+Source: "Summae.exe";         DestDir: "{app}"; Flags: ignoreversion;
+Source: "SummaeExecutor.exe"; DestDir: "{app}"; Flags: ignoreversion;
+Source: "sum.exe";            DestDir: "{app}"; Flags: ignoreversion;
+Source: "SummaeSettings.exe"; DestDir: "{app}"; Flags: ignoreversion;
 Source: "ReadMe.txt";         DestDir: "{app}"; Attribs: readonly; Flags: overwritereadonly uninsremovereadonly;
 
 [Icons]
