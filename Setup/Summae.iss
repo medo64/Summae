@@ -33,6 +33,7 @@ ShowLanguageDialog=no
 SolidCompression=yes
 ChangesAssociations=yes
 DisableWelcomePage=yes
+LicenseFile=..\Setup\License.txt
 
 [Dirs]
 Name: "{userappdata}\Josip Medved\Summae";  Flags: uninsalwaysuninstall
