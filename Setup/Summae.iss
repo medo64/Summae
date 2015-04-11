@@ -6,22 +6,29 @@
 #define AppBase        LowerCase(StringChange(AppName, ' ', ''))
 #define AppSetupFile   AppBase + StringChange(AppVersion, '.', '')
 
+#define AppVersionEx   StringChange(AppVersion, '0.00', '')
+#if "" != HgNode
+#  define AppVersionEx AppVersionEx + " (" + HgNode + ")"
+#endif
+
+
 [Setup]
 AppName={#AppName}
 AppVersion={#AppVersion}
 AppVerName={#AppName} {#AppVersion}
 AppPublisher={#AppCompany}
-AppPublisherURL=http://www.jmedved.com/{#AppBase}/
+AppPublisherURL=http://jmedved.com/{#AppBase}/
 AppCopyright={#AppCopyright}
 VersionInfoProductVersion={#AppVersion}
-VersionInfoProductTextVersion={#AppVersion}
+VersionInfoProductTextVersion={#AppVersionEx}
 VersionInfoVersion={#AppFileVersion}
 DefaultDirName={pf}\{#AppCompany}\{#AppName}
 OutputBaseFilename={#AppSetupFile}
 OutputDir=..\Releases
 SourceDir=..\Binaries
 AppId=JosipMedved_Summae
-AppMutex=Global\JosipMedved_Summae
+CloseApplications="yes"
+RestartApplications="no"
 UninstallDisplayIcon={app}\Summae.exe
 AlwaysShowComponentsList=no
 ArchitecturesInstallIn64BitMode=x64
@@ -33,16 +40,26 @@ ShowLanguageDialog=no
 SolidCompression=yes
 ChangesAssociations=yes
 DisableWelcomePage=yes
-LicenseFile=..\Setup\License.txt
+LicenseFile=..\Setup\License.rtf
+
+
+[Messages]
+SetupAppTitle=Setup {#AppName} {#AppVersionEx}
+SetupWindowTitle=Setup {#AppName} {#AppVersionEx}
+BeveledLabel=jmedved.com
 
 [Dirs]
 Name: "{userappdata}\Josip Medved\Summae";  Flags: uninsalwaysuninstall
 
 [Files]
 Source: "Summae.exe";         DestDir: "{app}"; Flags: ignoreversion;
+Source: "Summae.pdb";         DestDir: "{app}"; Flags: ignoreversion;
 Source: "SummaeExecutor.exe"; DestDir: "{app}"; Flags: ignoreversion;
+Source: "SummaeExecutor.pdb"; DestDir: "{app}"; Flags: ignoreversion;
 Source: "sum.exe";            DestDir: "{app}"; Flags: ignoreversion;
+Source: "sum.pdb";            DestDir: "{app}"; Flags: ignoreversion;
 Source: "SummaeSettings.exe"; DestDir: "{app}"; Flags: ignoreversion;
+Source: "SummaeSettings.pdb"; DestDir: "{app}"; Flags: ignoreversion;
 Source: "ReadMe.txt";         DestDir: "{app}"; Attribs: readonly; Flags: overwritereadonly uninsremovereadonly;
 
 [Icons]
@@ -67,3 +84,10 @@ Root: HKCR; Subkey: "*\shell\Summae (SHA-512)"; ValueType: none; Flags: dontcrea
 [Run]
 Filename: "{app}\ReadMe.txt"; Description: "View ReadMe.txt"; Flags: postinstall runasoriginaluser shellexec nowait skipifsilent unchecked
 Filename: "{app}\Summae.exe"; Description: "Launch application now"; Flags: postinstall nowait skipifsilent runasoriginaluser unchecked
+
+[Code]
+
+procedure InitializeWizard;
+begin
+  WizardForm.LicenseAcceptedRadio.Checked := True;
+end;
