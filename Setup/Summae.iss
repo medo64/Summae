@@ -7,8 +7,8 @@
 #define AppSetupFile   AppBase + StringChange(AppVersion, '.', '')
 
 #define AppVersionEx   StringChange(AppVersion, '0.00', '')
-#if "" != HgNode
-#  define AppVersionEx AppVersionEx + " (" + HgNode + ")"
+#if "" != VersionHash
+#  define AppVersionEx AppVersionEx + " (" + VersionHash + ")"
 #endif
 
 
@@ -61,6 +61,7 @@ Source: "sum.pdb";            DestDir: "{app}"; Flags: ignoreversion;
 Source: "SummaeSettings.exe"; DestDir: "{app}"; Flags: ignoreversion;
 Source: "SummaeSettings.pdb"; DestDir: "{app}"; Flags: ignoreversion;
 Source: "ReadMe.txt";         DestDir: "{app}"; Attribs: readonly; Flags: overwritereadonly uninsremovereadonly;
+Source: "License.txt";        DestDir: "{app}"; Attribs: readonly; Flags: overwritereadonly uninsremovereadonly;
 
 [Icons]
 Name: "{userstartmenu}\Summae"; Filename: "{app}\Summae.exe"
@@ -82,8 +83,8 @@ Root: HKCR; Subkey: "*\shell\Summae (SHA-384)"; ValueType: none; Flags: dontcrea
 Root: HKCR; Subkey: "*\shell\Summae (SHA-512)"; ValueType: none; Flags: dontcreatekey uninsdeletekey;
 
 [Run]
-Filename: "{app}\ReadMe.txt"; Description: "View ReadMe.txt"; Flags: postinstall runasoriginaluser shellexec nowait skipifsilent unchecked
 Filename: "{app}\Summae.exe"; Description: "Launch application now"; Flags: postinstall nowait skipifsilent runasoriginaluser unchecked
+Filename: "{app}\ReadMe.txt"; Description: "View ReadMe.txt";        Flags: postinstall nowait skipifsilent runasoriginaluser unchecked shellexec
 
 [Code]
 
