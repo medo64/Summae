@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
@@ -119,6 +119,9 @@ namespace HashAlgorithms {
                 names.Add(Path.Combine(file.DirectoryName, algorithm.Name + "sum.txt.asc"));
                 names.Add(Path.Combine(file.DirectoryName, "sum.txt"));
                 names.Add(Path.Combine(file.DirectoryName, "sums.txt"));
+                foreach (var sumFile in file.Directory.GetFiles("*." + algorithm.Name)) {
+                    names.Add(sumFile.FullName);
+                }
                 foreach (var name in names) {
                     try {
                         if (File.Exists(name)) {
