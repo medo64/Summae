@@ -83,7 +83,6 @@ namespace Summae {
         private void Form_Shown(object sender, EventArgs e) {
             var version = Assembly.GetExecutingAssembly().GetName().Version; //don't auto-check for development builds
             if ((version.Major != 0) || (version.Minor != 0)) { bwCheckForUpgrade.RunWorkerAsync(); }
-            bwCheckForUpgrade.RunWorkerAsync();
         }
 
         #region Menu
