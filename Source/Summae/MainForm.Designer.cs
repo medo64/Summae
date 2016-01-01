@@ -1,4 +1,4 @@
-﻿namespace Summae {
+namespace Summae {
     partial class MainForm {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,6 @@
             this.mnuApp = new System.Windows.Forms.ToolStripDropDownButton();
             this.mnuAppFeedback = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuAppUpgrade = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuAppDonate = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.mnuAppAbout = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuOptions = new System.Windows.Forms.ToolStripButton();
@@ -68,7 +67,6 @@
             this.mnuApp.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mnuAppFeedback,
             this.mnuAppUpgrade,
-            this.mnuAppDonate,
             this.toolStripMenuItem1,
             this.mnuAppAbout});
             this.mnuApp.Image = ((System.Drawing.Image)(resources.GetObject("mnuApp.Image")));
@@ -90,13 +88,6 @@
             this.mnuAppUpgrade.Size = new System.Drawing.Size(176, 24);
             this.mnuAppUpgrade.Text = "&Upgrade";
             this.mnuAppUpgrade.Click += new System.EventHandler(this.mnuAppUpgrade_Click);
-            // 
-            // mnuAppDonate
-            // 
-            this.mnuAppDonate.Name = "mnuAppDonate";
-            this.mnuAppDonate.Size = new System.Drawing.Size(176, 24);
-            this.mnuAppDonate.Text = "&Donate";
-            this.mnuAppDonate.Click += new System.EventHandler(this.mnuAppDonate_Click);
             // 
             // toolStripMenuItem1
             // 
@@ -237,7 +228,6 @@
         private System.Windows.Forms.ColumnHeader lsvFiles_colDirectory;
         private System.Windows.Forms.ToolStripDropDownButton mnuApp;
         private System.Windows.Forms.ToolStripMenuItem mnuAppFeedback;
-        private System.Windows.Forms.ToolStripMenuItem mnuAppDonate;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem mnuAppAbout;
         private System.Windows.Forms.ToolStripSplitButton mnuCalculate;

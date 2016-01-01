@@ -66,7 +66,7 @@
     <Compile Include="%28Medo%29\StringAdder [002].cs" />
     <Compile Include="%28Medo%29\TagItem [004].cs" />
     <Compile Include="%28Medo%29\UnhandledCatch [007].cs" />
-    <Compile Include="%28Medo%29\Upgrade [002].cs" />
+    <Compile Include="%28Medo%29\Upgrade [004].cs" />
     <Compile Include="HashMenuItem.cs">
       <SubType>Component</SubType>
     </Compile>

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
@@ -88,7 +88,7 @@ namespace SummaeSettings {
 
         private static void UnhandledCatch_ThreadException(object sender, ThreadExceptionEventArgs e) {
 #if !DEBUG
-            Medo.Diagnostics.ErrorReport.ShowDialog(null, e.Exception, new Uri("http://jmedved.com/feedback/"));
+            Medo.Diagnostics.ErrorReport.ShowDialog(null, e.Exception, new Uri("https://medo64.com/feedback/"));
 #else
             throw e.Exception;
 #endif

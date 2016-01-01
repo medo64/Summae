@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.IO;
 using System.Reflection;
 using System.Runtime.InteropServices;
@@ -44,8 +44,7 @@ namespace Summae {
 
         private static void UnhandledCatch_ThreadException(object sender, ThreadExceptionEventArgs e) {
 #if !DEBUG
-            Medo.Diagnostics.ErrorReport.ShowDialog(null, e.Exception, new Uri("http://jmedved.com/feedback/"), new string[] { "Test line 1.", "Test line 2." });
-            Medo.Services.Upgrade.ShowDialog(null, new Uri("http://jmedved.com/upgrade/"));
+            Medo.Diagnostics.ErrorReport.ShowDialog(null, e.Exception, new Uri("https://medo64.com/feedback/"));
 #else
             throw e.Exception;
 #endif

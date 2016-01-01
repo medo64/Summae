@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
@@ -148,19 +148,15 @@ namespace Summae {
         }
 
         private void mnuAppFeedback_Click(object sender, EventArgs e) {
-            Medo.Diagnostics.ErrorReport.ShowDialog(this, null, new Uri("http://jmedved.com/feedback/"));
+            Medo.Diagnostics.ErrorReport.ShowDialog(this, null, new Uri("https://medo64.com/feedback/"));
         }
 
         private void mnuAppUpgrade_Click(object sender, EventArgs e) {
-            Medo.Services.Upgrade.ShowDialog(this, new Uri("http://jmedved.com/upgrade/"));
-        }
-
-        private void mnuAppDonate_Click(object sender, EventArgs e) {
-            Process.Start("http://www.jmedved.com/donate/");
+            Medo.Services.Upgrade.ShowDialog(this, new Uri("https://medo64.com/upgrade/"));
         }
 
         private void mnuAppAbout_Click(object sender, EventArgs e) {
-            Medo.Windows.Forms.AboutBox.ShowDialog(this, new Uri("http://www.jmedved.com/summae/"));
+            Medo.Windows.Forms.AboutBox.ShowDialog(this, new Uri("https://www.medo64.com/summae/"));
         }
 
         #endregion
