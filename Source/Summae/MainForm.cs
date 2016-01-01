@@ -8,6 +8,8 @@ using System.Security.Permissions;
 using System.Windows.Forms;
 using Medo;
 using Medo.Text;
+using System.ComponentModel;
+using System.Threading;
 
 namespace Summae {
     internal partial class MainForm : Form {
@@ -15,7 +17,8 @@ namespace Summae {
         public MainForm() {
             InitializeComponent();
             this.Font = SystemFonts.MessageBoxFont;
-            mnu.Renderer = new ToolStripBorderlessProfessionalRenderer();
+            mnu.Renderer = Helper.ToolstripRenderer;
+            Helper.ScaleToolstrip(mnu);
 
             mnuCalculate.DropDown.Items.Add(new HashMenuItem("crc16", "CRC-16", Medo.Configuration.Settings.Read("crc16", false)));
             mnuCalculate.DropDown.Items.Add(new HashMenuItem("crc32", "CRC-32", Medo.Configuration.Settings.Read("crc32", false)));
@@ -32,14 +35,15 @@ namespace Summae {
             }
             RefreshEnableDisable();
 
-            mnuOptions.Visible = (Medo.Configuration.Settings.NoRegistryWrites == false);
+            mnuAppOptions.Visible = (Medo.Configuration.Settings.NoRegistryWrites == false);
+            mnuAppOptionsSeparator.Visible = false;
         }
 
         [SecurityPermission(SecurityAction.LinkDemand, Flags = SecurityPermissionFlag.UnmanagedCode)]
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData) {
             switch (keyData) {
                 case Keys.Alt | Keys.O: {
-                        mnuOptions_Click(null, null);
+                        mnuAppOptions_Click(null, null);
                     } return true;
 
                 case Keys.Control | Keys.N: {
@@ -69,6 +73,17 @@ namespace Summae {
             foreach (HashMenuItem iItem in mnuCalculate.DropDown.Items) {
                 Medo.Configuration.Settings.Write(iItem.Key, iItem.Checked);
             }
+        }
+
+        private void Form_FormClosed(object sender, FormClosedEventArgs e) {
+            bwCheckForUpgrade.CancelAsync();
+            Application.Exit();
+        }
+
+        private void Form_Shown(object sender, EventArgs e) {
+            var version = Assembly.GetExecutingAssembly().GetName().Version; //don't auto-check for development builds
+            if ((version.Major != 0) || (version.Minor != 0)) { bwCheckForUpgrade.RunWorkerAsync(); }
+            bwCheckForUpgrade.RunWorkerAsync();
         }
 
         #region Menu
@@ -141,7 +156,7 @@ namespace Summae {
         }
 
 
-        private void mnuOptions_Click(object sender, EventArgs e) {
+        private void mnuAppOptions_Click(object sender, EventArgs e) {
             using (var form = new SettingsForm()) {
                 form.ShowDialog(this);
             }
@@ -216,6 +231,29 @@ namespace Summae {
             }
             RefreshEnableDisable();
             this.Activate();
+        }
+
+        private void bwCheckForUpgrade_DoWork(object sender, DoWorkEventArgs e) {
+            e.Cancel = true;
+
+            var sw = Stopwatch.StartNew();
+            while (sw.ElapsedMilliseconds < 3000) { //wait for three seconds
+                Thread.Sleep(100);
+                if (bwCheckForUpgrade.CancellationPending) { return; }
+            }
+
+            var file = Medo.Services.Upgrade.GetUpgradeFile(new Uri("https://medo64.com/upgrade/"));
+            if (file != null) {
+                if (bwCheckForUpgrade.CancellationPending) { return; }
+                e.Cancel = false;
+            }
+        }
+
+        private void bwCheckForUpgrade_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e) {
+            if (!e.Cancelled) {
+                Helper.ScaleToolstripItem(mnuApp, "mnuAppUpgrade");
+                mnuAppUpgrade.Text = "Upgrade is available";
+            }
         }
 
     }
