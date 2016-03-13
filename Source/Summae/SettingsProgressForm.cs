@@ -1,4 +1,4 @@
-﻿using System.ComponentModel;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
@@ -8,12 +8,11 @@ using Medo.Text;
 
 namespace Summae {
     internal partial class SettingsProgressForm : Form {
-        public SettingsProgressForm(bool summae, bool crc16, bool crc32, bool md5, bool ripemd160, bool sha1, bool sha256, bool sha384, bool sha512) {
+        public SettingsProgressForm(bool crc16, bool crc32, bool md5, bool ripemd160, bool sha1, bool sha256, bool sha384, bool sha512) {
             InitializeComponent();
             this.Font = SystemFonts.MessageBoxFont;
 
             var sb = new StringAdder(" ");
-            if (summae) { sb.Append("/summae"); }
             if (crc16) { sb.Append("/crc16"); }
             if (crc32) { sb.Append("/crc32"); }
             if (md5) { sb.Append("/md5"); }

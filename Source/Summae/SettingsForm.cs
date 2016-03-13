@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Runtime.InteropServices;
@@ -22,22 +22,34 @@ namespace Summae {
 
 
         private void SettingsForm_Load(object sender, EventArgs e) {
-            using (var rk = Microsoft.Win32.Registry.ClassesRoot.OpenSubKey(@"*\shell", false)) {
-                var list = new List<string>(rk.GetSubKeyNames());
-                chbSummae.Checked = list.Contains("Summae");
-                chbCrc16.Checked = list.Contains("Summae (CRC-16)");
-                chbCrc32.Checked = list.Contains("Summae (CRC-32)");
-                chbMd5.Checked = list.Contains("Summae (MD-5)");
-                chbRipeMd160.Checked = list.Contains("Summae (RIPE MD-160)");
-                chbSha1.Checked = list.Contains("Summae (SHA-1)");
-                chbSha256.Checked = list.Contains("Summae (SHA-256)");
-                chbSha384.Checked = list.Contains("Summae (SHA-384)");
-                chbSha512.Checked = list.Contains("Summae (SHA-512)");
+            using (var rk = Microsoft.Win32.Registry.ClassesRoot.OpenSubKey(@"*\shell", writable: false)) {
+                var subCommandList = new List<string>();
+                if (rk != null) {
+                    using (var key = rk.OpenSubKey("Summae", writable: false)) {
+                        if (key != null) {
+                            var subCommands = key.GetValue("SubCommands");
+                            if (subCommands != null) {
+                                foreach (var subCommand in subCommands.ToString().Split(';')) {
+                                    subCommandList.Add(subCommand);
+                                }
+                            }
+                        }
+                    }
+                }
+
+                chbCrc16.Checked = subCommandList.Contains("Summae.Crc16");
+                chbCrc32.Checked = subCommandList.Contains("Summae.Crc32");
+                chbMd5.Checked = subCommandList.Contains("Summae.Md5");
+                chbRipeMd160.Checked = subCommandList.Contains("Summae.RipeMd160");
+                chbSha1.Checked = subCommandList.Contains("Summae.Sha1");
+                chbSha256.Checked = subCommandList.Contains("Summae.Sha256");
+                chbSha384.Checked = subCommandList.Contains("Summae.Sha384");
+                chbSha512.Checked = subCommandList.Contains("Summae.Sha512");
             }
         }
 
         private void btnOK_Click(object sender, EventArgs e) {
-            using (var form = new SettingsProgressForm(chbSummae.Checked, chbCrc16.Checked, chbCrc32.Checked, chbMd5.Checked, chbRipeMd160.Checked, chbSha1.Checked, chbSha256.Checked, chbSha384.Checked, chbSha512.Checked)) {
+            using (var form = new SettingsProgressForm(chbCrc16.Checked, chbCrc32.Checked, chbMd5.Checked, chbRipeMd160.Checked, chbSha1.Checked, chbSha256.Checked, chbSha384.Checked, chbSha512.Checked)) {
                 this.DialogResult = form.ShowDialog(this);
             }
         }

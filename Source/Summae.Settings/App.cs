@@ -34,55 +34,34 @@ namespace SummaeSettings {
                 NativeMethods.SetCurrentProcessExplicitAppUserModelID(appId);
             }
 
+            var fileNameSummae = Path.Combine((new FileInfo(Assembly.GetExecutingAssembly().Location)).DirectoryName, "Summae.exe");
 
             //clear list
             using (var rk = Registry.ClassesRoot.OpenSubKey(@"*\shell", RegistryKeyPermissionCheck.ReadWriteSubTree, RegistryRights.FullControl)) {
-                var list = new List<string>(rk.GetSubKeyNames());
-                if (list.Contains("Summae")) { rk.DeleteSubKeyTree(@"Summae"); }
-                if (list.Contains("Summae (CRC-16)")) { rk.DeleteSubKeyTree("Summae (CRC-16)"); }
-                if (list.Contains("Summae (CRC-32)")) { rk.DeleteSubKeyTree("Summae (CRC-32)"); }
-                if (list.Contains("Summae (MD-5)")) { rk.DeleteSubKeyTree("Summae (MD-5)"); }
-                if (list.Contains("Summae (RIPE MD-160)")) { rk.DeleteSubKeyTree("Summae (RIPE MD-160)"); }
-                if (list.Contains("Summae (SHA-1)")) { rk.DeleteSubKeyTree("Summae (SHA-1)"); }
-                if (list.Contains("Summae (SHA-256)")) { rk.DeleteSubKeyTree("Summae (SHA-256)"); }
-                if (list.Contains("Summae (SHA-384)")) { rk.DeleteSubKeyTree("Summae (SHA-384)"); }
-                if (list.Contains("Summae (SHA-512)")) { rk.DeleteSubKeyTree("Summae (SHA-512)"); }
+                rk.DeleteSubKey("Summae", throwOnMissingSubKey: false);
             }
-
 
             //add new
-            var fileNameSummae = Path.Combine((new FileInfo(Assembly.GetExecutingAssembly().Location)).DirectoryName, "Summae.exe");
-            var fileNameSummaeExecutor = Path.Combine((new FileInfo(Assembly.GetExecutingAssembly().Location)).DirectoryName, "SummaeExecutor.exe");
-            if (Args.Current.ContainsKey("summae")) { AddContextMenuItem("Summae", fileNameSummae, null); }
-            if (Args.Current.ContainsKey("crc16")) { AddContextMenuItem("Summae (CRC-16)", fileNameSummaeExecutor, "/crc16"); }
-            if (Args.Current.ContainsKey("crc32")) { AddContextMenuItem("Summae (CRC-32)", fileNameSummaeExecutor, "/crc32"); }
-            if (Args.Current.ContainsKey("md5")) { AddContextMenuItem("Summae (MD-5)", fileNameSummaeExecutor, "/md5"); }
-            if (Args.Current.ContainsKey("ripemd160")) { AddContextMenuItem("Summae (RIPE MD-160)", fileNameSummaeExecutor, "/ripemd160"); }
-            if (Args.Current.ContainsKey("sha1")) { AddContextMenuItem("Summae (SHA-1)", fileNameSummaeExecutor, "/sha1"); }
-            if (Args.Current.ContainsKey("sha256")) { AddContextMenuItem("Summae (SHA-256)", fileNameSummaeExecutor, "/sha256"); }
-            if (Args.Current.ContainsKey("sha384")) { AddContextMenuItem("Summae (SHA-384)", fileNameSummaeExecutor, "/sha384"); }
-            if (Args.Current.ContainsKey("sha512")) { AddContextMenuItem("Summae (SHA-512)", fileNameSummaeExecutor, "/sha512"); }
+            var subCommandList = new List<string>();
+            if (Args.Current.ContainsKey("crc16")) { subCommandList.Add("Summae.Crc16"); }
+            if (Args.Current.ContainsKey("crc32")) { subCommandList.Add("Summae.Crc32"); }
+            if (Args.Current.ContainsKey("md5")) { subCommandList.Add("Summae.Md5"); }
+            if (Args.Current.ContainsKey("ripemd160")) { subCommandList.Add("Summae.RipeMd160"); }
+            if (Args.Current.ContainsKey("sha1")) { subCommandList.Add("Summae.Sha1"); }
+            if (Args.Current.ContainsKey("sha256")) { subCommandList.Add("Summae.Sha256"); }
+            if (Args.Current.ContainsKey("sha384")) { subCommandList.Add("Summae.Sha384"); }
+            if (Args.Current.ContainsKey("sha512")) { subCommandList.Add("Summae.Sha512"); }
 
-
-            _setupMutex.Close();
-        }
-
-        private static void AddContextMenuItem(string name, string fileName, string argument) {
-            string command;
-            if (string.IsNullOrEmpty(argument)) {
-                command = string.Format(CultureInfo.InvariantCulture, @"""{0}"" ""%1""", fileName);
-            } else {
-                command = string.Format(CultureInfo.InvariantCulture, @"""{0}"" {1} ""%1""", fileName, argument);
-            }
-
-            using (var rk = Registry.ClassesRoot.OpenSubKey(@"*\shell", RegistryKeyPermissionCheck.ReadWriteSubTree, RegistryRights.FullControl)) {
-                using (var keyMain = rk.CreateSubKey(name)) {
-                    keyMain.SetValue("MultiSelectModel", "Player", RegistryValueKind.String);
-                    using (var keyCommand = keyMain.CreateSubKey("command")) {
-                        keyCommand.SetValue(null, command, RegistryValueKind.String);
+            if (subCommandList.Count > 0) {
+                using (var rk = Registry.ClassesRoot.OpenSubKey(@"*\shell", RegistryKeyPermissionCheck.ReadWriteSubTree, RegistryRights.FullControl)) {
+                    using (var key = rk.CreateSubKey("Summae")) {
+                        key.SetValue("Icon", @"""" + fileNameSummae + @"""", RegistryValueKind.String);
+                        key.SetValue("SubCommands", string.Join(";", subCommandList.ToArray()), RegistryValueKind.String);
                     }
                 }
             }
+
+            _setupMutex.Close();
         }
 
 
