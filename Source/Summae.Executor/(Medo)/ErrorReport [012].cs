@@ -1,4 +1,4 @@
-﻿//Josip Medved <jmedved@jmedved.com> http://www.jmedved.com
+//Josip Medved <jmedved@jmedved.com> http://www.jmedved.com
 
 //2008-01-07: First version.
 //2008-01-15: Added overloads for SaveToTemp and ShowDialog.

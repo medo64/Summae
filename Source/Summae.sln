@@ -1,14 +1,14 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.22823.1
+VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Summae", "Summae\Summae.csproj", "{E38331DE-7718-4949-ACAB-7E3911BB0C21}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Summae-Executor", "Summae-Executor\Summae-Executor.csproj", "{04696222-8A25-496D-B4BB-80D5D7A025A9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Summae.Executor", "Summae.Executor\Summae.Executor.csproj", "{04696222-8A25-496D-B4BB-80D5D7A025A9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Summae-Console", "Summae-Console\Summae-Console.csproj", "{B055E279-8380-4448-8A2B-26CF02B632E9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Summae.Console", "Summae.Console\Summae.Console.csproj", "{B055E279-8380-4448-8A2B-26CF02B632E9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Summae-Settings", "Summae-Settings\Summae-Settings.csproj", "{D76948B4-9293-4791-AD4F-7780E4238F26}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Summae.Settings", "Summae.Settings\Summae.Settings.csproj", "{D76948B4-9293-4791-AD4F-7780E4238F26}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

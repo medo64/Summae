@@ -1,4 +1,4 @@
-﻿namespace SummaeExecutor {
+namespace SummaeExecutor {
     partial class MainForm {
         /// <summary>
         /// Required designer variable.

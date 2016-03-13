@@ -1,13 +1,13 @@
-﻿using System.Security.Cryptography;
+using System.Security.Cryptography;
 
 namespace HashAlgorithms {
-    public class Md5Sum : SumAlgorithmBase {
+    public class RipeMd160Sum : SumAlgorithmBase {
 
         private HashAlgorithm _algorithm;
 
-        public Md5Sum()
-            : base("md5", "MD-5") {
-            this._algorithm = new MD5CryptoServiceProvider();
+        public RipeMd160Sum()
+            : base("ripemd160", "RIPE MD-160") {
+            this._algorithm = new RIPEMD160Managed();
             base.ResultByteCount = this._algorithm.HashSize / 8;
         }
 

@@ -94,9 +94,9 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Summae-Console\Summae-Console.csproj">
+    <ProjectReference Include="..\Summae.Console\Summae.Console.csproj">
       <Project>{B055E279-8380-4448-8A2B-26CF02B632E9}</Project>
-      <Name>SummaeCL</Name>
+      <Name>Summae.Console</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

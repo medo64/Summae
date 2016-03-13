@@ -1,13 +1,13 @@
-﻿using System.Security.Cryptography;
+using System.Security.Cryptography;
 
 namespace HashAlgorithms {
-    public class Sha1Sum : SumAlgorithmBase {
+    public class Sha384Sum : SumAlgorithmBase {
 
         private HashAlgorithm _algorithm;
 
-        public Sha1Sum()
-            : base("sha1", "SHA-1") {
-            this._algorithm = new SHA1CryptoServiceProvider();
+        public Sha384Sum()
+            : base("sha384", "SHA-384") {
+            this._algorithm = new SHA384Managed();
             base.ResultByteCount = this._algorithm.HashSize / 8;
         }
 

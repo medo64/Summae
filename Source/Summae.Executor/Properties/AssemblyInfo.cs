@@ -1,9 +1,9 @@
-﻿using System;
+using System;
 using System.Reflection;
 using System.Resources;
 using System.Runtime.InteropServices;
 
-[assembly: AssemblyTitle("Summae Command Line")]
+[assembly: AssemblyTitle("Summae Excecutor")]
 [assembly: AssemblyDescription("Hashing file content.")]
 
 [assembly: CLSCompliant(true)]
