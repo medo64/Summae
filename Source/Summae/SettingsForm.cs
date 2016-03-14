@@ -69,10 +69,18 @@ namespace Summae {
             if (chbSha512.Checked) { subCommandList.Add("Summae.Sha512"); }
 
             using (var rk = Registry.CurrentUser.OpenSubKey(@"Software\Classes\*\shell", RegistryKeyPermissionCheck.ReadWriteSubTree, RegistryRights.FullControl)) {
-                try {
-                    rk.DeleteSubKeyTree("Summae");
-                } catch (ArgumentException) { } //ignore if it doesn't exist
+                if (rk == null) {
+                    using (var rkShell = Registry.CurrentUser.OpenSubKey(@"Software\Classes\*", RegistryKeyPermissionCheck.ReadWriteSubTree, RegistryRights.FullControl)) {
+                        rkShell.CreateSubKey("shell");
+                    }
+                } else {
+                    try {
+                        rk.DeleteSubKeyTree("Summae");
+                    } catch (ArgumentException) { } //ignore if it doesn't exist
+                }
+            }
 
+            using (var rk = Registry.CurrentUser.OpenSubKey(@"Software\Classes\*\shell", RegistryKeyPermissionCheck.ReadWriteSubTree, RegistryRights.FullControl)) {
                 using (var key = rk.CreateSubKey("Summae")) {
                     key.SetValue("Icon", @"""" + Assembly.GetExecutingAssembly().Location + @"""", RegistryValueKind.String);
                     key.SetValue("MUIVerb", @"Summae", RegistryValueKind.String);
@@ -83,6 +91,7 @@ namespace Summae {
                     }
                 }
             }
+
         }
 
     }
