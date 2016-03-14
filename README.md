@@ -1,6 +1,7 @@
 ### Summae ###
 
-This a is small tool capable of calculating CRC-16, CRC-32, MD-5, RIPE-160, SHA-1 and other variants.
+This a is small tool capable of calculating checksums using CRC-16, CRC-32,
+MD-5, RIPE-160, SHA-1, SHA-256, SHA-384, and SHA-512 algorithm.
 
 
 #### Shortcut Keys ####
@@ -13,16 +14,10 @@ This a is small tool capable of calculating CRC-16, CRC-32, MD-5, RIPE-160, SHA-
 
 #### Command Line Options ####
 
-#### Summae.exe
 
-    Summae.exe [filename]
+##### Summae.exe
 
-* `filename`: Specifies name of file or files that will be added to list.
-
-
-#### SummaeExecutor.exe
-
-    SummaeExecutor.exe [/crc16] [/crc32] [/md5] [/sha1] [/sha256] [/sha384] [/sha512] filename
+    Summae.exe [/crc16] [/crc32] [/md5] [/ripemd160] [/sha1] [/sha256] [/sha384] [/sha512] filename
 
 * `/crc16`:     Calculations are done using IEEE 802.3 defined CRC-16 algorithm.
 * `/crc32`:     Calculations are done using IEEE 802.3 defined CRC-32 algorithm.
@@ -32,35 +27,26 @@ This a is small tool capable of calculating CRC-16, CRC-32, MD-5, RIPE-160, SHA-
 * `/sha256`:    Calculations are done using SHA-256 hashing algorithm.
 * `/sha384`:    Calculations are done using SHA-384 hashing algorithm.
 * `/sha512`:    Calculations are done using SHA-512 hashing algorithm.
-* `/filename`:  Specifies name of file or files on which calculations are to be done.
+* `filename`:   Specifies name of file or files on which calculations are to be done.
+
+If multiple methods are specified, all calculations are done in parallel and
+disk access is done only once regardless of number of algorithms selected.
+
+If more than one file is specified, calculation will be done in parallel.
+
+
+##### Sum.exe
+
+All command-line parameters are same as for Summae.exe.
+
+Calculations are done in a serialized fashion, i.e. one file after the other.
 
 If hashing method is not specified, SHA-1 is used. If multiple methods are
-specified, all calculations are serialized in one thread and disk access is
-done only one time regardless of selected number of algorithms.
+specified, all calculations are done in parallel and disk access is done only
+once regardless of number of algorithms selected.
 
-If more than one file is specified, calculations for additional files will be
-done in a new instance.
-
-
-##### Exit codes
+###### Exit codes
 
 * `0`: Execution completed successfuly.
 * `1`: File name not specified.
 * `2`: File access exception.
-
-
-
-#### Sum.exe
-
-All command-line parameters are same as for SummaeExecutor.exe. Only difference
-in behaviour comes when multiple files are passed as parameter. While
-SummaeExecutor.exe will create new instance for each file, Sum.exe will do
-calculations one after another in same instance.
-
-
-
-#### SummaeSettings.exe
-
-This executable is used by Summae.exe for setting options that need
-administrative priviledges. Command-line parameters are undefined and they can
-(and probably will) change from version to version.

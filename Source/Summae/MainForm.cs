@@ -6,15 +6,15 @@ using System.IO;
 using System.Reflection;
 using System.Security.Permissions;
 using System.Windows.Forms;
-using Medo;
 using Medo.Text;
 using System.ComponentModel;
 using System.Threading;
+using Summae.HashAlgorithms;
 
 namespace Summae {
     internal partial class MainForm : Form {
 
-        public MainForm() {
+        public MainForm(IEnumerable<FileInfo> files) {
             InitializeComponent();
             this.Font = SystemFonts.MessageBoxFont;
             mnu.Renderer = Helper.ToolstripRenderer;
@@ -29,9 +29,8 @@ namespace Summae {
             mnuCalculate.DropDown.Items.Add(new HashMenuItem("sha384", "SHA-384", Medo.Configuration.Settings.Read("sha384", false)));
             mnuCalculate.DropDown.Items.Add(new HashMenuItem("sha512", "SHA-512", Medo.Configuration.Settings.Read("sha512", false)));
 
-            foreach (var iFile in Medo.Application.Args.Current.GetValues("")) {
-                var iFileInfo = new FileInfo(iFile);
-                AddFileToListView(iFileInfo.FullName);
+            foreach (var file in files) {
+                AddFileToListView(file.FullName);
             }
             RefreshEnableDisable();
 
@@ -134,24 +133,25 @@ namespace Summae {
                 try {
                     this.Cursor = Cursors.WaitCursor;
 
-                    var sbArgs = new StringAdder(" ");
+                    var hashMethods = new List<string>();
                     foreach (HashMenuItem item in mnuCalculate.DropDown.Items) {
-                        if (item.Checked) {
-                            sbArgs.Append("/" + item.Key);
-                        }
+                        if (item.Checked) { hashMethods.Add(item.Key); }
                     }
 
                     foreach (ListViewItem iItem in lsvFiles.Items) {
-                        var iFile = (FileInfo)iItem.Tag;
-                        var startInfo = new ProcessStartInfo();
-                        startInfo.CreateNoWindow = Process.GetCurrentProcess().StartInfo.CreateNoWindow;
-                        startInfo.FileName = Path.Combine((new FileInfo(Assembly.GetExecutingAssembly().Location)).DirectoryName, "SummaeExecutor.exe");
-                        startInfo.Arguments = sbArgs.ToString() + " \"" + iFile.FullName + "\"";
-                        startInfo.WorkingDirectory = System.Environment.CurrentDirectory;
-                        Process.Start(startInfo).WaitForInputIdle();
+                        var file = (FileInfo)iItem.Tag;
+
+                        var items = new List<SumItem>();
+                        foreach (var method in hashMethods) {
+                            var item = new SumItem(SumAlgorithmBase.GetAlgorithmByName(method));
+                            item.ExpectedResult = SumItem.GetExpectedResult(file, item.Algorithm);
+                            items.Add(item);
+                        }
+                        var form = new CalculateForm(file, items.AsReadOnly());
+                        form.Owner = this;
+                        form.Show();
                     }
                     lsvFiles.Items.Clear();
-                    this.Close();
 
                 } finally {
                     this.Cursor = Cursors.Default;

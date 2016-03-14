@@ -5,7 +5,7 @@ using System.IO;
 using System.Security.AccessControl;
 using System.Security.Principal;
 using System.Threading;
-using HashAlgorithms;
+using Summae.HashAlgorithms;
 using Medo.Application;
 
 namespace SummaeCL {

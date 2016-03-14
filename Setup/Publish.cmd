@@ -3,7 +3,7 @@ SETLOCAL enabledelayedexpansion
 
 SET        FILE_SETUP=".\Summae.iss"
 SET     FILE_SOLUTION="..\Source\Summae.sln"
-SET  FILES_EXECUTABLE="..\Binaries\Summae.exe" "..\Binaries\SummaeExecutor.exe" "..\Binaries\sum.exe"
+SET  FILES_EXECUTABLE="..\Binaries\Summae.exe" "..\Binaries\sum.exe"
 SET       FILES_OTHER="..\Binaries\ReadMe.txt" "..\Binaries\License.txt"
 
 SET    COMPILE_TOOL_1="%PROGRAMFILES(X86)%\Microsoft Visual Studio 14.0\Common7\IDE\devenv.exe"

@@ -59,16 +59,35 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="%28Medo%29\AboutBox [012].cs" />
-    <Compile Include="%28Medo%29\Args [001].cs" />
-    <Compile Include="%28Medo%29\ErrorReport [017].cs" />
-    <Compile Include="%28Medo%29\MessageBox [006].cs" />
-    <Compile Include="%28Medo%29\Settings [011].cs" />
-    <Compile Include="%28Medo%29\State [015].cs" />
-    <Compile Include="%28Medo%29\StringAdder [002].cs" />
-    <Compile Include="%28Medo%29\TagItem [004].cs" />
-    <Compile Include="%28Medo%29\UnhandledCatch [007].cs" />
-    <Compile Include="%28Medo%29\Upgrade [004].cs" />
+    <Compile Include="%28Medo%29\AboutBox.cs" />
+    <Compile Include="%28Medo%29\Args.cs" />
+    <Compile Include="%28Medo%29\Crc16.cs" />
+    <Compile Include="%28Medo%29\Crc32.cs" />
+    <Compile Include="%28Medo%29\ErrorReport.cs" />
+    <Compile Include="%28Medo%29\MessageBox.cs" />
+    <Compile Include="%28Medo%29\Settings.cs" />
+    <Compile Include="%28Medo%29\State.cs" />
+    <Compile Include="%28Medo%29\StringAdder.cs" />
+    <Compile Include="%28Medo%29\TagItem.cs" />
+    <Compile Include="%28Medo%29\TaskbarProgress.cs" />
+    <Compile Include="%28Medo%29\UnhandledCatch.cs" />
+    <Compile Include="%28Medo%29\Upgrade.cs" />
+    <Compile Include="CalculateForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CalculateForm.Designer.cs">
+      <DependentUpon>CalculateForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HashAlgorithms\Crc16Sum.cs" />
+    <Compile Include="HashAlgorithms\Crc32Sum.cs" />
+    <Compile Include="HashAlgorithms\Md5Sum.cs" />
+    <Compile Include="HashAlgorithms\RipeMd160Sum.cs" />
+    <Compile Include="HashAlgorithms\Sha1Sum.cs" />
+    <Compile Include="HashAlgorithms\Sha256Sum.cs" />
+    <Compile Include="HashAlgorithms\Sha384Sum.cs" />
+    <Compile Include="HashAlgorithms\Sha512Sum.cs" />
+    <Compile Include="HashAlgorithms\SumAlgorithmBase.cs" />
+    <Compile Include="HashAlgorithms\SumItem.cs" />
     <Compile Include="HashMenuItem.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -103,6 +122,9 @@
     <None Include="Properties\App.snk" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="CalculateForm.resx">
+      <DependentUpon>CalculateForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>

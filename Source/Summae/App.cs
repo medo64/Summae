@@ -1,4 +1,7 @@
+using Summae.HashAlgorithms;
+using Medo.Application;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using System.Runtime.InteropServices;
@@ -19,11 +22,11 @@ namespace Summae {
 
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
-                System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("en-US");
+                Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("en-US");
 
                 Medo.Diagnostics.ErrorReport.DisableAutomaticSaveToTemp = true;
-                Medo.Application.UnhandledCatch.ThreadException += new EventHandler<ThreadExceptionEventArgs>(UnhandledCatch_ThreadException);
-                Medo.Application.UnhandledCatch.Attach();
+                UnhandledCatch.ThreadException += new EventHandler<ThreadExceptionEventArgs>(UnhandledCatch_ThreadException);
+                UnhandledCatch.Attach();
 
                 Medo.Configuration.Settings.NoRegistryWrites = Medo.Configuration.Settings.NoRegistryWrites;
                 Medo.Windows.Forms.State.NoRegistryWrites = Medo.Configuration.Settings.NoRegistryWrites;
@@ -36,11 +39,40 @@ namespace Summae {
                 }
 
 
-                Application.Run(new MainForm());
+                if (Args.Current.ContainsKey("CURRENTDIRECTORY")) {
+                    Environment.CurrentDirectory = Args.Current.GetValue("CURRENTDIRECTORY");
+                }
 
+                var files = new List<FileInfo>();
+                foreach (var file in Args.Current.GetValues("")) {
+                    files.Add(new FileInfo(file));
+                }
+
+                var hashMethods = new List<string>();
+                foreach (string key in Args.Current.GetKeys()) {
+                    if (SumAlgorithmBase.GetAlgorithmByName(key) != null) {
+                        hashMethods.Add(key);
+                    }
+                }
+
+                if (hashMethods.Count > 0) {
+                    foreach (var file in files) {
+                        var items = new List<SumItem>();
+
+                        foreach (var method in hashMethods) {
+                            var item = new SumItem(SumAlgorithmBase.GetAlgorithmByName(method));
+                            item.ExpectedResult = SumItem.GetExpectedResult(file, item.Algorithm);
+                            items.Add(item);
+                        }
+                        var form = new CalculateForm(file, items.AsReadOnly());
+                        form.Show();
+                    }
+                    Application.Run();
+                } else {
+                    Application.Run(new MainForm(files));
+                }
             }
         }
-
 
         private static void UnhandledCatch_ThreadException(object sender, ThreadExceptionEventArgs e) {
 #if !DEBUG
