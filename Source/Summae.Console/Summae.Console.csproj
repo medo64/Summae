@@ -52,9 +52,15 @@
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="%28Medo%29\Args.cs" />
-    <Compile Include="%28Medo%29\Crc16.cs" />
-    <Compile Include="%28Medo%29\Crc32.cs" />
+    <Compile Include="..\Summae\%28Medo%29\Args.cs">
+      <Link>%28Medo%29\Args.cs</Link>
+    </Compile>
+    <Compile Include="..\Summae\%28Medo%29\Crc16.cs">
+      <Link>%28Medo%29\Crc16.cs</Link>
+    </Compile>
+    <Compile Include="..\Summae\%28Medo%29\Crc32.cs">
+      <Link>%28Medo%29\Crc32.cs</Link>
+    </Compile>
     <Compile Include="..\Summae\HashAlgorithms\Crc16Sum.cs">
       <Link>HashAlgorithm\Crc16Sum.cs</Link>
     </Compile>
