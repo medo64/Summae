@@ -59,8 +59,6 @@ Source: "SummaeExecutor.exe"; DestDir: "{app}"; Flags: ignoreversion;
 Source: "SummaeExecutor.pdb"; DestDir: "{app}"; Flags: ignoreversion;
 Source: "sum.exe";            DestDir: "{app}"; Flags: ignoreversion;
 Source: "sum.pdb";            DestDir: "{app}"; Flags: ignoreversion;
-Source: "SummaeSettings.exe"; DestDir: "{app}"; Flags: ignoreversion;
-Source: "SummaeSettings.pdb"; DestDir: "{app}"; Flags: ignoreversion;
 Source: "ReadMe.txt";         DestDir: "{app}"; Attribs: readonly; Flags: overwritereadonly uninsremovereadonly;
 Source: "License.txt";        DestDir: "{app}"; Attribs: readonly; Flags: overwritereadonly uninsremovereadonly;
 
@@ -75,6 +73,7 @@ Root: HKLM; Subkey: "Software\Josip Medved\Summae"; ValueType: none; Flags: unin
 
 Root: HKCR; Subkey: "*\shell\Summae";                                                                              ValueType: none;   Flags: uninsdeletekey;
 Root: HKCR; Subkey: "*\shell\Summae"; ValueName: "Icon";        ValueData: """{app}\Summae.exe""";                 ValueType: string; Flags: uninsdeletekey;
+Root: HKCR; Subkey: "*\shell\Summae"; ValueName: "MUIVerb";     ValueData: "Summae";                               ValueType: string; Flags: uninsdeletekey;
 Root: HKCR; Subkey: "*\shell\Summae"; ValueName: "SubCommands"; ValueData: "Summae.Sha1;Summae.Sha256;Summae.Md5"; ValueType: string; Flags: uninsdeletekey;
 
 Root: HKLM; Subkey: "Software\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\Summae.Crc16";             ValueName: "MUIVerb";          ValueData: "CRC-16";                                         ValueType: string; Flags: uninsdeletekey;

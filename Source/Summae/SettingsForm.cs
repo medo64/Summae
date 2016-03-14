@@ -1,7 +1,9 @@
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Runtime.InteropServices;
+using System.Reflection;
+using System.Security.AccessControl;
 using System.Windows.Forms;
 
 namespace Summae {
@@ -9,21 +11,13 @@ namespace Summae {
         public SettingsForm() {
             InitializeComponent();
             this.Font = SystemFonts.MessageBoxFont;
-            lblWarning.Font = new Font(SystemFonts.MessageBoxFont, FontStyle.Bold);
-
-            var hIcon = NativeMethods.LoadImageW(IntPtr.Zero, NativeMethods.IDI_SHIELD, NativeMethods.IMAGE_ICON, 24, 24, NativeMethods.LR_DEFAULTCOLOR);
-            if (!hIcon.Equals(System.IntPtr.Zero)) {
-                var icon = System.Drawing.Icon.FromHandle(hIcon);
-                if (icon != null) {
-                    btnOK.Image = icon.ToBitmap();
-                }
-            }
         }
 
 
         private void SettingsForm_Load(object sender, EventArgs e) {
-            using (var rk = Microsoft.Win32.Registry.ClassesRoot.OpenSubKey(@"*\shell", writable: false)) {
-                var subCommandList = new List<string>();
+            var subCommandList = new List<string>();
+
+            using (var rk = Registry.ClassesRoot.OpenSubKey(@"*\shell", writable: false)) {
                 if (rk != null) {
                     using (var key = rk.OpenSubKey("Summae", writable: false)) {
                         if (key != null) {
@@ -36,34 +30,59 @@ namespace Summae {
                         }
                     }
                 }
-
-                chbCrc16.Checked = subCommandList.Contains("Summae.Crc16");
-                chbCrc32.Checked = subCommandList.Contains("Summae.Crc32");
-                chbMd5.Checked = subCommandList.Contains("Summae.Md5");
-                chbRipeMd160.Checked = subCommandList.Contains("Summae.RipeMd160");
-                chbSha1.Checked = subCommandList.Contains("Summae.Sha1");
-                chbSha256.Checked = subCommandList.Contains("Summae.Sha256");
-                chbSha384.Checked = subCommandList.Contains("Summae.Sha384");
-                chbSha512.Checked = subCommandList.Contains("Summae.Sha512");
             }
+
+            using (var rk = Registry.CurrentUser.OpenSubKey(@"Software\Classes\*\shell", writable: false)) {
+                if (rk != null) {
+                    using (var key = rk.OpenSubKey("Summae", writable: false)) {
+                        if (key != null) {
+                            var subCommands = key.GetValue("SubCommands");
+                            if (subCommands != null) {
+                                foreach (var subCommand in subCommands.ToString().Split(';')) {
+                                    subCommandList.Add(subCommand);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            chbCrc16.Checked = subCommandList.Contains("Summae.Crc16");
+            chbCrc32.Checked = subCommandList.Contains("Summae.Crc32");
+            chbMd5.Checked = subCommandList.Contains("Summae.Md5");
+            chbRipeMd160.Checked = subCommandList.Contains("Summae.RipeMd160");
+            chbSha1.Checked = subCommandList.Contains("Summae.Sha1");
+            chbSha256.Checked = subCommandList.Contains("Summae.Sha256");
+            chbSha384.Checked = subCommandList.Contains("Summae.Sha384");
+            chbSha512.Checked = subCommandList.Contains("Summae.Sha512");
         }
 
         private void btnOK_Click(object sender, EventArgs e) {
-            using (var form = new SettingsProgressForm(chbCrc16.Checked, chbCrc32.Checked, chbMd5.Checked, chbRipeMd160.Checked, chbSha1.Checked, chbSha256.Checked, chbSha384.Checked, chbSha512.Checked)) {
-                this.DialogResult = form.ShowDialog(this);
+            var subCommandList = new List<string>();
+            if (chbCrc16.Checked) { subCommandList.Add("Summae.Crc16"); }
+            if (chbCrc32.Checked) { subCommandList.Add("Summae.Crc32"); }
+            if (chbMd5.Checked) { subCommandList.Add("Summae.Md5"); }
+            if (chbRipeMd160.Checked) { subCommandList.Add("Summae.RipeMd160"); }
+            if (chbSha1.Checked) { subCommandList.Add("Summae.Sha1"); }
+            if (chbSha256.Checked) { subCommandList.Add("Summae.Sha256"); }
+            if (chbSha384.Checked) { subCommandList.Add("Summae.Sha384"); }
+            if (chbSha512.Checked) { subCommandList.Add("Summae.Sha512"); }
+
+            using (var rk = Registry.CurrentUser.OpenSubKey(@"Software\Classes\*\shell", RegistryKeyPermissionCheck.ReadWriteSubTree, RegistryRights.FullControl)) {
+                try {
+                    rk.DeleteSubKeyTree("Summae");
+                } catch (ArgumentException) { } //ignore if it doesn't exist
+
+                using (var key = rk.CreateSubKey("Summae")) {
+                    key.SetValue("Icon", @"""" + Assembly.GetExecutingAssembly().Location + @"""", RegistryValueKind.String);
+                    key.SetValue("MUIVerb", @"Summae", RegistryValueKind.String);
+                    if (subCommandList.Count > 0) {
+                        key.SetValue("SubCommands", string.Join(";", subCommandList.ToArray()), RegistryValueKind.String);
+                    } else {
+                        key.SetValue("AppliesTo", @"System.FileName:=\", RegistryValueKind.String); //dummy filename; trick to prevent inheritance from HKEY_CLASSES_ROOT
+                    }
+                }
             }
-        }
-
-
-        private static class NativeMethods {
-
-            internal static readonly IntPtr IDI_SHIELD = new IntPtr(106);
-            internal const uint IMAGE_ICON = 1;
-            internal const uint LR_DEFAULTCOLOR = 0x00000000;
-
-            [DllImportAttribute("user32.dll", EntryPoint = "LoadImageW")]
-            internal static extern IntPtr LoadImageW(IntPtr hInst, IntPtr name, uint type, int cx, int cy, uint fuLoad);
-
         }
 
     }

@@ -35,8 +35,8 @@ namespace Summae {
             }
             RefreshEnableDisable();
 
-            mnuAppOptions.Visible = (Medo.Configuration.Settings.NoRegistryWrites == false);
-            mnuAppOptionsSeparator.Visible = false;
+            mnuAppOptions.Enabled = (Medo.Configuration.Settings.NoRegistryWrites == false);
+            if (!mnuAppOptions.Enabled) { mnuAppOptions.ToolTipText = "Application must be installed."; }
         }
 
         [SecurityPermission(SecurityAction.LinkDemand, Flags = SecurityPermissionFlag.UnmanagedCode)]
@@ -44,22 +44,27 @@ namespace Summae {
             switch (keyData) {
                 case Keys.Alt | Keys.O: {
                         mnuAppOptions_Click(null, null);
-                    } return true;
+                    }
+                    return true;
 
                 case Keys.Control | Keys.N: {
                         mnuNew_Click(null, null);
-                    } return true;
+                    }
+                    return true;
 
                 case Keys.Control | Keys.O: {
                         mnuOpen_Click(null, null);
-                    } return true;
+                    }
+                    return true;
 
                 case Keys.F5: {
                         mnuCalculate.PerformButtonClick();
-                    } return true;
+                    }
+                    return true;
 
                 default: {
-                    } return base.ProcessCmdKey(ref msg, keyData);
+                    }
+                    return base.ProcessCmdKey(ref msg, keyData);
             }
         }
 
@@ -186,7 +191,8 @@ namespace Summae {
                 case Keys.Insert: {
                         e.SuppressKeyPress = true;
                         mnuOpen_Click(sender, null);
-                    } break;
+                    }
+                    break;
 
                 case Keys.Delete: {
                         e.SuppressKeyPress = true;
@@ -203,7 +209,8 @@ namespace Summae {
                             lsvFiles.EndUpdate();
                             RefreshEnableDisable();
                         }
-                    } break;
+                    }
+                    break;
 
             }
         }

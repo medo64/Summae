@@ -25,8 +25,8 @@ namespace Summae {
                 Medo.Application.UnhandledCatch.ThreadException += new EventHandler<ThreadExceptionEventArgs>(UnhandledCatch_ThreadException);
                 Medo.Application.UnhandledCatch.Attach();
 
-                Medo.Configuration.Settings.NoRegistryWrites = !Medo.Configuration.Settings.Read("Installed", false);
-                Medo.Windows.Forms.State.NoRegistryWrites = !Medo.Configuration.Settings.Read("Installed", false);
+                Medo.Configuration.Settings.NoRegistryWrites = Medo.Configuration.Settings.NoRegistryWrites;
+                Medo.Windows.Forms.State.NoRegistryWrites = Medo.Configuration.Settings.NoRegistryWrites;
                 Medo.Diagnostics.ErrorReport.DisableAutomaticSaveToTemp = !Medo.Configuration.Settings.Read("Installed", false);
 
                 if (!((Environment.OSVersion.Version.Build < 7000) || (App.IsRunningOnMono))) {
