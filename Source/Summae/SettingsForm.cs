@@ -12,7 +12,7 @@ namespace Summae {
             InitializeComponent();
             this.Font = SystemFonts.MessageBoxFont;
         }
-
+        
 
         private void SettingsForm_Load(object sender, EventArgs e) {
             var subCommandList = new List<string>();
@@ -67,6 +67,15 @@ namespace Summae {
             if (chbSha256.Checked) { subCommandList.Add("Summae.Sha256"); }
             if (chbSha384.Checked) { subCommandList.Add("Summae.Sha384"); }
             if (chbSha512.Checked) { subCommandList.Add("Summae.Sha512"); }
+
+
+            using (var rk = Registry.CurrentUser.OpenSubKey(@"Software\Classes\*", RegistryKeyPermissionCheck.ReadWriteSubTree, RegistryRights.FullControl)) { //Windows 7 might not have star (*) registry entry
+                if (rk == null) {
+                    using (var rkStar = Registry.CurrentUser.OpenSubKey(@"Software\Classes", RegistryKeyPermissionCheck.ReadWriteSubTree, RegistryRights.FullControl)) {
+                        rkStar.CreateSubKey("*");
+                    }
+                }
+            }
 
             using (var rk = Registry.CurrentUser.OpenSubKey(@"Software\Classes\*\shell", RegistryKeyPermissionCheck.ReadWriteSubTree, RegistryRights.FullControl)) {
                 if (rk == null) {
