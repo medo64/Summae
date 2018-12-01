@@ -113,12 +113,13 @@ namespace Summae.HashAlgorithms {
                     return GetExpectedResult(File.ReadAllText(fileName));
                 } catch { }
             } else {
-                var names = new List<string>();
-                names.Add(Path.Combine(file.DirectoryName, algorithm.Name + "sum.txt"));
-                names.Add(Path.Combine(file.DirectoryName, algorithm.Name + "sums.txt"));
-                names.Add(Path.Combine(file.DirectoryName, algorithm.Name + "sum.txt.asc"));
-                names.Add(Path.Combine(file.DirectoryName, "sum.txt"));
-                names.Add(Path.Combine(file.DirectoryName, "sums.txt"));
+                var names = new List<string> {
+                    Path.Combine(file.DirectoryName, algorithm.Name + "sum.txt"),
+                    Path.Combine(file.DirectoryName, algorithm.Name + "sums.txt"),
+                    Path.Combine(file.DirectoryName, algorithm.Name + "sum.txt.asc"),
+                    Path.Combine(file.DirectoryName, "sum.txt"),
+                    Path.Combine(file.DirectoryName, "sums.txt")
+                };
                 foreach (var sumFile in file.Directory.GetFiles("*." + algorithm.Name)) {
                     names.Add(sumFile.FullName);
                 }
