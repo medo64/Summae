@@ -67,8 +67,8 @@ Name: "{userstartmenu}\Summae"; Filename: "{app}\Summae.exe"
 
 
 [Registry]
-Root: HKLM; Subkey: "Software\Josip Medved";        ValueType: none; Flags: uninsdeletekeyifempty;
-Root: HKLM; Subkey: "Software\Josip Medved\Summae"; ValueType: none; Flags: uninsdeletekey
+Root: HKLM; Subkey: "Software\Josip Medved\Summae"; ValueType: none; Flags: deletekey
+Root: HKCU; Subkey: "Software\Josip Medved\Summae"; ValueType: none; Flags: deletekey
 
 Root: HKCR; Subkey: "*\shell\Summae";                                                                              ValueType: none;   Flags: uninsdeletekey;
 Root: HKCR; Subkey: "*\shell\Summae"; ValueName: "Icon";        ValueData: """{app}\Summae.exe""";                 ValueType: string; Flags: uninsdeletekey;
