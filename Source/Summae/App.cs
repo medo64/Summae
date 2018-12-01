@@ -1,5 +1,3 @@
-using Summae.HashAlgorithms;
-using Medo.Application;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -9,6 +7,9 @@ using System.Security.AccessControl;
 using System.Security.Principal;
 using System.Threading;
 using System.Windows.Forms;
+using Medo.Application;
+using Medo.Configuration;
+using Summae.HashAlgorithms;
 
 namespace Summae {
     static class App {
@@ -28,9 +29,17 @@ namespace Summae {
                 UnhandledCatch.ThreadException += new EventHandler<ThreadExceptionEventArgs>(UnhandledCatch_ThreadException);
                 UnhandledCatch.Attach();
 
-                Medo.Configuration.Settings.NoRegistryWrites = Medo.Configuration.Settings.NoRegistryWrites;
-                Medo.Windows.Forms.State.NoRegistryWrites = Medo.Configuration.Settings.NoRegistryWrites;
-                Medo.Diagnostics.ErrorReport.DisableAutomaticSaveToTemp = !Medo.Configuration.Settings.Read("Installed", false);
+                if (!Config.IsAssumedInstalled) {
+                    Medo.Windows.Forms.State.ReadState += delegate (object sender, Medo.Windows.Forms.StateReadEventArgs e) {
+                        e.Value = Config.Read("State!" + e.Name.Replace("Bimil.", ""), e.DefaultValue);
+                    };
+                    Medo.Windows.Forms.State.WriteState += delegate (object sender, Medo.Windows.Forms.StateWriteEventArgs e) {
+                        Config.Write("State!" + e.Name.Replace("Bimil.", ""), e.Value);
+                    };
+                }
+
+
+                Medo.Diagnostics.ErrorReport.DisableAutomaticSaveToTemp = !Config.IsAssumedInstalled;
 
                 if (!((Environment.OSVersion.Version.Build < 7000) || (App.IsRunningOnMono))) {
                     var appId = new FileInfo(Assembly.GetExecutingAssembly().Location).Directory.FullName;

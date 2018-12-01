@@ -10,6 +10,7 @@ using Medo.Text;
 using System.ComponentModel;
 using System.Threading;
 using Summae.HashAlgorithms;
+using Medo.Configuration;
 
 namespace Summae {
     internal partial class MainForm : Form {
@@ -20,22 +21,19 @@ namespace Summae {
             mnu.Renderer = Helper.ToolstripRenderer;
             Helper.ScaleToolstrip(mnu);
 
-            mnuCalculate.DropDown.Items.Add(new HashMenuItem("crc16", "CRC-16", Medo.Configuration.Settings.Read("crc16", false)));
-            mnuCalculate.DropDown.Items.Add(new HashMenuItem("crc32", "CRC-32", Medo.Configuration.Settings.Read("crc32", false)));
-            mnuCalculate.DropDown.Items.Add(new HashMenuItem("md5", "MD-5", Medo.Configuration.Settings.Read("md5", false)));
-            mnuCalculate.DropDown.Items.Add(new HashMenuItem("ripemd160", "RIPE MD-160", Medo.Configuration.Settings.Read("ripemd160", false)));
-            mnuCalculate.DropDown.Items.Add(new HashMenuItem("sha1", "SHA-1", Medo.Configuration.Settings.Read("sha1", true)));
-            mnuCalculate.DropDown.Items.Add(new HashMenuItem("sha256", "SHA-256", Medo.Configuration.Settings.Read("sha256", false)));
-            mnuCalculate.DropDown.Items.Add(new HashMenuItem("sha384", "SHA-384", Medo.Configuration.Settings.Read("sha384", false)));
-            mnuCalculate.DropDown.Items.Add(new HashMenuItem("sha512", "SHA-512", Medo.Configuration.Settings.Read("sha512", false)));
+            mnuCalculate.DropDown.Items.Add(new HashMenuItem("crc16", "CRC-16", Config.Read("crc16", false)));
+            mnuCalculate.DropDown.Items.Add(new HashMenuItem("crc32", "CRC-32", Config.Read("crc32", false)));
+            mnuCalculate.DropDown.Items.Add(new HashMenuItem("md5", "MD-5", Config.Read("md5", false)));
+            mnuCalculate.DropDown.Items.Add(new HashMenuItem("ripemd160", "RIPE MD-160", Config.Read("ripemd160", false)));
+            mnuCalculate.DropDown.Items.Add(new HashMenuItem("sha1", "SHA-1", Config.Read("sha1", true)));
+            mnuCalculate.DropDown.Items.Add(new HashMenuItem("sha256", "SHA-256", Config.Read("sha256", false)));
+            mnuCalculate.DropDown.Items.Add(new HashMenuItem("sha384", "SHA-384", Config.Read("sha384", false)));
+            mnuCalculate.DropDown.Items.Add(new HashMenuItem("sha512", "SHA-512", Config.Read("sha512", false)));
 
             foreach (var file in files) {
                 AddFileToListView(file.FullName);
             }
             RefreshEnableDisable();
-
-            mnuAppOptions.Enabled = (Medo.Configuration.Settings.NoRegistryWrites == false);
-            if (!mnuAppOptions.Enabled) { mnuAppOptions.ToolTipText = "Application must be installed."; }
         }
 
         [SecurityPermission(SecurityAction.LinkDemand, Flags = SecurityPermissionFlag.UnmanagedCode)]
@@ -75,7 +73,7 @@ namespace Summae {
         private void Form_FormClosing(object sender, FormClosingEventArgs e) {
             Medo.Windows.Forms.State.Save(this, lsvFiles);
             foreach (HashMenuItem iItem in mnuCalculate.DropDown.Items) {
-                Medo.Configuration.Settings.Write(iItem.Key, iItem.Checked);
+                Config.Write(iItem.Key, iItem.Checked);
             }
         }
 

@@ -62,12 +62,12 @@
   <ItemGroup>
     <Compile Include="%28Medo%29\AboutBox.cs" />
     <Compile Include="%28Medo%29\Args.cs" />
+    <Compile Include="%28Medo%29\Config [006].cs" />
     <Compile Include="%28Medo%29\Crc16.cs" />
     <Compile Include="%28Medo%29\Crc32.cs" />
     <Compile Include="%28Medo%29\ErrorReport.cs" />
     <Compile Include="%28Medo%29\MessageBox.cs" />
-    <Compile Include="%28Medo%29\Settings.cs" />
-    <Compile Include="%28Medo%29\State.cs" />
+    <Compile Include="%28Medo%29\State [016].cs" />
     <Compile Include="%28Medo%29\StringAdder.cs" />
     <Compile Include="%28Medo%29\TagItem.cs" />
     <Compile Include="%28Medo%29\TaskbarProgress.cs" />
