@@ -20,7 +20,7 @@ AppName={#AppName}
 AppVersion={#AppVersion}
 AppVerName={#AppName} {#AppVersion}
 AppPublisher={#AppCompany}
-AppPublisherURL=https://www.medo64.com/{#AppBase}/
+AppPublisherURL=https://medo64.com/{#AppBase}/
 AppCopyright={#AppCopyright}
 VersionInfoProductVersion={#AppVersion}
 VersionInfoProductTextVersion={#AppVersionEx}
@@ -32,6 +32,7 @@ SourceDir=..\Binaries
 AppId=JosipMedved_Summae
 CloseApplications="yes"
 RestartApplications="no"
+AppMutex=Global\JosipMedved_Summae
 UninstallDisplayIcon={app}\Summae.exe
 AlwaysShowComponentsList=no
 ArchitecturesInstallIn64BitMode=x64
@@ -49,7 +50,7 @@ LicenseFile=..\Setup\License.rtf
 [Messages]
 SetupAppTitle=Setup {#AppName} {#AppVersionEx}
 SetupWindowTitle=Setup {#AppName} {#AppVersionEx}
-BeveledLabel=www.medo64.com
+BeveledLabel=medo64.com
 
 
 [Files]
@@ -74,35 +75,35 @@ Root: HKCR; Subkey: "*\shell\Summae"; ValueName: "Icon";        ValueData: """{a
 Root: HKCR; Subkey: "*\shell\Summae"; ValueName: "MUIVerb";     ValueData: "Summae";                               ValueType: string; Flags: uninsdeletekey;
 Root: HKCR; Subkey: "*\shell\Summae"; ValueName: "SubCommands"; ValueData: "Summae.Sha1;Summae.Sha256;Summae.Md5"; ValueType: string; Flags: uninsdeletekey;
 
-Root: HKLM; Subkey: "Software\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\Summae.Crc16";             ValueName: "MUIVerb";          ValueData: "CRC-16";                                         ValueType: string; Flags: uninsdeletekey;
-Root: HKLM; Subkey: "Software\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\Summae.Crc16";             ValueName: "MultiSelectModel"; ValueData: "Player";                                         ValueType: string; Flags: uninsdeletekey;
+Root: HKLM; Subkey: "Software\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\Summae.Crc16";             ValueName: "MUIVerb";          ValueData: "CRC-16";                                 ValueType: string; Flags: uninsdeletekey;
+Root: HKLM; Subkey: "Software\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\Summae.Crc16";             ValueName: "MultiSelectModel"; ValueData: "Player";                                 ValueType: string; Flags: uninsdeletekey;
 Root: HKLM; Subkey: "Software\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\Summae.Crc16\command";     ValueName: "";                 ValueData: """{app}\Summae.exe"" /crc16 ""%1""";     ValueType: string; Flags: uninsdeletekey;
-Root: HKLM; Subkey: "Software\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\Summae.Crc32";             ValueName: "MUIVerb";          ValueData: "CRC-32";                                         ValueType: string; Flags: uninsdeletekey;
-Root: HKLM; Subkey: "Software\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\Summae.Crc32";             ValueName: "MultiSelectModel"; ValueData: "Player";                                         ValueType: string; Flags: uninsdeletekey;
+Root: HKLM; Subkey: "Software\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\Summae.Crc32";             ValueName: "MUIVerb";          ValueData: "CRC-32";                                 ValueType: string; Flags: uninsdeletekey;
+Root: HKLM; Subkey: "Software\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\Summae.Crc32";             ValueName: "MultiSelectModel"; ValueData: "Player";                                 ValueType: string; Flags: uninsdeletekey;
 Root: HKLM; Subkey: "Software\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\Summae.Crc32\command";     ValueName: "";                 ValueData: """{app}\Summae.exe"" /crc32 ""%1""";     ValueType: string; Flags: uninsdeletekey;
-Root: HKLM; Subkey: "Software\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\Summae.Md5";               ValueName: "MUIVerb";          ValueData: "MD-5";                                           ValueType: string; Flags: uninsdeletekey;
-Root: HKLM; Subkey: "Software\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\Summae.Md5";               ValueName: "MultiSelectModel"; ValueData: "Player";                                         ValueType: string; Flags: uninsdeletekey;
+Root: HKLM; Subkey: "Software\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\Summae.Md5";               ValueName: "MUIVerb";          ValueData: "MD-5";                                   ValueType: string; Flags: uninsdeletekey;
+Root: HKLM; Subkey: "Software\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\Summae.Md5";               ValueName: "MultiSelectModel"; ValueData: "Player";                                 ValueType: string; Flags: uninsdeletekey;
 Root: HKLM; Subkey: "Software\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\Summae.Md5\command";       ValueName: "";                 ValueData: """{app}\Summae.exe"" /md5 ""%1""";       ValueType: string; Flags: uninsdeletekey;
-Root: HKLM; Subkey: "Software\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\Summae.RipeMd160";         ValueName: "MUIVerb";          ValueData: "RIPE MD-160";                                    ValueType: string; Flags: uninsdeletekey;
-Root: HKLM; Subkey: "Software\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\Summae.RipeMd160";         ValueName: "MultiSelectModel"; ValueData: "Player";                                         ValueType: string; Flags: uninsdeletekey;
+Root: HKLM; Subkey: "Software\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\Summae.RipeMd160";         ValueName: "MUIVerb";          ValueData: "RIPE MD-160";                            ValueType: string; Flags: uninsdeletekey;
+Root: HKLM; Subkey: "Software\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\Summae.RipeMd160";         ValueName: "MultiSelectModel"; ValueData: "Player";                                 ValueType: string; Flags: uninsdeletekey;
 Root: HKLM; Subkey: "Software\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\Summae.RipeMd160\command"; ValueName: "";                 ValueData: """{app}\Summae.exe"" /ripemd160 ""%1"""; ValueType: string; Flags: uninsdeletekey;
-Root: HKLM; Subkey: "Software\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\Summae.Sha1";              ValueName: "MUIVerb";          ValueData: "SHA-1";                                          ValueType: string; Flags: uninsdeletekey;
-Root: HKLM; Subkey: "Software\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\Summae.Sha1";              ValueName: "MultiSelectModel"; ValueData: "Player";                                         ValueType: string; Flags: uninsdeletekey;
+Root: HKLM; Subkey: "Software\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\Summae.Sha1";              ValueName: "MUIVerb";          ValueData: "SHA-1";                                  ValueType: string; Flags: uninsdeletekey;
+Root: HKLM; Subkey: "Software\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\Summae.Sha1";              ValueName: "MultiSelectModel"; ValueData: "Player";                                 ValueType: string; Flags: uninsdeletekey;
 Root: HKLM; Subkey: "Software\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\Summae.Sha1\command";      ValueName: "";                 ValueData: """{app}\Summae.exe"" /sha1 ""%1""";      ValueType: string; Flags: uninsdeletekey;
-Root: HKLM; Subkey: "Software\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\Summae.Sha256";            ValueName: "MUIVerb";          ValueData: "SHA-256";                                        ValueType: string; Flags: uninsdeletekey;
-Root: HKLM; Subkey: "Software\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\Summae.Sha256";            ValueName: "MultiSelectModel"; ValueData: "Player";                                         ValueType: string; Flags: uninsdeletekey;
+Root: HKLM; Subkey: "Software\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\Summae.Sha256";            ValueName: "MUIVerb";          ValueData: "SHA-256";                                ValueType: string; Flags: uninsdeletekey;
+Root: HKLM; Subkey: "Software\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\Summae.Sha256";            ValueName: "MultiSelectModel"; ValueData: "Player";                                 ValueType: string; Flags: uninsdeletekey;
 Root: HKLM; Subkey: "Software\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\Summae.Sha256\command";    ValueName: "";                 ValueData: """{app}\Summae.exe"" /sha256 ""%1""";    ValueType: string; Flags: uninsdeletekey;
-Root: HKLM; Subkey: "Software\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\Summae.Sha384";            ValueName: "MUIVerb";          ValueData: "SHA-384";                                        ValueType: string; Flags: uninsdeletekey;
-Root: HKLM; Subkey: "Software\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\Summae.Sha384";            ValueName: "MultiSelectModel"; ValueData: "Player";                                         ValueType: string; Flags: uninsdeletekey;
+Root: HKLM; Subkey: "Software\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\Summae.Sha384";            ValueName: "MUIVerb";          ValueData: "SHA-384";                                ValueType: string; Flags: uninsdeletekey;
+Root: HKLM; Subkey: "Software\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\Summae.Sha384";            ValueName: "MultiSelectModel"; ValueData: "Player";                                 ValueType: string; Flags: uninsdeletekey;
 Root: HKLM; Subkey: "Software\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\Summae.Sha384\command";    ValueName: "";                 ValueData: """{app}\Summae.exe"" /sha384 ""%1""";    ValueType: string; Flags: uninsdeletekey;
-Root: HKLM; Subkey: "Software\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\Summae.Sha512";            ValueName: "MUIVerb";          ValueData: "SHA-512";                                        ValueType: string; Flags: uninsdeletekey;
-Root: HKLM; Subkey: "Software\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\Summae.Sha512";            ValueName: "MultiSelectModel"; ValueData: "Player";                                         ValueType: string; Flags: uninsdeletekey;
+Root: HKLM; Subkey: "Software\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\Summae.Sha512";            ValueName: "MUIVerb";          ValueData: "SHA-512";                                ValueType: string; Flags: uninsdeletekey;
+Root: HKLM; Subkey: "Software\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\Summae.Sha512";            ValueName: "MultiSelectModel"; ValueData: "Player";                                 ValueType: string; Flags: uninsdeletekey;
 Root: HKLM; Subkey: "Software\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\Summae.Sha512\command";    ValueName: "";                 ValueData: """{app}\Summae.exe"" /sha512 ""%1""";    ValueType: string; Flags: uninsdeletekey;
-Root: HKLM; Subkey: "Software\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\Summae.App";               ValueName: "Icon";             ValueData: """{app}\Summae.exe""";                           ValueType: string; Flags: uninsdeletekey;
-Root: HKLM; Subkey: "Software\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\Summae.App";               ValueName: "MUIVerb";          ValueData: "Summae";                                         ValueType: string; Flags: uninsdeletekey;
-Root: HKLM; Subkey: "Software\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\Summae.App";               ValueName: "MultiSelectModel"; ValueData: "Player";                                         ValueType: string; Flags: uninsdeletekey;
-Root: HKLM; Subkey: "Software\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\Summae.App";               ValueName: "CommandFlags";     ValueData: "0x20";                                           ValueType: dword;  Flags: uninsdeletekey;
-Root: HKLM; Subkey: "Software\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\Summae.App\command";       ValueName: "";                 ValueData: """{app}\Summae.exe"" ""%1""";                    ValueType: string; Flags: uninsdeletekey;
+Root: HKLM; Subkey: "Software\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\Summae.App";               ValueName: "Icon";             ValueData: """{app}\Summae.exe""";                   ValueType: string; Flags: uninsdeletekey;
+Root: HKLM; Subkey: "Software\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\Summae.App";               ValueName: "MUIVerb";          ValueData: "Summae";                                 ValueType: string; Flags: uninsdeletekey;
+Root: HKLM; Subkey: "Software\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\Summae.App";               ValueName: "MultiSelectModel"; ValueData: "Player";                                 ValueType: string; Flags: uninsdeletekey;
+Root: HKLM; Subkey: "Software\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\Summae.App";               ValueName: "CommandFlags";     ValueData: $20;                                      ValueType: dword;  Flags: uninsdeletekey;
+Root: HKLM; Subkey: "Software\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\Summae.App\command";       ValueName: "";                 ValueData: """{app}\Summae.exe"" ""%1""";            ValueType: string; Flags: uninsdeletekey;
 
 Root: HKCR; Subkey: "*\shell\Summae (CRC-16)";      ValueType: none; Flags: deletekey;
 Root: HKCR; Subkey: "*\shell\Summae (CRC-32)";      ValueType: none; Flags: deletekey;
