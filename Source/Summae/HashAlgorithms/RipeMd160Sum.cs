@@ -3,7 +3,7 @@ using System.Security.Cryptography;
 namespace Summae.HashAlgorithms {
     public class RipeMd160Sum : SumAlgorithmBase {
 
-        private HashAlgorithm _algorithm;
+        private readonly HashAlgorithm _algorithm;
 
         public RipeMd160Sum()
             : base("ripemd160", "RIPE MD-160") {

@@ -67,40 +67,43 @@ namespace Summae {
 
                 int top = dluW + textFileName.Height + dluW + dluW / 2;
                 foreach (var iItem in items) {
-                    var text = new TextBox();
-                    text.Top = top;
-                    text.Left = dluW + labelWidth + dluW;
-                    text.Width = textWidth;
-                    text.ReadOnly = true;
-                    text.Visible = false;
+                    var text = new TextBox {
+                        Top = top,
+                        Left = dluW + labelWidth + dluW,
+                        Width = textWidth,
+                        ReadOnly = true,
+                        Visible = false
+                    };
                     text.GotFocus += new EventHandler(text_GotFocus);
                     text.KeyDown += new KeyEventHandler(text_KeyDown);
                     this.Controls.Add(text);
                     iItem.TextBoxControl = text;
 
-                    var button = new Button();
-                    button.Width = text.Height;
-                    button.Height = text.Height;
-                    button.Top = top;
-                    button.Left = text.Left + text.Width;
-                    button.Image = Properties.Resources.btnSave_16;
-                    button.Tag = iItem;
-                    button.Visible = false;
+                    var button = new Button {
+                        Width = text.Height,
+                        Height = text.Height,
+                        Top = top,
+                        Left = text.Left + text.Width,
+                        Image = Properties.Resources.btnSave_16,
+                        Tag = iItem,
+                        Visible = false
+                    };
                     button.Click += new EventHandler(button_Click);
                     toolTip.SetToolTip(button, "Creates new file that will contain result of " + iItem.Algorithm.DisplayName + " calculation. File will have same name as original with added ." + iItem.Algorithm.Name + " as extension.");
                     this.Controls.Add(button);
                     iItem.ButtonControl = button;
 
-                    var label = new Label();
-                    label.AutoSize = false;
-                    label.Left = dluW;
-                    label.Top = top;
-                    label.Width = labelWidth + dluW / 2;
-                    label.Height = text.Height;
-                    label.Text = iItem.Algorithm.DisplayName + ":";
-                    label.TextAlign = ContentAlignment.MiddleLeft;
-                    label.AutoEllipsis = true;
-                    label.Visible = false;
+                    var label = new Label {
+                        AutoSize = false,
+                        Left = dluW,
+                        Top = top,
+                        Width = labelWidth + dluW / 2,
+                        Height = text.Height,
+                        Text = iItem.Algorithm.DisplayName + ":",
+                        TextAlign = ContentAlignment.MiddleLeft,
+                        AutoEllipsis = true,
+                        Visible = false
+                    };
                     this.Controls.Add(label);
                     iItem.LabelControl = label;
 

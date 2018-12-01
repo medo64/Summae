@@ -3,7 +3,7 @@ using System.Security.Cryptography;
 namespace Summae.HashAlgorithms {
     public class Md5Sum : SumAlgorithmBase {
 
-        private HashAlgorithm _algorithm;
+        private readonly HashAlgorithm _algorithm;
 
         public Md5Sum()
             : base("md5", "MD-5") {

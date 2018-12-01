@@ -3,7 +3,7 @@ using System.Security.Cryptography;
 namespace Summae.HashAlgorithms {
     public class Sha512Sum : SumAlgorithmBase {
 
-        private HashAlgorithm _algorithm;
+        private readonly HashAlgorithm _algorithm;
 
         public Sha512Sum()
             : base("sha512", "SHA-512") {

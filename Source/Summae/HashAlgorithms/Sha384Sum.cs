@@ -3,7 +3,7 @@ using System.Security.Cryptography;
 namespace Summae.HashAlgorithms {
     public class Sha384Sum : SumAlgorithmBase {
 
-        private HashAlgorithm _algorithm;
+        private readonly HashAlgorithm _algorithm;
 
         public Sha384Sum()
             : base("sha384", "SHA-384") {

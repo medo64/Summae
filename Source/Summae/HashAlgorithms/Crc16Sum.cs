@@ -5,7 +5,7 @@ using Medo.Security.Checksum;
 namespace Summae.HashAlgorithms {
     public class Crc16Sum : SumAlgorithmBase {
 
-        private Crc16 _algorithm;
+        private readonly Crc16 _algorithm;
 
         public Crc16Sum()
             : base("crc16", "CRC-16") {

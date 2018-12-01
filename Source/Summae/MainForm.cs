@@ -116,9 +116,10 @@ namespace Summae {
                 }
             }
 
-            var lvi = new ListViewItem();
-            lvi.Tag = file;
-            lvi.Text = file.Name;
+            var lvi = new ListViewItem {
+                Tag = file,
+                Text = file.Name
+            };
             lvi.SubItems.Add(file.DirectoryName);
             lsvFiles.Items.Add(lvi);
             lvi.Selected = true;
@@ -145,8 +146,9 @@ namespace Summae {
                             item.ExpectedResult = SumItem.GetExpectedResult(file, item.Algorithm);
                             items.Add(item);
                         }
-                        var form = new CalculateForm(file, items.AsReadOnly());
-                        form.Owner = this;
+                        var form = new CalculateForm(file, items.AsReadOnly()) {
+                            Owner = this
+                        };
                         form.Show();
                     }
                     lsvFiles.Items.Clear();

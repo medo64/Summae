@@ -5,7 +5,7 @@ using Medo.Security.Checksum;
 namespace Summae.HashAlgorithms {
     public class Crc32Sum : SumAlgorithmBase {
 
-        private Crc32 _algorithm;
+        private readonly Crc32 _algorithm;
 
         public Crc32Sum()
             : base("crc32", "CRC-32") {
