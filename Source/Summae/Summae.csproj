@@ -69,7 +69,6 @@
     <Compile Include="%28Medo%29\MessageBox [007].cs" />
     <Compile Include="%28Medo%29\State [016].cs" />
     <Compile Include="%28Medo%29\StringAdder [002].cs" />
-    <Compile Include="%28Medo%29\TagItem [004].cs" />
     <Compile Include="%28Medo%29\TaskbarProgress [002].cs" />
     <Compile Include="%28Medo%29\UnhandledCatch [008].cs" />
     <Compile Include="%28Medo%29\Upgrade [004].cs" />
@@ -114,6 +113,7 @@
     <Compile Include="SettingsForm.Designer.cs">
       <DependentUpon>SettingsForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ShellEntry.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Properties\App.ico" />
