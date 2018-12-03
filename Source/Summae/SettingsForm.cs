@@ -104,6 +104,10 @@ namespace Summae {
                                 }
                             }
                         }
+                    } else { //if no subitems, allow clicking on parent
+                        using (var rkCommand = rkMenu.CreateSubKey("command")) {
+                            rkCommand.SetValue("", @"""" + assemblyLocation + @""" ""%1""", RegistryValueKind.String);
+                        }
                     }
                 }
             }
