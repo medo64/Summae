@@ -24,6 +24,7 @@ namespace Summae {
         /// </summary>
         private void InitializeComponent() {
             this.groupContextMenu = new System.Windows.Forms.GroupBox();
+            this.chbJustApplication = new System.Windows.Forms.CheckBox();
             this.chbSha512 = new System.Windows.Forms.CheckBox();
             this.chbSha384 = new System.Windows.Forms.CheckBox();
             this.chbSha256 = new System.Windows.Forms.CheckBox();
@@ -41,6 +42,7 @@ namespace Summae {
             // 
             this.groupContextMenu.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupContextMenu.Controls.Add(this.chbJustApplication);
             this.groupContextMenu.Controls.Add(this.chbSha512);
             this.groupContextMenu.Controls.Add(this.chbSha384);
             this.groupContextMenu.Controls.Add(this.chbSha256);
@@ -51,104 +53,125 @@ namespace Summae {
             this.groupContextMenu.Controls.Add(this.chbCrc16);
             this.groupContextMenu.Location = new System.Drawing.Point(12, 12);
             this.groupContextMenu.Name = "groupContextMenu";
-            this.groupContextMenu.Size = new System.Drawing.Size(330, 133);
+            this.groupContextMenu.Size = new System.Drawing.Size(330, 170);
             this.groupContextMenu.TabIndex = 1;
             this.groupContextMenu.TabStop = false;
             this.groupContextMenu.Text = "Show on system context menu";
+            // 
+            // chbJustApplication
+            // 
+            this.chbJustApplication.AutoSize = true;
+            this.chbJustApplication.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.chbJustApplication.Location = new System.Drawing.Point(6, 30);
+            this.chbJustApplication.Margin = new System.Windows.Forms.Padding(3, 12, 3, 3);
+            this.chbJustApplication.Name = "chbJustApplication";
+            this.chbJustApplication.Size = new System.Drawing.Size(131, 22);
+            this.chbJustApplication.TabIndex = 0;
+            this.chbJustApplication.Text = "Just application";
+            this.chbJustApplication.UseVisualStyleBackColor = true;
+            this.chbJustApplication.CheckedChanged += new System.EventHandler(this.chbContextMenu_CheckedChanged);
             // 
             // chbSha512
             // 
             this.chbSha512.AutoSize = true;
             this.chbSha512.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.chbSha512.Location = new System.Drawing.Point(171, 105);
+            this.chbSha512.Location = new System.Drawing.Point(169, 142);
             this.chbSha512.Name = "chbSha512";
             this.chbSha512.Size = new System.Drawing.Size(90, 22);
-            this.chbSha512.TabIndex = 7;
+            this.chbSha512.TabIndex = 8;
             this.chbSha512.Text = "SHA-512";
             this.chbSha512.UseVisualStyleBackColor = true;
+            this.chbSha512.CheckedChanged += new System.EventHandler(this.chbContextMenu_CheckedChanged);
             // 
             // chbSha384
             // 
             this.chbSha384.AutoSize = true;
             this.chbSha384.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.chbSha384.Location = new System.Drawing.Point(171, 77);
+            this.chbSha384.Location = new System.Drawing.Point(169, 114);
             this.chbSha384.Name = "chbSha384";
             this.chbSha384.Size = new System.Drawing.Size(90, 22);
             this.chbSha384.TabIndex = 6;
             this.chbSha384.Text = "SHA-384";
             this.chbSha384.UseVisualStyleBackColor = true;
+            this.chbSha384.CheckedChanged += new System.EventHandler(this.chbContextMenu_CheckedChanged);
             // 
             // chbSha256
             // 
             this.chbSha256.AutoSize = true;
             this.chbSha256.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.chbSha256.Location = new System.Drawing.Point(171, 49);
+            this.chbSha256.Location = new System.Drawing.Point(169, 86);
             this.chbSha256.Name = "chbSha256";
             this.chbSha256.Size = new System.Drawing.Size(90, 22);
-            this.chbSha256.TabIndex = 5;
+            this.chbSha256.TabIndex = 4;
             this.chbSha256.Text = "SHA-256";
             this.chbSha256.UseVisualStyleBackColor = true;
+            this.chbSha256.CheckedChanged += new System.EventHandler(this.chbContextMenu_CheckedChanged);
             // 
             // chbSha1
             // 
             this.chbSha1.AutoSize = true;
             this.chbSha1.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.chbSha1.Location = new System.Drawing.Point(171, 21);
+            this.chbSha1.Location = new System.Drawing.Point(169, 58);
             this.chbSha1.Name = "chbSha1";
             this.chbSha1.Size = new System.Drawing.Size(74, 22);
-            this.chbSha1.TabIndex = 4;
+            this.chbSha1.TabIndex = 2;
             this.chbSha1.Text = "SHA-1";
             this.chbSha1.UseVisualStyleBackColor = true;
+            this.chbSha1.CheckedChanged += new System.EventHandler(this.chbContextMenu_CheckedChanged);
             // 
             // chbRipeMd160
             // 
             this.chbRipeMd160.AutoSize = true;
             this.chbRipeMd160.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.chbRipeMd160.Location = new System.Drawing.Point(6, 105);
+            this.chbRipeMd160.Location = new System.Drawing.Point(6, 142);
             this.chbRipeMd160.Name = "chbRipeMd160";
             this.chbRipeMd160.Size = new System.Drawing.Size(118, 22);
-            this.chbRipeMd160.TabIndex = 3;
+            this.chbRipeMd160.TabIndex = 7;
             this.chbRipeMd160.Text = "RIPE MD-160";
             this.chbRipeMd160.UseVisualStyleBackColor = true;
+            this.chbRipeMd160.CheckedChanged += new System.EventHandler(this.chbContextMenu_CheckedChanged);
             // 
             // chbMd5
             // 
             this.chbMd5.AutoSize = true;
             this.chbMd5.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.chbMd5.Location = new System.Drawing.Point(6, 77);
+            this.chbMd5.Location = new System.Drawing.Point(6, 114);
             this.chbMd5.Name = "chbMd5";
             this.chbMd5.Size = new System.Drawing.Size(67, 22);
-            this.chbMd5.TabIndex = 2;
+            this.chbMd5.TabIndex = 5;
             this.chbMd5.Text = "MD-5";
             this.chbMd5.UseVisualStyleBackColor = true;
+            this.chbMd5.CheckedChanged += new System.EventHandler(this.chbContextMenu_CheckedChanged);
             // 
             // chbCrc32
             // 
             this.chbCrc32.AutoSize = true;
             this.chbCrc32.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.chbCrc32.Location = new System.Drawing.Point(6, 49);
+            this.chbCrc32.Location = new System.Drawing.Point(6, 86);
             this.chbCrc32.Name = "chbCrc32";
             this.chbCrc32.Size = new System.Drawing.Size(82, 22);
-            this.chbCrc32.TabIndex = 1;
+            this.chbCrc32.TabIndex = 3;
             this.chbCrc32.Text = "CRC-32";
             this.chbCrc32.UseVisualStyleBackColor = true;
+            this.chbCrc32.CheckedChanged += new System.EventHandler(this.chbContextMenu_CheckedChanged);
             // 
             // chbCrc16
             // 
             this.chbCrc16.AutoSize = true;
             this.chbCrc16.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.chbCrc16.Location = new System.Drawing.Point(6, 21);
+            this.chbCrc16.Location = new System.Drawing.Point(6, 58);
             this.chbCrc16.Name = "chbCrc16";
             this.chbCrc16.Size = new System.Drawing.Size(82, 22);
-            this.chbCrc16.TabIndex = 0;
+            this.chbCrc16.TabIndex = 1;
             this.chbCrc16.Text = "CRC-16";
             this.chbCrc16.UseVisualStyleBackColor = true;
+            this.chbCrc16.CheckedChanged += new System.EventHandler(this.chbContextMenu_CheckedChanged);
             // 
             // btnOK
             // 
             this.btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnOK.Location = new System.Drawing.Point(136, 157);
+            this.btnOK.Location = new System.Drawing.Point(136, 200);
             this.btnOK.Margin = new System.Windows.Forms.Padding(3, 15, 3, 3);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(100, 28);
@@ -162,7 +185,7 @@ namespace Summae {
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(242, 157);
+            this.btnCancel.Location = new System.Drawing.Point(242, 200);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(3, 15, 3, 3);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(100, 28);
@@ -176,7 +199,7 @@ namespace Summae {
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(354, 197);
+            this.ClientSize = new System.Drawing.Size(354, 240);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.groupContextMenu);
@@ -207,5 +230,6 @@ namespace Summae {
         private System.Windows.Forms.CheckBox chbCrc16;
         private System.Windows.Forms.Button btnOK;
         private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.CheckBox chbJustApplication;
     }
 }

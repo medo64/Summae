@@ -17,11 +17,13 @@ namespace Summae {
         private void SettingsForm_Load(object sender, EventArgs e) {
             var entries = new List<ShellEntry>();
 
+            var hasApplicationItem = false;
             using (var rk = Registry.CurrentUser.OpenSubKey(@"Software\Classes\*\shell", writable: false)) {
                 if (rk != null) {
-                    using (var key = rk.OpenSubKey("Summae", writable: false)) {
-                        if (key != null) {
-                            using (var rkShell = key.OpenSubKey("Shell", writable: false)) {
+                    using (var rkApp = rk.OpenSubKey("Summae", writable: false)) {
+                        if (rkApp != null) {
+                            hasApplicationItem = true;
+                            using (var rkShell = rkApp.OpenSubKey("Shell", writable: false)) {
                                 if (rkShell != null) {
                                     foreach (var subkey in rkShell.GetSubKeyNames()) {
                                         var entry = ShellEntry.GetEntry(subkey);
@@ -34,6 +36,7 @@ namespace Summae {
                 }
             }
 
+            chbJustApplication.Checked = hasApplicationItem;
             chbCrc16.Checked = entries.Contains(ShellEntry.Crc16);
             chbCrc32.Checked = entries.Contains(ShellEntry.Crc32);
             chbMd5.Checked = entries.Contains(ShellEntry.Md5);
@@ -43,6 +46,20 @@ namespace Summae {
             chbSha384.Checked = entries.Contains(ShellEntry.Sha384);
             chbSha512.Checked = entries.Contains(ShellEntry.Sha512);
         }
+
+
+        private void chbContextMenu_CheckedChanged(object sender, EventArgs e) {
+            var anyMethod = chbCrc16.Checked
+                         || chbCrc32.Checked
+                         || chbMd5.Checked
+                         || chbRipeMd160.Checked
+                         || chbSha1.Checked
+                         || chbSha256.Checked
+                         || chbSha384.Checked
+                         || chbSha512.Checked;
+            chbJustApplication.Enabled = !anyMethod;
+        }
+
 
         private void btnOK_Click(object sender, EventArgs e) {
             var entries = new List<ShellEntry>();
@@ -55,11 +72,15 @@ namespace Summae {
             if (chbSha384.Checked) { entries.Add(ShellEntry.Sha384); }
             if (chbSha512.Checked) { entries.Add(ShellEntry.Sha512); }
 
-            CreateMenu(entries);
+            CreateMenu(entries,
+                noContextMenu:
+                    !chbJustApplication.Checked
+                 && chbJustApplication.Enabled
+                 && (entries.Count == 0));
         }
 
 
-        private static void CreateMenu(IList<ShellEntry> entries) {
+        private static void CreateMenu(IList<ShellEntry> entries, bool noContextMenu) {
             //Create: HKCU\Software\Classes\*
             using (var rk = Registry.CurrentUser.OpenSubKey(@"Software\Classes\*", RegistryKeyPermissionCheck.ReadWriteSubTree, RegistryRights.FullControl)) { //Windows 7 might not have star (*) registry entry
                 if (rk == null) {
@@ -81,6 +102,8 @@ namespace Summae {
                     } catch (ArgumentException) { } //ignore if it doesn't exist
                 }
             }
+
+            if (noContextMenu) { return; } //there is no context menu
 
             var assemblyLocation = Assembly.GetExecutingAssembly().Location;
 
