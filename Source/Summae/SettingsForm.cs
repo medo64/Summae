@@ -21,10 +21,12 @@ namespace Summae {
                 if (rk != null) {
                     using (var key = rk.OpenSubKey("Summae", writable: false)) {
                         if (key != null) {
-                            var subCommands = key.GetValue("SubCommands");
-                            if (subCommands != null) {
-                                foreach (var subCommand in subCommands.ToString().Split(';')) {
-                                    entries.Add(ShellEntry.GetEntry(subCommand));
+                            using (var rkShell = key.OpenSubKey("Shell", writable: false)) {
+                                if (rkShell != null) {
+                                    foreach (var subkey in rkShell.GetSubKeyNames()) {
+                                        var entry = ShellEntry.GetEntry(subkey);
+                                        if (entry != null) { entries.Add(entry); }
+                                    }
                                 }
                             }
                         }
@@ -56,7 +58,8 @@ namespace Summae {
             CreateMenu(entries);
         }
 
-        private static void CreateMenu(IEnumerable<ShellEntry> entries) {
+
+        private static void CreateMenu(IList<ShellEntry> entries) {
             //Create: HKCU\Software\Classes\*
             using (var rk = Registry.CurrentUser.OpenSubKey(@"Software\Classes\*", RegistryKeyPermissionCheck.ReadWriteSubTree, RegistryRights.FullControl)) { //Windows 7 might not have star (*) registry entry
                 if (rk == null) {
@@ -79,20 +82,28 @@ namespace Summae {
                 }
             }
 
+            var assemblyLocation = Assembly.GetExecutingAssembly().Location;
+
             //Create: Software\Classes\*\shell\Summae (SubCommands)
             using (var rk = Registry.CurrentUser.OpenSubKey(@"Software\Classes\*\shell", RegistryKeyPermissionCheck.ReadWriteSubTree, RegistryRights.FullControl)) {
-                using (var key = rk.CreateSubKey("Summae")) {
-                    key.SetValue("Icon", @"""" + Assembly.GetExecutingAssembly().Location + @"""", RegistryValueKind.String);
-                    key.SetValue("MUIVerb", @"Summae", RegistryValueKind.String);
+                using (var rkMenu = rk.CreateSubKey("Summae")) {
+                    rkMenu.SetValue("Icon", @"""" + assemblyLocation + @"""", RegistryValueKind.String);
+                    rkMenu.SetValue("MUIVerb", @"Summae", RegistryValueKind.String);
 
-                    var subcommandList = new List<string>();
-                    foreach (var entry in entries) {
-                        subcommandList.Add(entry.Command);
-                    }
-                    if (subcommandList.Count > 0) {
-                        key.SetValue("SubCommands", string.Join(";", subcommandList.ToArray()), RegistryValueKind.String);
-                    } else {
-                        key.SetValue("AppliesTo", @"System.FileName:=\", RegistryValueKind.String); //dummy filename; trick to prevent inheritance from HKEY_CLASSES_ROOT
+                    if (entries.Count > 0) {
+                        rkMenu.SetValue("SubCommands", @"", RegistryValueKind.String);
+
+                        using (var rkEntryShell = rkMenu.CreateSubKey("Shell")) {
+                            foreach (var entry in entries) {
+                                using (var rkEntry = rkEntryShell.CreateSubKey(entry.Name)) {
+                                    rkEntry.SetValue("MUIVerb", entry.Title, RegistryValueKind.String);
+                                    rkEntry.SetValue("MultiSelectModel", "Player", RegistryValueKind.String);
+                                    using (var rkCommand = rkEntry.CreateSubKey("command")) {
+                                        rkCommand.SetValue("", @"""" + assemblyLocation + @""" /" + entry.Name.ToLowerInvariant() + @" ""%1""", RegistryValueKind.String);
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             }

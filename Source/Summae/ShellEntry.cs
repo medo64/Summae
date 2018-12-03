@@ -11,12 +11,11 @@ namespace Summae {
 
         public string Name { get; }
         public string Title { get; }
-        public string Command { get { return "Summae." + Name; } }
 
 
-        public static ShellEntry GetEntry(string command) {
+        public static ShellEntry GetEntry(string name) {
             foreach (var entry in AllEntries) {
-                if (string.Equals(entry.Command, command, StringComparison.Ordinal)) { return entry; }
+                if (string.Equals(entry.Name, name, StringComparison.Ordinal)) { return entry; }
             }
             return null;
         }
