@@ -8,6 +8,11 @@ namespace Summae {
             set { Config.Write("OnTop", value); }
         }
 
+        public static bool SpacedHash {
+            get { return Config.Read("SpacedHash", false); }
+            set { Config.Write("SpacedHash", value); }
+        }
+
         public static double ScaleBoost {
             get { return Config.Read("ScaleBoost", 0.00); }
         }

@@ -35,6 +35,7 @@ namespace Summae {
             this.chbCrc16 = new System.Windows.Forms.CheckBox();
             this.btnOK = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
+            this.chbSpacedHash = new System.Windows.Forms.CheckBox();
             this.groupContextMenu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -171,11 +172,11 @@ namespace Summae {
             // 
             this.btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnOK.Location = new System.Drawing.Point(136, 200);
+            this.btnOK.Location = new System.Drawing.Point(136, 236);
             this.btnOK.Margin = new System.Windows.Forms.Padding(3, 15, 3, 3);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(100, 28);
-            this.btnOK.TabIndex = 2;
+            this.btnOK.TabIndex = 3;
             this.btnOK.Text = "OK";
             this.btnOK.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnOK.UseVisualStyleBackColor = true;
@@ -185,7 +186,7 @@ namespace Summae {
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(242, 200);
+            this.btnCancel.Location = new System.Drawing.Point(242, 236);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(3, 15, 3, 3);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(100, 28);
@@ -193,13 +194,25 @@ namespace Summae {
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             // 
+            // chbSpacedHash
+            // 
+            this.chbSpacedHash.AutoSize = true;
+            this.chbSpacedHash.Location = new System.Drawing.Point(12, 197);
+            this.chbSpacedHash.Margin = new System.Windows.Forms.Padding(3, 12, 3, 3);
+            this.chbSpacedHash.Name = "chbSpacedHash";
+            this.chbSpacedHash.Size = new System.Drawing.Size(155, 21);
+            this.chbSpacedHash.TabIndex = 2;
+            this.chbSpacedHash.Text = "Add spaces to hash";
+            this.chbSpacedHash.UseVisualStyleBackColor = true;
+            // 
             // SettingsForm
             // 
             this.AcceptButton = this.btnOK;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(354, 240);
+            this.ClientSize = new System.Drawing.Size(354, 276);
+            this.Controls.Add(this.chbSpacedHash);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.groupContextMenu);
@@ -211,10 +224,11 @@ namespace Summae {
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Options";
-            this.Load += new System.EventHandler(this.SettingsForm_Load);
+            this.Load += new System.EventHandler(this.Form_Load);
             this.groupContextMenu.ResumeLayout(false);
             this.groupContextMenu.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -231,5 +245,6 @@ namespace Summae {
         private System.Windows.Forms.Button btnOK;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.CheckBox chbJustApplication;
+        private System.Windows.Forms.CheckBox chbSpacedHash;
     }
 }

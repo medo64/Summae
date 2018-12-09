@@ -243,7 +243,7 @@ namespace Summae {
                     }
 
                     iItem.LabelControl.Visible = true;
-                    iItem.TextBoxControl.Text = iItem.ToString();
+                    iItem.TextBoxControl.Text = Settings.SpacedHash ? iItem.ToSpacedString() : iItem.ToNonspacedString();
                     if (iItem.AreResultsSame || iItem.AreResultsSame2) {
                         iItem.TextBoxControl.BackColor = Color.LightGreen;
                         iItem.ButtonControl.Enabled = false;

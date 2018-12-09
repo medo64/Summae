@@ -14,7 +14,7 @@ namespace Summae {
         }
 
 
-        private void SettingsForm_Load(object sender, EventArgs e) {
+        private void Form_Load(object sender, EventArgs e) {
             var entries = new List<ShellEntry>();
 
             var hasApplicationItem = false;
@@ -45,6 +45,8 @@ namespace Summae {
             chbSha256.Checked = entries.Contains(ShellEntry.Sha256);
             chbSha384.Checked = entries.Contains(ShellEntry.Sha384);
             chbSha512.Checked = entries.Contains(ShellEntry.Sha512);
+
+            chbSpacedHash.Checked = Settings.SpacedHash;
         }
 
 
@@ -77,6 +79,8 @@ namespace Summae {
                     !chbJustApplication.Checked
                  && chbJustApplication.Enabled
                  && (entries.Count == 0));
+
+            Settings.SpacedHash = chbSpacedHash.Checked;
         }
 
 
