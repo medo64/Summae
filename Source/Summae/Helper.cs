@@ -45,8 +45,7 @@ namespace Summae {
 #endif
                     }
 
-                    var toolstripSplitButton = item as ToolStripSplitButton;
-                    if (toolstripSplitButton != null) { ScaleToolstrip(toolstripSplitButton.DropDown); }
+                    if (item is ToolStripSplitButton toolstripSplitButton) { ScaleToolstrip(toolstripSplitButton.DropDown); }
                 }
             }
         }

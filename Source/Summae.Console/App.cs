@@ -12,14 +12,13 @@ namespace SummaeCL {
 
     internal class App {
         internal static void Main() {
-            bool createdNew;
             var mutexSecurity = new MutexSecurity();
             mutexSecurity.AddAccessRule(new MutexAccessRule(new SecurityIdentifier(WellKnownSidType.WorldSid, null), MutexRights.FullControl, AccessControlType.Allow));
-            using (var setupMutex = new Mutex(false, @"Global\JosipMedved_Summae", out createdNew, mutexSecurity)) {
+            using (var setupMutex = new Mutex(false, @"Global\JosipMedved_Summae", out var createdNew, mutexSecurity)) {
 
                 AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(CurrentDomain_UnhandledException);
 
-                string[] argfiles = Args.Current.GetValues("");
+                var argfiles = Args.Current.GetValues("");
                 var files = new List<FileInfo>();
                 foreach (var iArgFile in argfiles) {
                     if (Directory.Exists(iArgFile)) {
@@ -53,8 +52,8 @@ namespace SummaeCL {
 
                             var items = new List<SumItem>();
 
-                            foreach (string iKey in Args.Current.GetKeys()) {
-                                SumAlgorithmBase newAlgorithm = SumAlgorithmBase.GetAlgorithmByName(iKey);
+                            foreach (var iKey in Args.Current.GetKeys()) {
+                                var newAlgorithm = SumAlgorithmBase.GetAlgorithmByName(iKey);
                                 if (newAlgorithm != null) {
                                     items.Add(new SumItem(newAlgorithm));
                                 }
@@ -151,8 +150,7 @@ namespace SummaeCL {
 
         private static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e) {
             Console.Error.WriteLine();
-            var ex = e.ExceptionObject as Exception;
-            if (ex != null) {
+            if (e.ExceptionObject is Exception ex) {
                 Console.Error.WriteLine(ex.Message);
             } else {
                 Console.Error.WriteLine("Unknown exception.");

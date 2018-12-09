@@ -31,13 +31,13 @@ namespace Summae {
             }
 
             if (items != null) {
-                int labelWidth = 8 * dluW;
-                int textWidth = 32 * dluW;
+                var labelWidth = 8 * dluW;
+                var textWidth = 32 * dluW;
                 foreach (var iItem in items) {
-                    int lw = iItem.Algorithm.DisplayName.Length * dluW;
+                    var lw = iItem.Algorithm.DisplayName.Length * dluW;
                     if (labelWidth < lw) { labelWidth = lw; }
 
-                    int tw = (int)(iItem.Algorithm.ResultByteCount * 2 + 3) * dluW;
+                    var tw = (int)(iItem.Algorithm.ResultByteCount * 2 + 3) * dluW;
                     if (textWidth < tw) { textWidth = tw; }
                 }
                 var screenRect = Screen.GetBounds(this);
@@ -65,7 +65,7 @@ namespace Summae {
                 labelFileName.AutoEllipsis = true;
 
 
-                int top = dluW + textFileName.Height + dluW + dluW / 2;
+                var top = dluW + textFileName.Height + dluW + dluW / 2;
                 foreach (var iItem in items) {
                     var text = new TextBox {
                         Top = top,
@@ -171,15 +171,16 @@ namespace Summae {
         private void bwFileReader_DoWork(object sender, DoWorkEventArgs e) {
             try {
                 using (var sr = new System.IO.FileStream(this._file.FullName, FileMode.Open, FileAccess.Read, FileShare.Read)) {
-                    byte[] buffer = new byte[256 * 1024];
+                    var buffer = new byte[256 * 1024];
                     var stopWatch = new Stopwatch();
                     stopWatch.Start();
                     long lastMilliseconds = 0;
                     do {
                         if (bwFileReader.CancellationPending) {
-                            e.Cancel = true; break;
+                            e.Cancel = true;
+                            break;
                         }
-                        int count = sr.Read(buffer, 0, buffer.Length);
+                        var count = sr.Read(buffer, 0, buffer.Length);
                         foreach (var iItem in this._items) {
                             if (sr.Position < sr.Length) {
                                 iItem.Algorithm.TransformBlock(buffer, 0, count);
@@ -191,7 +192,7 @@ namespace Summae {
                             lastMilliseconds = stopWatch.ElapsedMilliseconds;
                             var mbPerSecond = ((double)sr.Position / 1024 / 1024) / (stopWatch.ElapsedMilliseconds / 1000);
                             if (!double.IsInfinity(mbPerSecond) && !double.IsNaN(mbPerSecond)) {
-                                int percent = (int)((sr.Position * 100) / sr.Length);
+                                var percent = (int)((sr.Position * 100) / sr.Length);
                                 if ((stopWatch.ElapsedMilliseconds < 15000) || (percent < 10)) {
                                     bwFileReader.ReportProgress(percent, mbPerSecond.ToString("0") + " MB/s");
                                 } else if ((stopWatch.ElapsedMilliseconds < 60000) || (percent < 50)) {

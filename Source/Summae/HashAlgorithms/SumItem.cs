@@ -26,7 +26,7 @@ namespace Summae.HashAlgorithms {
             get {
                 if ((this.Algorithm.Result != null) && (this.ExpectedResult != null)) {
                     if (this.Algorithm.Result.Length == this.ExpectedResult.Length) {
-                        for (int i = 0; i < this.Algorithm.Result.Length; ++i) {
+                        for (var i = 0; i < this.Algorithm.Result.Length; ++i) {
                             if (this.Algorithm.Result[i] != this.ExpectedResult[i]) { return false; }
                         }
                         return true;
@@ -40,7 +40,7 @@ namespace Summae.HashAlgorithms {
             get {
                 if ((this.Algorithm.Result != null) && (this.ExpectedResult2 != null)) {
                     if (this.Algorithm.Result.Length == this.ExpectedResult2.Length) {
-                        for (int i = 0; i < this.Algorithm.Result.Length; ++i) {
+                        for (var i = 0; i < this.Algorithm.Result.Length; ++i) {
                             if (this.Algorithm.Result[i] != this.ExpectedResult2[i]) { return false; }
                         }
                         return true;
@@ -54,7 +54,7 @@ namespace Summae.HashAlgorithms {
             get {
                 if ((this.Algorithm.Result != null) && (this.ExpectedResult != null)) {
                     if (this.Algorithm.Result.Length == this.ExpectedResult.Length) {
-                        for (int i = 0; i < this.Algorithm.Result.Length; ++i) {
+                        for (var i = 0; i < this.Algorithm.Result.Length; ++i) {
                             if (this.Algorithm.Result[i] != this.ExpectedResult[i]) { return true; }
                         }
                         return false;
@@ -74,7 +74,7 @@ namespace Summae.HashAlgorithms {
         public string ToSpacedString() {
             var sb = new StringBuilder();
             if ((this.Algorithm != null) && (this.Algorithm.Result != null)) {
-                int step = 1;
+                var step = 1;
                 if ((this.Algorithm.Result.Length > 16) && ((this.Algorithm.Result.Length % 8) == 0)) {
                     step = 8;
                 } else if ((this.Algorithm.Result.Length > 8) && ((this.Algorithm.Result.Length % 4) == 0)) {
@@ -83,7 +83,7 @@ namespace Summae.HashAlgorithms {
                     step = 2;
                 }
 
-                for (int i = 0; i < this.Algorithm.Result.Length; ++i) {
+                for (var i = 0; i < this.Algorithm.Result.Length; ++i) {
                     if (sb.Length > 0) {
                         if ((i % step) == 0) {
                             sb.Append(" ");
@@ -98,7 +98,7 @@ namespace Summae.HashAlgorithms {
         public string ToNonspacedString() {
             var sb = new StringBuilder();
             if ((this.Algorithm != null) && (this.Algorithm.Result != null)) {
-                for (int i = 0; i < this.Algorithm.Result.Length; ++i) {
+                for (var i = 0; i < this.Algorithm.Result.Length; ++i) {
                     sb.Append(this.Algorithm.Result[i].ToString("x2"));
                 }
             }
@@ -107,7 +107,7 @@ namespace Summae.HashAlgorithms {
 
 
         public static byte[] GetExpectedResult(FileInfo file, SumAlgorithmBase algorithm) {
-            string fileName = file.FullName + "." + algorithm.Name;
+            var fileName = file.FullName + "." + algorithm.Name;
             if (File.Exists(fileName)) {
                 try {
                     return GetExpectedResult(File.ReadAllText(fileName));
@@ -156,7 +156,7 @@ namespace Summae.HashAlgorithms {
         public static byte[] GetExpectedResult(string text) {
             if (text == null) { return null; }
             var filteredText = new StringBuilder();
-            foreach (char iChar in text) {
+            foreach (var iChar in text) {
                 if (char.IsWhiteSpace(iChar)) {
                 } else {
                     if ("0123456789abcdefABCDEF".IndexOf(iChar) >= 0) {
@@ -169,7 +169,7 @@ namespace Summae.HashAlgorithms {
             var bytes = new List<byte>();
             if (filteredText.Length % 2 != 0) { filteredText.Insert(0, "0"); }
             var text2 = filteredText.ToString();
-            for (int i = 0; i < text2.Length; i += 2) {
+            for (var i = 0; i < text2.Length; i += 2) {
                 bytes.Add(byte.Parse(text2.Substring(i, 2), System.Globalization.NumberStyles.HexNumber, CultureInfo.InvariantCulture));
             }
             return bytes.ToArray();

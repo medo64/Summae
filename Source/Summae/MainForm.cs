@@ -234,8 +234,7 @@ namespace Summae {
             foreach (var iFormat in e.Data.GetFormats()) {
                 Debug.WriteLine(iFormat);
             }
-            var files = e.Data.GetData("FileDrop") as string[];
-            if (files != null) {
+            if (e.Data.GetData("FileDrop") is string[] files) {
                 lsvFiles.BeginUpdate();
                 foreach (var iFile in files) {
                     AddFileToListView(iFile);

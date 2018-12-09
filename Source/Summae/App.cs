@@ -16,10 +16,9 @@ namespace Summae {
 
         [STAThread]
         static void Main() {
-            bool createdNew;
             var mutexSecurity = new MutexSecurity();
             mutexSecurity.AddAccessRule(new MutexAccessRule(new SecurityIdentifier(WellKnownSidType.WorldSid, null), MutexRights.FullControl, AccessControlType.Allow));
-            using (var setupMutex = new Mutex(false, @"Global\JosipMedved_Summae", out createdNew, mutexSecurity)) {
+            using (var setupMutex = new Mutex(false, @"Global\JosipMedved_Summae", out var createdNew, mutexSecurity)) {
 
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
@@ -58,7 +57,7 @@ namespace Summae {
                 }
 
                 var hashMethods = new List<string>();
-                foreach (string key in Args.Current.GetKeys()) {
+                foreach (var key in Args.Current.GetKeys()) {
                     if (SumAlgorithmBase.GetAlgorithmByName(key) != null) {
                         hashMethods.Add(key);
                     }
