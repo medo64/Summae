@@ -25,12 +25,6 @@ namespace Summae {
         private void InitializeComponent() {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.mnu = new System.Windows.Forms.ToolStrip();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.ofd = new System.Windows.Forms.OpenFileDialog();
-            this.lsvFiles = new System.Windows.Forms.ListView();
-            this.lsvFiles_colFile = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.lsvFiles_colDirectory = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.bwCheckForUpgrade = new System.ComponentModel.BackgroundWorker();
             this.mnuApp = new System.Windows.Forms.ToolStripDropDownButton();
             this.mnuAppOptions = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuAppOptionsSeparator = new System.Windows.Forms.ToolStripSeparator();
@@ -40,7 +34,15 @@ namespace Summae {
             this.mnuAppAbout = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuNew = new System.Windows.Forms.ToolStripButton();
             this.mnuOpen = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.mnuCalculate = new System.Windows.Forms.ToolStripSplitButton();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.mnuOnTop = new System.Windows.Forms.ToolStripButton();
+            this.ofd = new System.Windows.Forms.OpenFileDialog();
+            this.lsvFiles = new System.Windows.Forms.ListView();
+            this.lsvFiles_colFile = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.lsvFiles_colDirectory = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.bwCheckForUpgrade = new System.ComponentModel.BackgroundWorker();
             this.mnu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -52,62 +54,15 @@ namespace Summae {
             this.mnuApp,
             this.mnuNew,
             this.mnuOpen,
+            this.toolStripSeparator1,
+            this.mnuCalculate,
             this.toolStripSeparator2,
-            this.mnuCalculate});
+            this.mnuOnTop});
             this.mnu.Location = new System.Drawing.Point(0, 0);
             this.mnu.Name = "mnu";
             this.mnu.Padding = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.mnu.Size = new System.Drawing.Size(622, 27);
             this.mnu.TabIndex = 2;
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 27);
-            // 
-            // ofd
-            // 
-            this.ofd.Filter = "All files|*.*";
-            this.ofd.Multiselect = true;
-            this.ofd.RestoreDirectory = true;
-            // 
-            // lsvFiles
-            // 
-            this.lsvFiles.AllowDrop = true;
-            this.lsvFiles.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.lsvFiles.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.lsvFiles_colFile,
-            this.lsvFiles_colDirectory});
-            this.lsvFiles.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lsvFiles.FullRowSelect = true;
-            this.lsvFiles.GridLines = true;
-            this.lsvFiles.Location = new System.Drawing.Point(0, 27);
-            this.lsvFiles.MultiSelect = false;
-            this.lsvFiles.Name = "lsvFiles";
-            this.lsvFiles.ShowItemToolTips = true;
-            this.lsvFiles.Size = new System.Drawing.Size(622, 328);
-            this.lsvFiles.TabIndex = 0;
-            this.lsvFiles.UseCompatibleStateImageBehavior = false;
-            this.lsvFiles.View = System.Windows.Forms.View.Details;
-            this.lsvFiles.DragDrop += new System.Windows.Forms.DragEventHandler(this.lsvFiles_DragDrop);
-            this.lsvFiles.DragEnter += new System.Windows.Forms.DragEventHandler(this.lsvFiles_DragEnter);
-            this.lsvFiles.KeyDown += new System.Windows.Forms.KeyEventHandler(this.lsvFiles_KeyDown);
-            // 
-            // lsvFiles_colFile
-            // 
-            this.lsvFiles_colFile.Text = "File";
-            this.lsvFiles_colFile.Width = 240;
-            // 
-            // lsvFiles_colDirectory
-            // 
-            this.lsvFiles_colDirectory.Text = "Folder";
-            this.lsvFiles_colDirectory.Width = 180;
-            // 
-            // bwCheckForUpgrade
-            // 
-            this.bwCheckForUpgrade.WorkerSupportsCancellation = true;
-            this.bwCheckForUpgrade.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bwCheckForUpgrade_DoWork);
-            this.bwCheckForUpgrade.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bwCheckForUpgrade_RunWorkerCompleted);
             // 
             // mnuApp
             // 
@@ -120,7 +75,7 @@ namespace Summae {
             this.mnuAppUpgrade,
             this.toolStripMenuItem1,
             this.mnuAppAbout});
-            this.mnuApp.Image = global::Summae.Properties.Resources.mnuApp_16;
+            this.mnuApp.Image = ((System.Drawing.Image)(resources.GetObject("mnuApp.Image")));
             this.mnuApp.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.mnuApp.Name = "mnuApp";
             this.mnuApp.Size = new System.Drawing.Size(34, 24);
@@ -167,7 +122,7 @@ namespace Summae {
             // mnuNew
             // 
             this.mnuNew.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.mnuNew.Image = global::Summae.Properties.Resources.mnuNew_16;
+            this.mnuNew.Image = ((System.Drawing.Image)(resources.GetObject("mnuNew.Image")));
             this.mnuNew.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.mnuNew.Name = "mnuNew";
             this.mnuNew.Size = new System.Drawing.Size(24, 24);
@@ -177,7 +132,7 @@ namespace Summae {
             // 
             // mnuOpen
             // 
-            this.mnuOpen.Image = global::Summae.Properties.Resources.mnuOpen_16;
+            this.mnuOpen.Image = ((System.Drawing.Image)(resources.GetObject("mnuOpen.Image")));
             this.mnuOpen.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.mnuOpen.Name = "mnuOpen";
             this.mnuOpen.Size = new System.Drawing.Size(86, 24);
@@ -185,16 +140,82 @@ namespace Summae {
             this.mnuOpen.ToolTipText = "Add file (Ctrl+O)";
             this.mnuOpen.Click += new System.EventHandler(this.mnuOpen_Click);
             // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 27);
+            // 
             // mnuCalculate
             // 
             this.mnuCalculate.Enabled = false;
-            this.mnuCalculate.Image = global::Summae.Properties.Resources.mnuCalculate_16;
+            this.mnuCalculate.Image = ((System.Drawing.Image)(resources.GetObject("mnuCalculate.Image")));
             this.mnuCalculate.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.mnuCalculate.Name = "mnuCalculate";
             this.mnuCalculate.Size = new System.Drawing.Size(109, 24);
             this.mnuCalculate.Text = "Calculate";
             this.mnuCalculate.ToolTipText = "Calculate (F5)";
             this.mnuCalculate.ButtonClick += new System.EventHandler(this.mnuCalculate_ButtonClick);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 27);
+            // 
+            // mnuOnTop
+            // 
+            this.mnuOnTop.CheckOnClick = true;
+            this.mnuOnTop.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.mnuOnTop.Image = global::Summae.Properties.Resources.mnuOnTop_16;
+            this.mnuOnTop.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.mnuOnTop.Name = "mnuOnTop";
+            this.mnuOnTop.Size = new System.Drawing.Size(24, 24);
+            this.mnuOnTop.Text = "On Top";
+            this.mnuOnTop.ToolTipText = "Always on top (Ctrl+T)";
+            this.mnuOnTop.Click += new System.EventHandler(this.mnuOnTop_Click);
+            // 
+            // ofd
+            // 
+            this.ofd.Filter = "All files|*.*";
+            this.ofd.Multiselect = true;
+            this.ofd.RestoreDirectory = true;
+            // 
+            // lsvFiles
+            // 
+            this.lsvFiles.AllowDrop = true;
+            this.lsvFiles.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.lsvFiles.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.lsvFiles_colFile,
+            this.lsvFiles_colDirectory});
+            this.lsvFiles.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lsvFiles.FullRowSelect = true;
+            this.lsvFiles.GridLines = true;
+            this.lsvFiles.Location = new System.Drawing.Point(0, 27);
+            this.lsvFiles.MultiSelect = false;
+            this.lsvFiles.Name = "lsvFiles";
+            this.lsvFiles.ShowItemToolTips = true;
+            this.lsvFiles.Size = new System.Drawing.Size(622, 328);
+            this.lsvFiles.TabIndex = 0;
+            this.lsvFiles.UseCompatibleStateImageBehavior = false;
+            this.lsvFiles.View = System.Windows.Forms.View.Details;
+            this.lsvFiles.DragDrop += new System.Windows.Forms.DragEventHandler(this.lsvFiles_DragDrop);
+            this.lsvFiles.DragEnter += new System.Windows.Forms.DragEventHandler(this.lsvFiles_DragEnter);
+            this.lsvFiles.KeyDown += new System.Windows.Forms.KeyEventHandler(this.lsvFiles_KeyDown);
+            // 
+            // lsvFiles_colFile
+            // 
+            this.lsvFiles_colFile.Text = "File";
+            this.lsvFiles_colFile.Width = 240;
+            // 
+            // lsvFiles_colDirectory
+            // 
+            this.lsvFiles_colDirectory.Text = "Folder";
+            this.lsvFiles_colDirectory.Width = 180;
+            // 
+            // bwCheckForUpgrade
+            // 
+            this.bwCheckForUpgrade.WorkerSupportsCancellation = true;
+            this.bwCheckForUpgrade.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bwCheckForUpgrade_DoWork);
+            this.bwCheckForUpgrade.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bwCheckForUpgrade_RunWorkerCompleted);
             // 
             // MainForm
             // 
@@ -225,7 +246,7 @@ namespace Summae {
         private System.Windows.Forms.OpenFileDialog ofd;
         private System.Windows.Forms.ToolStripButton mnuNew;
         private System.Windows.Forms.ToolStripButton mnuOpen;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ListView lsvFiles;
         private System.Windows.Forms.ColumnHeader lsvFiles_colFile;
         private System.Windows.Forms.ColumnHeader lsvFiles_colDirectory;
@@ -238,6 +259,8 @@ namespace Summae {
         private System.ComponentModel.BackgroundWorker bwCheckForUpgrade;
         private System.Windows.Forms.ToolStripMenuItem mnuAppOptions;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripButton mnuOnTop;
     }
 }
 

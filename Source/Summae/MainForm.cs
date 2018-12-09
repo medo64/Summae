@@ -68,6 +68,8 @@ namespace Summae {
 
         private void Form_Load(object sender, EventArgs e) {
             Medo.Windows.Forms.State.Load(this, lsvFiles);
+            mnuOnTop.Checked = Settings.OnTop;
+            this.TopMost = Settings.OnTop;
         }
 
         private void Form_FormClosing(object sender, FormClosingEventArgs e) {
@@ -157,6 +159,11 @@ namespace Summae {
                     this.Cursor = Cursors.Default;
                 }
             }
+        }
+
+        private void mnuOnTop_Click(object sender, EventArgs e) {
+            this.TopMost = mnuOnTop.Checked;
+            Settings.OnTop = this.TopMost;
         }
 
 
