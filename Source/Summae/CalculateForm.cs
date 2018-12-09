@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using Summae.HashAlgorithms;
 
@@ -79,19 +80,33 @@ namespace Summae {
                     this.Controls.Add(text);
                     iItem.TextBoxControl = text;
 
-                    var button = new Button {
+                    var buttonCopy = new Button {
                         Width = text.Height,
                         Height = text.Height,
                         Top = top,
                         Left = text.Left + text.Width,
+                        Image = Properties.Resources.btnCopy_16,
+                        Tag = iItem,
+                        Visible = false
+                    };
+                    buttonCopy.Click += new EventHandler(buttonCopy_Click);
+                    toolTip.SetToolTip(buttonCopy, "Copies " + iItem.Algorithm.DisplayName + " result.");
+                    this.Controls.Add(buttonCopy);
+                    iItem.ButtonCopyControl = buttonCopy;
+
+                    var buttonSave = new Button {
+                        Width = text.Height,
+                        Height = text.Height,
+                        Top = top,
+                        Left = buttonCopy.Left + buttonCopy.Width,
                         Image = Properties.Resources.btnSave_16,
                         Tag = iItem,
                         Visible = false
                     };
-                    button.Click += new EventHandler(button_Click);
-                    toolTip.SetToolTip(button, "Creates new file that will contain result of " + iItem.Algorithm.DisplayName + " calculation. File will have same name as original with added ." + iItem.Algorithm.Name + " as extension.");
-                    this.Controls.Add(button);
-                    iItem.ButtonControl = button;
+                    buttonSave.Click += new EventHandler(buttonSave_Click);
+                    toolTip.SetToolTip(buttonSave, "Creates new file that will contain result of " + iItem.Algorithm.DisplayName + " calculation. File will have same name as original with added ." + iItem.Algorithm.Name + " as extension.");
+                    this.Controls.Add(buttonSave);
+                    iItem.ButtonSaveControl = buttonSave;
 
                     var label = new Label {
                         AutoSize = false,
@@ -112,7 +127,7 @@ namespace Summae {
                 top += dluW;
 
                 top += buttonCancel.Height;
-                this.ClientSize = new Size(dluW + labelWidth + dluW + textWidth + textFileName.Height + dluW, top + dluW);
+                this.ClientSize = new Size(dluW + labelWidth + dluW + textWidth + textFileName.Height + textFileName.Height + dluW, top + dluW);
 
                 buttonCancel.Location = new Point(this.ClientRectangle.Right - buttonCancel.Width - dluW, this.ClientRectangle.Bottom - buttonCancel.Height - dluW);
                 progress.Location = new Point(dluW, dluW + textFileName.Height + dluW + dluW / 2);
@@ -136,7 +151,17 @@ namespace Summae {
             bwFileReader.RunWorkerAsync();
         }
 
-        void button_Click(object sender, EventArgs e) {
+        void buttonCopy_Click(object sender, EventArgs e) {
+            var thisButton = (Button)sender;
+            var thisItem = (SumItem)thisButton.Tag;
+            try {
+                Clipboard.Clear();
+                Clipboard.SetText(Settings.SpacedHash ? thisItem.ToSpacedString() : thisItem.ToNonspacedString());
+            } catch (ExternalException) {
+            }
+        }
+
+        void buttonSave_Click(object sender, EventArgs e) {
             var thisButton = (Button)sender;
             var thisItem = (SumItem)thisButton.Tag;
             try {
@@ -247,12 +272,13 @@ namespace Summae {
                     iItem.TextBoxControl.Text = Settings.SpacedHash ? iItem.ToSpacedString() : iItem.ToNonspacedString();
                     if (iItem.AreResultsSame || iItem.AreResultsSame2) {
                         iItem.TextBoxControl.BackColor = Color.LightGreen;
-                        iItem.ButtonControl.Enabled = false;
+                        iItem.ButtonSaveControl.Enabled = false;
                     } else if (iItem.AreResultsDifferent) {
                         iItem.TextBoxControl.BackColor = Color.Pink;
                     }
                     iItem.TextBoxControl.Visible = true;
-                    iItem.ButtonControl.Visible = true;
+                    iItem.ButtonCopyControl.Visible = true;
+                    iItem.ButtonSaveControl.Visible = true;
                 }
             }
         }

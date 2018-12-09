@@ -19,7 +19,8 @@ namespace Summae.HashAlgorithms {
 
         public Label LabelControl { get; set; }
         public TextBox TextBoxControl { get; set; }
-        public Button ButtonControl { get; set; }
+        public Button ButtonCopyControl { get; set; }
+        public Button ButtonSaveControl { get; set; }
 
 
         public bool AreResultsSame {
