@@ -69,10 +69,10 @@ namespace Summae.HashAlgorithms {
 
 
         public override string ToString() {
-            return ToSpacedString();
+            return ToSpacedString(uppercase: false);
         }
 
-        public string ToSpacedString() {
+        public string ToSpacedString(bool uppercase) {
             var sb = new StringBuilder();
             if ((this.Algorithm != null) && (this.Algorithm.Result != null)) {
                 var step = 1;
@@ -90,17 +90,17 @@ namespace Summae.HashAlgorithms {
                             sb.Append(" ");
                         }
                     }
-                    sb.Append(this.Algorithm.Result[i].ToString("x2"));
+                    sb.Append(this.Algorithm.Result[i].ToString(uppercase ? "X2" : "x2"));
                 }
             }
             return sb.ToString();
         }
 
-        public string ToNonspacedString() {
+        public string ToNonspacedString(bool uppercase) {
             var sb = new StringBuilder();
             if ((this.Algorithm != null) && (this.Algorithm.Result != null)) {
                 for (var i = 0; i < this.Algorithm.Result.Length; ++i) {
-                    sb.Append(this.Algorithm.Result[i].ToString("x2"));
+                    sb.Append(this.Algorithm.Result[i].ToString(uppercase ? "X2" : "x2"));
                 }
             }
             return sb.ToString();

@@ -47,6 +47,7 @@ namespace Summae {
             chbSha512.Checked = entries.Contains(ShellEntry.Sha512);
 
             chbSpacedHash.Checked = Settings.SpacedHash;
+            chbUppercaseHash.Checked = Settings.UppercaseHash;
         }
 
 
@@ -81,6 +82,7 @@ namespace Summae {
                  && (entries.Count == 0));
 
             Settings.SpacedHash = chbSpacedHash.Checked;
+            Settings.UppercaseHash = chbUppercaseHash.Checked;
         }
 
 

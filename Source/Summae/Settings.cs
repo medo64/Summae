@@ -13,6 +13,11 @@ namespace Summae {
             set { Config.Write("SpacedHash", value); }
         }
 
+        public static bool UppercaseHash {
+            get { return Config.Read("UppercaseHash", false); }
+            set { Config.Write("UppercaseHash", value); }
+        }
+
         public static double ScaleBoost {
             get { return Config.Read("ScaleBoost", 0.00); }
         }

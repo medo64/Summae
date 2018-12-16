@@ -123,7 +123,7 @@ namespace SummaeCL {
                                 } else if (iItem.AreResultsDifferent) {
                                     Console.ForegroundColor = ConsoleColor.Red;
                                 }
-                                Console.WriteLine(iItem.ToNonspacedString());
+                                Console.WriteLine(iItem.ToNonspacedString(uppercase: false));
                                 Console.ResetColor();
                             }
                         } catch (IOException ex) {

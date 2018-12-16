@@ -156,7 +156,7 @@ namespace Summae {
             var thisItem = (SumItem)thisButton.Tag;
             try {
                 Clipboard.Clear();
-                Clipboard.SetText(Settings.SpacedHash ? thisItem.ToSpacedString() : thisItem.ToNonspacedString());
+                Clipboard.SetText(Settings.SpacedHash ? thisItem.ToSpacedString(Settings.UppercaseHash) : thisItem.ToNonspacedString(Settings.UppercaseHash));
             } catch (ExternalException) {
             }
         }
@@ -165,7 +165,7 @@ namespace Summae {
             var thisButton = (Button)sender;
             var thisItem = (SumItem)thisButton.Tag;
             try {
-                File.WriteAllText(this._file.FullName + "." + thisItem.Algorithm.Name, thisItem.ToNonspacedString());
+                File.WriteAllText(this._file.FullName + "." + thisItem.Algorithm.Name, thisItem.ToNonspacedString(Settings.UppercaseHash));
                 thisButton.Enabled = false;
                 buttonCancel.Select();
             } catch (UnauthorizedAccessException ex) {
@@ -269,7 +269,7 @@ namespace Summae {
                     }
 
                     iItem.LabelControl.Visible = true;
-                    iItem.TextBoxControl.Text = Settings.SpacedHash ? iItem.ToSpacedString() : iItem.ToNonspacedString();
+                    iItem.TextBoxControl.Text = Settings.SpacedHash ? iItem.ToSpacedString(Settings.UppercaseHash) : iItem.ToNonspacedString(Settings.UppercaseHash);
                     if (iItem.AreResultsSame || iItem.AreResultsSame2) {
                         iItem.TextBoxControl.BackColor = Color.LightGreen;
                         iItem.ButtonSaveControl.Enabled = false;
