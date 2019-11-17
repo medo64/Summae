@@ -123,7 +123,7 @@ CERTUTIL -silent -verifystore -user My %SIGN_THUMBPRINT% > NUL
 IF %ERRORLEVEL%==0 (
     ECHO --- SIGN SOLUTION
     ECHO.
-    
+
     IF [%SIGN_TIMESTAMPURL%]==[] (
         %SIGN_TOOL% sign /s "My" /sha1 %SIGN_THUMBPRINT% /v %FILES_EXECUTABLE%
     ) ELSE (
@@ -177,7 +177,7 @@ CERTUTIL -silent -verifystore -user My %SIGN_THUMBPRINT% > NUL
 IF %ERRORLEVEL%==0 (
     ECHO --- SIGN SETUP
     ECHO.
-    
+
     IF [%SIGN_TIMESTAMPURL%]==[] (
         %SIGN_TOOL% sign /s "My" /sha1 %SIGN_THUMBPRINT% /v ".\Temp\%_SETUPEXE%"
     ) ELSE (

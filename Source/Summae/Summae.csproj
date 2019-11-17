@@ -65,13 +65,13 @@
     <Compile Include="%28Medo%29\Config [006].cs" />
     <Compile Include="%28Medo%29\Crc16 [004].cs" />
     <Compile Include="%28Medo%29\Crc32 [004].cs" />
-    <Compile Include="%28Medo%29\ErrorReport [019].cs" />
+    <Compile Include="%28Medo%29\ErrorReport [020].cs" />
     <Compile Include="%28Medo%29\MessageBox [007].cs" />
     <Compile Include="%28Medo%29\State [016].cs" />
     <Compile Include="%28Medo%29\StringAdder [002].cs" />
     <Compile Include="%28Medo%29\TaskbarProgress [002].cs" />
     <Compile Include="%28Medo%29\UnhandledCatch [008].cs" />
-    <Compile Include="%28Medo%29\Upgrade [004].cs" />
+    <Compile Include="%28Medo%29\Upgrade [005].cs" />
     <Compile Include="CalculateForm.cs">
       <SubType>Form</SubType>
     </Compile>

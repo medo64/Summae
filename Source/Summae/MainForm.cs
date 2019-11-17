@@ -262,7 +262,7 @@ namespace Summae {
         }
 
         private void bwCheckForUpgrade_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e) {
-            if (!e.Cancelled) {
+            if (!e.Cancelled && (e.Error == null)) {
                 Helper.ScaleToolstripItem(mnuApp, "mnuAppUpgrade");
                 mnuAppUpgrade.Text = "Upgrade is available";
             }
